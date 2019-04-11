@@ -18,24 +18,28 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            app:srcCompat="@color/colorPrimaryDark" />
+            app:srcCompat="@color/colorPrimaryDark"
+            tools:ignore="ContentDescription" />
 
         <Button
             android:id="@+id/levelButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Select Level" />
+            android:onClick="onClickLevelSelect"
+            android:text="@string/selectLevel" />
 
         <Button
             android:id="@+id/statisticsButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Statistics" />
+            android:onClick="onClickStatistics"
+            android:text="@string/statistics" />
 
         <Button
             android:id="@+id/settingsButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Settings" />
+            android:onClick="onClickSettings"
+            android:text="@string/settings" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
