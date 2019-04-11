@@ -14,7 +14,7 @@ public class LevelSelect extends AppCompatActivity {
     }
 
     public void onClickGame(View view){
-        Intent startGame = new Intent(LevelSelect.this, Game.class);
+        Intent startGame = new Intent(this, Game.class);
         startActivity(startGame);
     }
 }
