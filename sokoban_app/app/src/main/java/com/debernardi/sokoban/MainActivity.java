@@ -14,17 +14,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickLevelSelect(View view){
-        Intent startLevelSelect = new Intent(MainActivity.this, LevelSelect.class);
+        Intent startLevelSelect = new Intent(this, LevelSelect.class);
         startActivity(startLevelSelect);
     }
 
     public void onClickStatistics(View view){
-        Intent startStatistics = new Intent(MainActivity.this, Statistics.class);
+        Intent startStatistics = new Intent(this, Statistics.class);
         startActivity(startStatistics);
     }
 
     public void onClickSettings(View view){
-        Intent startSettings = new Intent(MainActivity.this, Settings.class);
+        Intent startSettings = new Intent(this, Settings.class);
         startActivity(startSettings);
     }
 }
