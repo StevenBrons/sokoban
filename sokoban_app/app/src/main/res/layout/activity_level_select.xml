@@ -17,5 +17,11 @@
             android:layout_height="wrap_content"
             android:onClick="onClickGame"
             android:text="@string/play" />
+
+        <LinearLayout
+            android:id="@+id/layLevels"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"></LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
