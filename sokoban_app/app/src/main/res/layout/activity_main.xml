@@ -14,7 +14,7 @@
         tools:layout_editor_absoluteY="608dp">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imgTitlescreen"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -22,21 +22,21 @@
             tools:ignore="ContentDescription" />
 
         <Button
-            android:id="@+id/levelButton"
+            android:id="@+id/btnLevel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="onClickLevelSelect"
             android:text="@string/selectLevel" />
 
         <Button
-            android:id="@+id/statisticsButton"
+            android:id="@+id/btnStatistics"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="onClickStatistics"
             android:text="@string/statistics" />
 
         <Button
-            android:id="@+id/settingsButton"
+            android:id="@+id/btnSettings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="onClickSettings"
