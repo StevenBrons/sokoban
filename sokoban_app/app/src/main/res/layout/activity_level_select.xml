@@ -9,14 +9,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/btnGameTemp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onClickGame"
-            android:text="@string/play" />
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <LinearLayout
             android:id="@+id/layLevels"
