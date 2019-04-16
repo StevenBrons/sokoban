@@ -33,7 +33,7 @@ public class Level {
 
     private Tile readTile(String tileName) {
         switch (tileName) {
-            case "g":
+            case "e":
                 return new Empty();
             case "s":
                 return new Boulder();

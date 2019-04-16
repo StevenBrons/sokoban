@@ -39,6 +39,6 @@ public class GameHandler {
 
 }
 
-private enum Direction {
+enum Direction {
     UP,DOWN,LEFT,RIGHT
 }
