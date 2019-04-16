@@ -13,6 +13,7 @@
         <activity android:name=".Settings" />
         <activity android:name=".LevelSelect" />
         <activity android:name=".Game" />
+        <activity android:name=".WinLose" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
