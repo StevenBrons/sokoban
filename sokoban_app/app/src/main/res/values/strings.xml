@@ -4,6 +4,7 @@
     <string name="selectLevel">Select Level</string>
     <string name="statistics">Statistics</string>
     <string name="play">Play Level</string>
+    <string name="levelLoadError">error loading level files, please try again</string>
     <string name="won_good">Good Job!</string>
     <string name="won_perfect">Perfect!</string>
     <string name="won_newbest">New Best!</string>
