@@ -5,4 +5,12 @@
     <string name="statistics">Statistics</string>
     <string name="play">Play Level</string>
     <string name="levelLoadError">error loading level files, please try again</string>
+    <string name="won_good">Good Job!</string>
+    <string name="won_perfect">Perfect!</string>
+    <string name="won_newbest">New Best!</string>
+    <string name="score_current">Current Score:</string>
+    <string name="score_best">Best Score:</string>
+    <string name="score_minimal">Minimal Score:</string>
+    <string name="button_levels">Levels</string>
+    <string name="button_restart">Restart</string>
 </resources>
