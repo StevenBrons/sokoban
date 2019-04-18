@@ -14,6 +14,7 @@
         <activity android:name=".LevelSelect" />
         <activity android:name=".GameActivity" />
         <activity android:name=".WinLose" />
+        <activity android:name=".CreditsActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

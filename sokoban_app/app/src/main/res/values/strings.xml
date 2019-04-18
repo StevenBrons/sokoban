@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Sokoban</string>
-    <string name="titlescreen_app_name">Sokoban\n 倉庫番</string>
+    <string name="titlescreen_app_name">Sokoban</string>
+    <string name="titlescreen_app_name_japanese">倉庫番</string>
     <string name="settings">Settings</string>
     <string name="selectLevel">Play!</string>
     <string name="statistics">Statistics</string>
@@ -21,6 +22,6 @@
                                             Steven Bronsveld \n
                                             Jelmer Firet \n
                                             Robert Koprinkov \n
-                                            Bram Pulles \n Graphics:\n
+                                            Bram Pulles \nGraphics:\n
                                 Thijs van Loenhout</string>
 </resources>
