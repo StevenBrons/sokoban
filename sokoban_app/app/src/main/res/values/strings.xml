@@ -1,4 +1,4 @@
-<resources>
+<>
     <string name="app_name">Sokoban</string>
     <string name="titlescreen_app_name">Sokoban\n 倉庫番</string>
     <string name="settings">Settings</string>
@@ -16,4 +16,11 @@
     <string name="button_restart">Restart</string>
     <string name="quit">QUIT</string>
     <string name="credits">Credits</string>
+    <string name="creditsText">Developers: \n
+                                            Thomas Berghuis \n
+                                            Steven Bronsveld \n
+                                            Jelmer Firet \n
+                                            Robert Koprinkov \n
+                                            Bram Pulles \nGraphics:\n
+                                Thijs van Loenhout</string>
 </resources>
