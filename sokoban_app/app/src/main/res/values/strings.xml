@@ -15,4 +15,12 @@
     <string name="button_levels">Levels</string>
     <string name="button_restart">Restart</string>
     <string name="quit">QUIT</string>
+    <string name="credits">Credits</string>
+    <string name="creditsText">Developers: \n
+                                            Thomas Berghuis \n
+                                            Steven Bronsveld \n
+                                            Jelmer Firet \n
+                                            Robert Koprinkov \n
+                                            Bram Pulles \n Graphics:\n
+                                Thijs van Loenhout</string>
 </resources>
