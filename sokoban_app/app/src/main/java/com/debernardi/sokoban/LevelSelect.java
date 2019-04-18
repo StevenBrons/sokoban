@@ -149,7 +149,7 @@ public class LevelSelect extends AppCompatActivity {
             level.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent startGame = new Intent(LevelSelect.this,Game.class);
+                    Intent startGame = new Intent(LevelSelect.this, GameActivity.class);
                     startGame.putExtra("levelFileName",levelFilenameCpy);
                     startActivity(startGame);
                 }
