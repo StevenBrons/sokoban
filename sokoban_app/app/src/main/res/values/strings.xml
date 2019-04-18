@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Sokoban</string>
+    <string name="titlescreen_app_name">Sokoban\n 倉庫番</string>
     <string name="settings">Settings</string>
     <string name="selectLevel">Play!</string>
     <string name="statistics">Statistics</string>
@@ -13,4 +14,5 @@
     <string name="score_minimal">Minimal Score:</string>
     <string name="button_levels">Levels</string>
     <string name="button_restart">Restart</string>
+    <string name="quit">QUIT</string>
 </resources>
