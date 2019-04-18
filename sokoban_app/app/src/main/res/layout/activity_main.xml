@@ -14,9 +14,19 @@
         tools:layout_editor_absoluteY="376dp">
 
         <TextView
-            android:layout_height="200dp"
+            android:layout_height="100dp"
             android:layout_width="match_parent"
             android:text="@string/titlescreen_app_name"
+            android:fontFamily="@font/dtm_mono"
+            android:textSize="75sp"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/levelSelectBackgroundOdd"
+            android:gravity="center"
+            />
+        <TextView
+            android:layout_height="100dp"
+            android:layout_width="match_parent"
+            android:text="@string/titlescreen_app_name_japanese"
             android:fontFamily="@font/dtm_mono"
             android:textSize="75sp"
             android:background="@color/colorPrimaryDark"
@@ -84,7 +94,7 @@
             android:layout_height="100dp"
             android:background="@color/colorPrimaryDark"
             android:fontFamily="@font/dtm_mono"
-            android:onClick="onClickSettings"
+            android:onClick="onClickCredits"
             android:text="@string/credits"
             android:textColor="@color/levelSelectBackgroundEven"
             android:textSize="50sp" />
