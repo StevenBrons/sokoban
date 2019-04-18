@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Sokoban</string>
     <string name="settings">Settings</string>
-    <string name="selectLevel">Select Level</string>
+    <string name="selectLevel">Play!</string>
     <string name="statistics">Statistics</string>
     <string name="play">Play Level</string>
     <string name="levelLoadError">error loading level files, please try again</string>
