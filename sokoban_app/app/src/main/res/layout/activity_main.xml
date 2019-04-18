@@ -13,6 +13,23 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="376dp">
 
+        <TextView
+            android:layout_height="200dp"
+            android:layout_width="match_parent"
+            android:text="@string/titlescreen_app_name"
+            android:fontFamily="@font/dtm_mono"
+            android:textSize="75sp"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/levelSelectBackgroundOdd"
+            android:gravity="center"
+            />
+
+        <ImageView
+            android:layout_height="5dp"
+            android:layout_width="match_parent"
+            android:background="@color/levelSelectBackgroundOdd"/>
+
+
         <Button
             android:id="@+id/btnLevel"
             android:layout_width="match_parent"
@@ -26,7 +43,7 @@
 
 
         <ImageView
-            android:layout_height="3px"
+            android:layout_height="3dp"
             android:layout_width="match_parent"
             android:background="@color/levelSelectBackgroundOdd"/>
 
@@ -42,7 +59,7 @@
             android:textSize="50sp" />
 
         <ImageView
-            android:layout_height="3px"
+            android:layout_height="3dp"
             android:layout_width="match_parent"
             android:background="@color/levelSelectBackgroundOdd"/>
         <Button
@@ -57,7 +74,7 @@
             android:textSize="50sp" />
 
         <ImageView
-            android:layout_height="3px"
+            android:layout_height="3dp"
             android:layout_width="match_parent"
             android:background="@color/levelSelectBackgroundOdd"/>
         <ImageView
@@ -69,7 +86,7 @@
             tools:ignore="ContentDescription" />
 
         <ImageView
-            android:layout_height="3px"
+            android:layout_height="3dp"
             android:layout_width="match_parent"
             android:background="@color/levelSelectBackgroundOdd"/>
         <Button
@@ -79,7 +96,7 @@
             android:background="@color/colorAccent"
             android:fontFamily="@font/dtm_mono"
             android:onClick="onClickQuit"
-            android:text="QUIT"
+            android:text="@string/quit"
             android:textColor="@color/levelSelectBackgroundEven"
             android:textSize="50sp"
             app:layout_constraintBottom_toBottomOf="parent"
