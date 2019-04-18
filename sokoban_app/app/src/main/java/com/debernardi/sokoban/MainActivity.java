@@ -28,4 +28,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(startSettings);
     }
 
+    public void onClickQuit(View view){
+        finish();
+        System.exit(0);
+    }
+
 }
