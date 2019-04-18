@@ -28,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(startSettings);
     }
 
+    public void onClickCredits(View view){
+        Intent startCredits = new Intent(this, CreditsActivity.class);
+        startActivity(startCredits);
+    }
+
     public void onClickQuit(View view){
         finish();
         System.exit(0);
