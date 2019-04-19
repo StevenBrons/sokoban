@@ -20,7 +20,7 @@ public class GameActivity extends AppCompatActivity {
         Texture.init(getAssets());
         super.onCreate(savedInstanceState);
         try {
-            Scanner levelReader = new Scanner(getAssets().open("levels/" + "08.sok"));
+            Scanner levelReader = new Scanner(getAssets().open("levels/" + "07.sok"));
             String levelData = "";
             while (levelReader.hasNextLine()) {
                 levelData += levelReader.nextLine() + "\n";
@@ -29,7 +29,6 @@ public class GameActivity extends AppCompatActivity {
             handler = new GameHandler(levelData);
 
             handler.start(view);
-
             view = new GameView(this,handler);
             view.setBackgroundColor(Color.RED);
             setContentView(view);
