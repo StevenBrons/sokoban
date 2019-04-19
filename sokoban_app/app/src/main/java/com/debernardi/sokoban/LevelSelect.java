@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
+import android.graphics.Typeface;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -105,21 +107,24 @@ public class LevelSelect extends AppCompatActivity {
             // Make level title text
             TextView levelNameView = new TextView(this);
             levelNameView.setText(levelName);
-            levelNameView.setTextSize(24);
+            levelNameView.setTextSize(20);
             levelNameView.setId(View.generateViewId());
+            levelNameView.setTypeface(ResourcesCompat.getFont(this,R.font.dtm_mono));
 
             // Make level title text
             TextView authorNameView = new TextView(this);
             authorNameView.setText(authorName);
-            authorNameView.setTextSize(18);
+            authorNameView.setTextSize(16);
             authorNameView.setId(View.generateViewId());
+            authorNameView.setTypeface(ResourcesCompat.getFont(this,R.font.dtm_mono));
 
             // Make best score text
             TextView bestTextView = new TextView(this);
             bestTextView.setText(String.format("%s/%s",highscore>=0?highscore:"-",minMoves>=0?minMoves:"-"));
-            bestTextView.setTextSize(18);
+            bestTextView.setTextSize(16);
             bestTextView.setPadding(10,3,10,3);
             bestTextView.setId(View.generateViewId());
+            bestTextView.setTypeface(ResourcesCompat.getFont(this,R.font.dtm_mono));
 
             // Add elements to level container
             level.addView(previewView);
