@@ -1,40 +1,46 @@
 package game;
 
+import com.debernardi.sokoban.GameView;
+
 public class GameHandler {
 
     private Thread gameLoop;
+    private GameView view;
     private long time = 0;
+    private Level level;
+    private boolean running = false;
 
-    GameHandler(String fileName) {
-
-
+    public GameHandler(String levelData) {
+        level = new Level(levelData);
+        System.out.println(level);
     }
 
     public void move(Direction d) {
 
     }
 
-    public void init() {
-
-    }
-
-    public void start() {
+    public void start(GameView view) {
+        this.view = view;
+        final GameHandler h = this;
+        this.running = true;
         gameLoop = new Thread(new Runnable() {
             @Override
             public void run() {
-                draw();
-                time++;
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+//                while (running) {
+                    //h.view.invalidate();
+                    time++;
+//                    try {
+//                        Thread.sleep(1000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
             }
         });
     }
 
-    public void draw() {
-        //todo
+    public Level getLevel() {
+        return this.level;
     }
 
 }

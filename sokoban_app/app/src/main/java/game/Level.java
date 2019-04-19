@@ -1,5 +1,7 @@
 package game;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 import tiles.Boulder;
@@ -15,14 +17,16 @@ public class Level {
     private int width;
     private int height;
     private String levelName;
+    private String author;
+    private int bestPossibleScore;
 
-    Level(String fileName) {
-        //todo read line
-        String content = "";
+    Level(String content) {
         Scanner s = new Scanner(content);
         levelName = s.nextLine();
+        author = s.nextLine();
         width = s.nextInt();
         height = s.nextInt();
+        bestPossibleScore = s.nextInt();
         tiles = new Tile[width][height];
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
@@ -33,7 +37,7 @@ public class Level {
 
     private Tile readTile(String tileName) {
         switch (tileName) {
-            case "e":
+            case ".":
                 return new Empty();
             case "s":
                 return new Boulder();
@@ -59,9 +63,20 @@ public class Level {
 
     public Tile getTileAt(int x, int y) {
         if (x >= 0 && x < getWidth() && y >= 0 && y < getHeight()) {
+            System.out.println(tiles[x][y]);
             return tiles[x][y];
         }else {
             return new Void();
         }
+    }
+
+    public String toString() {
+        String s = "";
+        s += levelName + "\n";
+        s += author + "\n";
+        s += width + " " + height + " " + bestPossibleScore + " \n";
+
+
+        return s;
     }
 }
