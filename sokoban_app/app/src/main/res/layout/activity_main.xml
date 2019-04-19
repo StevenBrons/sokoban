@@ -10,36 +10,117 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="27dp"
-        tools:layout_editor_absoluteY="608dp">
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="376dp">
+
+        <TextView
+            android:layout_height="100dp"
+            android:layout_width="match_parent"
+            android:text="@string/titlescreen_app_name"
+            android:fontFamily="@font/dtm_mono"
+            android:textSize="75sp"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/levelSelectBackgroundOdd"
+            android:gravity="center"
+            />
+        <TextView
+            android:layout_height="100dp"
+            android:layout_width="match_parent"
+            android:text="@string/titlescreen_app_name_japanese"
+            android:fontFamily="@font/dtm_mono"
+            android:textSize="75sp"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/levelSelectBackgroundOdd"
+            android:gravity="center"
+            />
 
         <ImageView
-            android:id="@+id/imgTitlescreen"
+            android:layout_height="5dp"
+            android:layout_width="match_parent"
+            android:background="@color/levelSelectBackgroundOdd"/>
+
+
+        <Button
+            android:id="@+id/btnLevel"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/colorPrimaryDark"
+            android:fontFamily="@font/dtm_mono"
+            android:onClick="onClickLevelSelect"
+            android:text="@string/selectLevel"
+            android:textColor="@color/levelSelectBackgroundEven"
+            android:textSize="50sp" />
+
+
+        <ImageView
+            android:layout_height="3dp"
+            android:layout_width="match_parent"
+            android:background="@color/levelSelectBackgroundOdd"/>
+
+        <Button
+            android:id="@+id/btnStatistics"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/colorPrimaryDark"
+            android:fontFamily="@font/dtm_mono"
+            android:onClick="onClickStatistics"
+            android:text="@string/statistics"
+            android:textColor="@color/levelSelectBackgroundEven"
+            android:textSize="50sp" />
+
+        <ImageView
+            android:layout_height="3dp"
+            android:layout_width="match_parent"
+            android:background="@color/levelSelectBackgroundOdd"/>
+        <Button
+            android:id="@+id/btnSettings"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/colorPrimaryDark"
+            android:fontFamily="@font/dtm_mono"
+            android:onClick="onClickSettings"
+            android:text="@string/settings"
+            android:textColor="@color/levelSelectBackgroundEven"
+            android:textSize="50sp" />
+
+        <ImageView
+            android:layout_height="3dp"
+            android:layout_width="match_parent"
+            android:background="@color/levelSelectBackgroundOdd"/>
+
+        <Button
+            android:id="@+id/btnCredits"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/colorPrimaryDark"
+            android:fontFamily="@font/dtm_mono"
+            android:onClick="onClickCredits"
+            android:text="@string/credits"
+            android:textColor="@color/levelSelectBackgroundEven"
+            android:textSize="50sp" />
+        <ImageView
+            android:id="@+id/imgPadding"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             app:srcCompat="@color/colorPrimaryDark"
             tools:ignore="ContentDescription" />
 
-        <Button
-            android:id="@+id/btnLevel"
+        <ImageView
+            android:layout_height="3dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onClickLevelSelect"
-            android:text="@string/selectLevel" />
-
+            android:background="@color/levelSelectBackgroundOdd"/>
         <Button
-            android:id="@+id/btnStatistics"
+            android:id="@+id/btnQuit"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onClickStatistics"
-            android:text="@string/statistics" />
-
-        <Button
-            android:id="@+id/btnSettings"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onClickSettings"
-            android:text="@string/settings" />
+            android:layout_height="100dp"
+            android:background="@color/colorAccent"
+            android:fontFamily="@font/dtm_mono"
+            android:onClick="onClickQuit"
+            android:text="@string/quit"
+            android:textColor="@color/levelSelectBackgroundEven"
+            android:textSize="50sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
