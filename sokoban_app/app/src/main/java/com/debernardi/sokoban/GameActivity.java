@@ -7,6 +7,7 @@ import android.os.Bundle;
 import java.util.Scanner;
 
 import game.GameHandler;
+import game.Texture;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -16,9 +17,10 @@ public class GameActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Texture.init(getAssets());
         super.onCreate(savedInstanceState);
         try {
-            Scanner levelReader = new Scanner(getAssets().open("levels/" + "00.sok"));
+            Scanner levelReader = new Scanner(getAssets().open("levels/" + "08.sok"));
             String levelData = "";
             while (levelReader.hasNextLine()) {
                 levelData += levelReader.nextLine() + "\n";
