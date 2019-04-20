@@ -2,9 +2,9 @@ package tiles;
 
 import game.Texture;
 
-public class Goal extends Tile{
+public class Goal implements Tile{
 
-    Texture stable = new Texture("stable");
+    Texture texture = new Texture("stable");
 
     @Override
     public boolean isSolid() {
@@ -13,6 +13,6 @@ public class Goal extends Tile{
 
     @Override
     public Texture getTexture() {
-        return stable;
+        return texture;
     }
 }

@@ -16,6 +16,8 @@ import game.GameHandler;
 import game.Level;
  import game.Texture;
 
+ import static java.lang.Math.max;
+
 public class GameView extends View {
 
     GameHandler handler;
@@ -35,17 +37,17 @@ public class GameView extends View {
     public static Bitmap getLevelBitmap(Level level) {
         int tileWidth = Texture.WIDTH;
         int tileHeight = Texture.HEIGHT;
-        int left = -level.getHeight() * (tileWidth / 2);
-        int right = level.getWidth() * (tileWidth / 2) + tileWidth;
-        int bottom = level.getWidth() * (tileHeight / 4) + level.getHeight() * (tileHeight / 4) + tileHeight;
-        Bitmap bitmap = Bitmap.createBitmap(-left + right,bottom,Bitmap.Config.ARGB_8888);
+        int width = (level.getWidth()+level.getHeight())*tileWidth/2;
+        int height = (max(level.getWidth(),level.getHeight())+1)*tileHeight/2;
+        int startheight = (level.getWidth())*tileHeight/4;
+        Bitmap bitmap = Bitmap.createBitmap(width,height,Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
-        for (int x = 0; x < level.getWidth(); x++) {
+        for (int x = level.getWidth()-1; x >= 0; x--) {
             for (int y = 0; y < level.getHeight(); y++) {
                 Bitmap texture = level.getTileAt(x,y).getTexture().getBitmap();
 
-                int xAbs = x * (tileWidth / 2) - y * (tileWidth / 2) - left;
-                int yAbs = x * (tileHeight / 4) + y * (tileHeight / 4);
+                int xAbs = x * (tileWidth / 2) + y * (tileWidth / 2);
+                int yAbs = -x * (tileHeight / 4) + y * (tileHeight / 4)+startheight;
 
 
                 Rect src = new Rect(0,0,texture.getWidth(), texture.getHeight());

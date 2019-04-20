@@ -2,9 +2,8 @@ package tiles;
 
 import game.Texture;
 
-public class Player implements Tile, Movable {
-
-    Texture texture = new Texture("shepherdDogGrass");
+public class PlayerGoal implements Tile, Movable {
+    Texture texture = new Texture("shepherdDogStable");
 
     @Override
     public boolean isSolid() {
@@ -18,7 +17,7 @@ public class Player implements Tile, Movable {
 
     @Override
     public Tile MoveLeftOver() {
-        return new Empty();
+        return new Goal();
     }
 
     @Override

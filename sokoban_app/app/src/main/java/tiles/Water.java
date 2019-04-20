@@ -1,8 +1,10 @@
 package tiles;
 
+import android.util.Log;
+
 import game.Texture;
 
-public class Wall implements Tile, Connectable{
+public class Water implements Tile, Connectable{
     Texture texture = new Texture("fenceCross");
     boolean leftWall = false, topWall = false, rightWall = false, bottomWall = false;
 
@@ -23,21 +25,21 @@ public class Wall implements Tile, Connectable{
         if (rightWall) val += 4;
         if (bottomWall) val += 8;
         switch (val){
-            case 0:texture = new Texture("fenceCross");break;
-            case 1: texture = new Texture("fenceLeft");break;
-            case 2: texture = new Texture("fenceTop");break;
-            case 3: texture = new Texture("fenceTopLeft");break;
-            case 4: texture = new Texture("fenceRight");break;
-            case 5: texture = new Texture("fenceLeftRight");break;
-            case 6: texture = new Texture("fenceRightTop");break;
-            case 7: texture = new Texture("fenceTTop");break;
-            case 8: texture = new Texture("fenceBottom");break;
-            case 9: texture = new Texture("fenceLeftBottom");break;
-            case 10: texture = new Texture("fenceBottomTop");break;
-            case 11: texture = new Texture("fenceTLeft");break;
-            case 12: texture = new Texture("fenceBottomRight");break;
-            case 13: texture = new Texture("fenceTBottom");break;
-            case 14: texture = new Texture("fenceTRight");break;
+            case 0:texture = new Texture("waterCross");break;
+            case 1: texture = new Texture("waterCross");break;
+            case 2: texture = new Texture("waterCross");break;
+            case 3: texture = new Texture("waterTopLeft");break;
+            case 4: texture = new Texture("waterCross");break;
+            case 5: texture = new Texture("waterHorizontal");break;
+            case 6: texture = new Texture("waterRightTop");break;
+            case 7: texture = new Texture("waterTTop");break;
+            case 8: texture = new Texture("waterCross");break;
+            case 9: texture = new Texture("waterLeftBottom");break;
+            case 10: texture = new Texture("waterVertical");break;
+            case 11: texture = new Texture("waterTLeft");break;
+            case 12: texture = new Texture("waterBottomRight");break;
+            case 13: texture = new Texture("waterTBottom");break;
+            case 14: texture = new Texture("waterTRight");break;
             case 15: texture = new Texture("fenceCross");break;
             default: texture = new Texture("fenceCross");break;
         }
@@ -45,7 +47,7 @@ public class Wall implements Tile, Connectable{
 
     @Override
     public void connectLeft(Tile other) {
-        if (other instanceof Wall){
+        if (other instanceof Water){
             leftWall = true;
         }
         else{
@@ -56,7 +58,7 @@ public class Wall implements Tile, Connectable{
 
     @Override
     public void connectRight(Tile other) {
-        if (other instanceof Wall){
+        if (other instanceof Water){
             rightWall = true;
         }
         else{
@@ -67,7 +69,7 @@ public class Wall implements Tile, Connectable{
 
     @Override
     public void connectTop(Tile other) {
-        if (other instanceof Wall){
+        if (other instanceof Water){
             topWall = true;
         }
         else{
@@ -78,7 +80,7 @@ public class Wall implements Tile, Connectable{
 
     @Override
     public void connectBottom(Tile other) {
-        if (other instanceof Wall){
+        if (other instanceof Water){
             bottomWall = true;
         }
         else{
