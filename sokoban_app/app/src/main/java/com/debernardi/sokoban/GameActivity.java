@@ -31,7 +31,6 @@ public class GameActivity extends AppCompatActivity {
             handler = new GameHandler(levelData);
 
             handler.start(view);
-
             view = new GameView(this,handler);
             view.setBackgroundColor(Color.RED);
             setContentView(view);
