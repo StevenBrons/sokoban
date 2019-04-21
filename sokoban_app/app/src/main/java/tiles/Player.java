@@ -8,7 +8,7 @@ public class Player implements Tile, Movable {
 
     @Override
     public boolean isSolid() {
-        return true;
+        return false;
     }
 
     @Override
@@ -17,7 +17,7 @@ public class Player implements Tile, Movable {
     }
 
     @Override
-    public Tile MoveLeftOver() {
+    public Tile moveLeftOver() {
         return new Empty();
     }
 

@@ -4,7 +4,7 @@ import java.util.Random;
 
 import game.Texture;
 
-public class BoulderGoal implements Tile, Movable {
+public class BoulderGoal extends Boulder {
     private int boulderType;
     Texture texture;
 
@@ -49,18 +49,8 @@ public class BoulderGoal implements Tile, Movable {
     }
 
     @Override
-    public Tile MoveLeftOver() {
+    public Tile moveLeftOver() {
         return new Goal();
     }
 
-    @Override
-    public Tile moveOnto(Tile other) {
-        if (other instanceof Empty){
-            return new Boulder(this);
-        }
-        if (other instanceof Goal){
-            return new BoulderGoal(this);
-        }
-        return new Void();
-    }
 }
