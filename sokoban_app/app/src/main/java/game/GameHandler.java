@@ -2,6 +2,8 @@ package game;
 
 import com.debernardi.sokoban.GameView;
 
+import java.util.ArrayList;
+
 public class GameHandler {
 
     private Thread gameLoop;
@@ -10,41 +12,44 @@ public class GameHandler {
     private Level level;
     private boolean running = false;
 
+    private ArrayList<Level> history = new ArrayList<>();
+
     public GameHandler(String levelData) {
         level = new Level(levelData);
-        System.out.println(level);
+        history.add(level.copy());
     }
 
     public void move(Direction d) {
-
+        history.add(level.copy());
+        boolean success = level.move(d);
+        if (!success) {
+            //don't add to history if move was invalid
+            history.remove(history.size() - 1);
+        }
     }
 
-    public void start(GameView view) {
-        this.view = view;
-        final GameHandler h = this;
+    public void start(GameView view2) {
+        final GameView view = view2;
         this.running = true;
         gameLoop = new Thread(new Runnable() {
             @Override
             public void run() {
-//                while (running) {
-                    //h.view.invalidate();
+                while (running) {
+                    view.postInvalidate();
                     time++;
-//                    try {
-//                        Thread.sleep(1000);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         });
+        gameLoop.start();
     }
 
     public Level getLevel() {
         return this.level;
     }
 
-}
-
-enum Direction {
-    UP,DOWN,LEFT,RIGHT
 }

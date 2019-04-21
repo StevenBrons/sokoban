@@ -8,6 +8,8 @@ import android.widget.FrameLayout;
 import android.view.View;
 import java.util.Scanner;
 import android.view.LayoutInflater;
+
+import game.Direction;
 import game.GameHandler;
 import game.Texture;
 
@@ -30,9 +32,11 @@ public class GameActivity extends AppCompatActivity {
             }
 
             handler = new GameHandler(levelData);
+            view = new GameView(this,handler);
+
 
             handler.start(view);
-            view = new GameView(this,handler);
+
 
             FrameLayout frame = new FrameLayout(this);
             frame.addView(view);
@@ -45,19 +49,21 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    public void moveDown(){
-
+    public void moveDown(View v){
+        //compensate for drawing
+        handler.move(Direction.UP);
     }
 
-    public void moveLeft(){
-
+    public void moveLeft(View v){
+        handler.move(Direction.LEFT);
     }
 
-    public void moveUp(){
-
+    public void moveUp(View v){
+        //compensate for drawing
+        handler.move(Direction.DOWN);
     }
 
-    public void moveRight(){
-
+    public void moveRight(View v){
+        handler.move(Direction.RIGHT);
     }
 }

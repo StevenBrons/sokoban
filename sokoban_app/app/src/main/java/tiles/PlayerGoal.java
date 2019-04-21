@@ -2,7 +2,7 @@ package tiles;
 
 import game.Texture;
 
-public class PlayerGoal implements Tile, Movable {
+public class PlayerGoal extends Player{
     Texture texture = new Texture("shepherdDogStable");
 
     @Override
@@ -16,18 +16,8 @@ public class PlayerGoal implements Tile, Movable {
     }
 
     @Override
-    public Tile MoveLeftOver() {
+    public Tile moveLeftOver() {
         return new Goal();
     }
 
-    @Override
-    public Tile moveOnto(Tile other) {
-        if (other instanceof Empty){
-            return new Player();
-        }
-        if (other instanceof Goal){
-            return new PlayerGoal();
-        }
-        return new Void();
-    }
 }

@@ -1,6 +1,6 @@
 package tiles;
 
 public interface Movable extends Tile {
-    Tile MoveLeftOver();
+    Tile moveLeftOver();
     Tile moveOnto(Tile other);
 }
