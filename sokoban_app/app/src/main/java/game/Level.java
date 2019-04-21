@@ -1,5 +1,6 @@
 package game;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 import tiles.*;
@@ -13,6 +14,8 @@ public class Level {
     private String levelName;
     private String author;
     private int bestPossibleScore;
+    private int playerX = -1;
+    private int playerY = -1;
 
     Level(String content) {
         Scanner s = new Scanner(content);
@@ -24,12 +27,16 @@ public class Level {
         tiles = new Tile[width][height];
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                tiles[x][y] = readTile(s.next());
+                Tile t = readTile(s.next());
+                if (t instanceof Player || t instanceof PlayerGoal) {
+                    playerX = x;
+                    playerY = y;
+                }
+                tiles[x][y] = t;
             }
         }
         for (int y = 0;y < height;y++){
             for (int x = 0; x < width; x++){
-                System.out.println("a "+tiles[x][y].getClass().toString());
                 if (tiles[x][y] instanceof Connectable){
                     ((Connectable)tiles[x][y]).connectLeft(getTileAt(x-1,y));
                     ((Connectable)tiles[x][y]).connectTop(getTileAt(x,y-1));
@@ -38,6 +45,16 @@ public class Level {
                 }
             }
         }
+    }
+
+    public Level(String levelName, String author, int playerX, int playerY, int bestPossibleScore, int width, int height, Tile[][] tiles) {
+        this.levelName = levelName;
+        this.author = author;
+        this.bestPossibleScore = bestPossibleScore;
+        this.width = width;
+        this.tiles = tiles;
+        this.playerY = playerY;
+        this.playerX = playerX;
     }
 
     private Tile readTile(String tileName) {
@@ -80,13 +97,50 @@ public class Level {
         }
     }
 
-    public String toString() {
-        String s = "";
-        s += levelName + "\n";
-        s += author + "\n";
-        s += width + " " + height + " " + bestPossibleScore + " \n";
-
-
-        return s;
+    public Level copy() {
+        Tile[][] tilesCopy = new Tile[width][height];
+        for (int x = 0; x < width;x++) {
+            tilesCopy[x] = Arrays.copyOf(tiles[x],tiles.length);
+        }
+        return new Level(levelName,author,playerX,playerY,bestPossibleScore,width,height,tiles);
     }
+
+    public boolean move(Direction d) {
+        Movable player = (Movable) getTileAt(playerX,playerY);
+        int dx = 0;
+        int dy = 0;
+        switch (d) {
+            case UP:
+                dy = 1;
+                break;
+            case DOWN:
+                dy = -1;
+                break;
+            case LEFT:
+                dx = -1;
+                break;
+            case RIGHT:
+                dx = 1;
+                break;
+        }
+        Tile moveTo = getTileAt(playerX + dx,playerY + dy);
+        if (!moveTo.isSolid()) {
+            tiles[playerX][playerY] = player.moveLeftOver();
+            tiles[playerX + dx][playerY + dy] = player.moveOnto(tiles[playerX + dx][playerY + dy]);
+            playerX += dx;
+            playerY += dy;
+            return true;
+        }
+        Tile moveAfter = getTileAt(playerX + (dx * 2),playerY + (dy * 2));
+        if (moveTo instanceof Movable && !moveAfter.isSolid()) {
+            tiles[playerX][playerY] = player.moveLeftOver();
+            playerX += dx;
+            playerY += dy;
+            tiles[playerX][playerY] = player.moveOnto(((Movable) moveTo).moveLeftOver());
+            tiles[playerX + dx][playerY + dy] = ((Movable) moveTo).moveOnto(moveAfter);
+            return true;
+        }
+        return false;
+    }
+
 }

@@ -50,7 +50,7 @@ public class Boulder implements Tile, Movable {
     }
 
     @Override
-    public Tile MoveLeftOver() {
+    public Tile moveLeftOver() {
         return new Empty();
     }
 
