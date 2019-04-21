@@ -4,35 +4,34 @@ import java.util.Random;
 
 import game.Texture;
 
-public class Boulder implements Tile, Movable {
-
+public class BoulderGoal implements Tile, Movable {
     private int boulderType;
     Texture texture;
 
-    public Boulder() {
+    public BoulderGoal() {
         Random r = new Random();
         boulderType = r.nextInt(3) + 1;
-        texture = new Texture("sheep" + boulderType);
+        texture = new Texture("stableSheep" + boulderType);
     }
 
-    public Boulder(Boulder other){
-        this.boulderType = other.boulderType;
-        texture = new Texture("sheep"+boulderType);
-    }
-
-    public Boulder(BoulderGoal other){
+    public BoulderGoal(Boulder other){
         Random r = new Random();
         switch (other.getBoulderType()){
             case 1:
-                boulderType = r.nextInt(2)+1;
+                boulderType = 1;
             case 2:
-                boulderType = 3;
+                boulderType = 1;
             case 3:
-                boulderType = 3;
+                boulderType = r.nextInt(2)+2;
             default:
                 boulderType = r.nextInt(3)+1;
         }
-        texture = new Texture("sheep"+boulderType);
+        texture = new Texture("stableSheep" + boulderType);
+    }
+
+    public BoulderGoal(BoulderGoal other){
+        boulderType = other.boulderType;
+        texture = new Texture("stableSheep" + boulderType);
     }
 
     public int getBoulderType(){
@@ -51,7 +50,7 @@ public class Boulder implements Tile, Movable {
 
     @Override
     public Tile MoveLeftOver() {
-        return new Empty();
+        return new Goal();
     }
 
     @Override
@@ -61,9 +60,6 @@ public class Boulder implements Tile, Movable {
         }
         if (other instanceof Goal){
             return new BoulderGoal(this);
-        }
-        if (other instanceof Water){
-            return new Empty();
         }
         return new Void();
     }
