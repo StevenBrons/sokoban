@@ -1,11 +1,9 @@
 Microban level 2
 David Skinner
-6 7 -1
-f f f f f f
-f . . . . f
-f . f p . f
-f . s S . f
-f . g S . f
-f . . . . f
-f f f f f f
+4 5 -1
+. . . .
+. f p .
+. s S .
+. g S .
+. . . .
 
