@@ -35,6 +35,7 @@ public class GameView extends View {
     }
 
     public static Bitmap getLevelBitmap(Level level) {
+        Paint paint = new Paint(Paint.FILTER_BITMAP_FLAG);
         int tileWidth = Texture.WIDTH;
         int tileHeight = Texture.HEIGHT;
         int width = (level.getWidth()+level.getHeight())*tileWidth/2;
@@ -52,7 +53,7 @@ public class GameView extends View {
 
                 Rect src = new Rect(0,0,texture.getWidth(), texture.getHeight());
                 Rect dest = new Rect(xAbs,yAbs,tileWidth + xAbs, tileHeight + yAbs);
-                canvas.drawBitmap(texture,src,dest,null);
+                canvas.drawBitmap(texture,src,dest,paint);
             }
         }
         return bitmap;
