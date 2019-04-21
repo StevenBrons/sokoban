@@ -75,4 +75,8 @@ public class GameView extends View {
         p.setColor(Color.BLUE);
         canvas.drawRect(0,0,canvas.getWidth(),canvas.getHeight(),p);
     }
+
+    public void moveDown() {
+
+    }
 }
