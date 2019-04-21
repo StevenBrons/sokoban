@@ -24,13 +24,13 @@ public class Boulder implements Tile, Movable {
         Random r = new Random();
         switch (other.getBoulderType()){
             case 1:
-                boulderType = r.nextInt(2)+1;
+                boulderType = r.nextInt(2)+1;break;
             case 2:
-                boulderType = 3;
+                boulderType = 3;break;
             case 3:
-                boulderType = 3;
+                boulderType = 3;break;
             default:
-                boulderType = r.nextInt(3)+1;
+                boulderType = r.nextInt(3)+1;break;
         }
         texture = new Texture("sheep"+boulderType);
     }

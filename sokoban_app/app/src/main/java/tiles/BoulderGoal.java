@@ -4,7 +4,7 @@ import java.util.Random;
 
 import game.Texture;
 
-public class BoulderGoal extends Boulder {
+public class BoulderGoal implements Tile,Movable {
     private int boulderType;
     Texture texture;
 
@@ -18,13 +18,13 @@ public class BoulderGoal extends Boulder {
         Random r = new Random();
         switch (other.getBoulderType()){
             case 1:
-                boulderType = 1;
+                boulderType = 1;break;
             case 2:
-                boulderType = 1;
+                boulderType = 1;break;
             case 3:
-                boulderType = r.nextInt(2)+2;
+                boulderType = r.nextInt(2)+2;break;
             default:
-                boulderType = r.nextInt(3)+1;
+                boulderType = r.nextInt(3)+1;break;
         }
         texture = new Texture("stableSheep" + boulderType);
     }
@@ -53,4 +53,17 @@ public class BoulderGoal extends Boulder {
         return new Goal();
     }
 
+    @Override
+    public Tile moveOnto(Tile other) {
+        if (other instanceof Empty){
+            return new Boulder(this);
+        }
+        if (other instanceof Goal){
+            return new BoulderGoal(this);
+        }
+        if (other instanceof Water){
+            return new Empty();
+        }
+        return new Void();
+    }
 }
