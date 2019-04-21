@@ -1,12 +1,9 @@
 Microban level 7
 David Skinner
-7 8 -1
-f f f f f f f
-f . . . . . f
-f . g s g . f
-f . s g s . f
-f . g s g . f
-f . s g s . f
-f . . p . . f
-f f f f f f f
-
+5 6 -1
+. . . . .
+. g s g .
+. s g s .
+. g s g .
+. s g s .
+. . p . .
