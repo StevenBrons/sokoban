@@ -74,7 +74,6 @@ public class Level {
 
     public Tile getTileAt(int x, int y) {
         if (x >= 0 && x < getWidth() && y >= 0 && y < getHeight()) {
-            System.out.println(tiles[x][y]);
             return tiles[x][y];
         }else {
             return new Void();
