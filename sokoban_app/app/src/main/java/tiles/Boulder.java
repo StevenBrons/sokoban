@@ -16,7 +16,7 @@ public class Boulder implements Tile, Movable {
     }
 
     public Boulder(Boulder other){
-        this.boulderType = other.boulderType;
+        this.boulderType = other.getBoulderType();
         texture = new Texture("sheep"+boulderType);
     }
 
@@ -33,6 +33,11 @@ public class Boulder implements Tile, Movable {
                 boulderType = r.nextInt(3)+1;break;
         }
         texture = new Texture("sheep"+boulderType);
+    }
+
+    public Boulder(BoulderWater other){
+        boulderType = other.getBoulderType();
+        texture = new Texture("sheep" + boulderType);
     }
 
     public int getBoulderType(){
@@ -63,7 +68,7 @@ public class Boulder implements Tile, Movable {
             return new BoulderGoal(this);
         }
         if (other instanceof Water){
-            return new Empty();
+            return new BoulderWater(this,(Water)other);
         }
         return new Void();
     }

@@ -47,12 +47,7 @@ public class Level {
         }
         for (int y = 0;y < height;y++){
             for (int x = 0; x < width; x++){
-                if (tiles[x][y] instanceof Connectable){
-                    ((Connectable)tiles[x][y]).connectLeft(getTileAt(x-1,y));
-                    ((Connectable)tiles[x][y]).connectTop(getTileAt(x,y-1));
-                    ((Connectable)tiles[x][y]).connectRight(getTileAt(x+1,y));
-                    ((Connectable)tiles[x][y]).connectBottom(getTileAt(x,y+1));
-                }
+                updateConnections(x,y);
             }
         }
     }
@@ -154,7 +149,7 @@ public class Level {
             return true;
         }
         Tile moveAfter = getTileAt(playerX + (dx * 2),playerY + (dy * 2));
-        if (moveTo instanceof Movable && !moveAfter.isSolid()) {
+        if (moveTo instanceof Movable && !(((Movable) moveTo).moveOnto(moveAfter) instanceof Void)) {
             tiles[playerX][playerY] = player.moveLeftOver();
             playerX += dx;
             playerY += dy;
@@ -163,6 +158,16 @@ public class Level {
             return true;
         }
         return false;
+    }
+
+    public void updateConnections(int x, int y){
+        Tile tile = getTileAt(x,y);
+        if (tile instanceof Connectable){
+            ((Connectable)tile).connectLeft(getTileAt(x-1,y));
+            ((Connectable)tile).connectTop(getTileAt(x,y-1));
+            ((Connectable)tile).connectRight(getTileAt(x+1,y));
+            ((Connectable)tile).connectBottom(getTileAt(x,y+1));
+        }
     }
 
 }
