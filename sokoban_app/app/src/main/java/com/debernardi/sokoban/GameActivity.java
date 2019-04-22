@@ -25,13 +25,7 @@ public class GameActivity extends AppCompatActivity {
         Texture.init(getAssets());
         super.onCreate(savedInstanceState);
         try {
-            Scanner levelReader = new Scanner(getAssets().open(intent.getStringExtra("levelFileName")));
-            String levelData = "";
-            while (levelReader.hasNextLine()) {
-                levelData += levelReader.nextLine() + "\n";
-            }
-
-            handler = new GameHandler(levelData);
+            handler = new GameHandler(this,intent.getStringExtra("levelFileName"));
             view = new GameView(this,handler);
 
 

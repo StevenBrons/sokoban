@@ -1,5 +1,7 @@
 package game;
 
+import android.content.Context;
+
 import com.debernardi.sokoban.GameView;
 
 import java.util.ArrayList;
@@ -14,8 +16,8 @@ public class GameHandler {
 
     private ArrayList<Level> history = new ArrayList<>();
 
-    public GameHandler(String levelData) {
-        level = new Level(levelData);
+    public GameHandler(Context context, String levelPath) {
+        level = new Level(context,levelPath);
         history.add(level.copy());
     }
 
