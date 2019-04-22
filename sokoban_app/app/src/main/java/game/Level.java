@@ -1,5 +1,10 @@
 package game;
 
+import android.content.Context;
+
+import com.debernardi.sokoban.GameActivity;
+
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -17,8 +22,13 @@ public class Level {
     private int playerX = -1;
     private int playerY = -1;
 
-    Level(String content) {
-        Scanner s = new Scanner(content);
+    public Level(Context context, String levelPath) {
+        Scanner s = null;
+        try {
+            s = new Scanner(context.getAssets().open(levelPath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         levelName = s.nextLine();
         author = s.nextLine();
         width = s.nextInt();
@@ -95,6 +105,18 @@ public class Level {
         }else {
             return new Void();
         }
+    }
+
+    public String getLevelName(){
+        return levelName;
+    }
+
+    public String getAuthor(){
+        return author;
+    }
+
+    public int getBestPossibleScore(){
+        return bestPossibleScore;
     }
 
     public Level copy() {

@@ -39,7 +39,7 @@ public class GameView extends View {
         int tileWidth = Texture.WIDTH;
         int tileHeight = Texture.HEIGHT;
         int width = (level.getWidth()+level.getHeight())*tileWidth/2;
-        int height = (max(level.getWidth(),level.getHeight())+1)*tileHeight/2;
+        int height = (max(level.getWidth(),level.getHeight())+2)*tileHeight/2;
         int startheight = (level.getWidth())*tileHeight/4;
         Bitmap bitmap = Bitmap.createBitmap(width,height,Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
@@ -63,7 +63,7 @@ public class GameView extends View {
         Bitmap bitmap = getLevelBitmap(level);
         Rect src = new Rect(0,0,bitmap.getWidth(), bitmap.getHeight());
         int screenHeight = (canvas.getWidth() * bitmap.getHeight()) / bitmap.getWidth();
-        int topOffset = (canvas.getHeight() / 2) - screenHeight;
+        int topOffset = (canvas.getHeight() / 2) - screenHeight/2;
         Rect dest = new Rect(0,topOffset,canvas.getWidth(),screenHeight+topOffset);
         canvas.drawBitmap(bitmap,src,dest,null);
 

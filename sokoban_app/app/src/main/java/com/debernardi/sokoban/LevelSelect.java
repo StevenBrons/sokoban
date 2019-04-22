@@ -23,6 +23,11 @@ import java.io.InputStreamReader;
 
 import org.apache.commons.io.FilenameUtils;
 
+import game.Level;
+import game.Texture;
+
+import static java.lang.Math.max;
+
 
 public class LevelSelect extends AppCompatActivity {
 
@@ -37,6 +42,7 @@ public class LevelSelect extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Texture.init(getAssets());
         setContentView(R.layout.activity_level_select);
         LinearLayout layLevels = findViewById(R.id.layLevels);
 
@@ -68,16 +74,7 @@ public class LevelSelect extends AppCompatActivity {
             String levelName, authorName;
             int highscore = prefHighscores.getInt(FilenameUtils.removeExtension(levelFilename),-1);
             int minMoves;
-            try {
-                BufferedReader levelReader = new BufferedReader(new InputStreamReader(getAssets().open("levels/"+levelFilename)));
-                levelName = levelReader.readLine();
-                authorName = levelReader.readLine();
-                while (levelReader.read() != ' ');
-                while (levelReader.read() != ' ');
-                minMoves = Integer.parseInt(levelReader.readLine());
-            } catch (IOException e) {
-                continue;
-            }
+            Level levelItem = new Level(this,"levels/"+levelFilename);
 
             // Make a container for a level
             RelativeLayout level = new RelativeLayout(this);
@@ -90,15 +87,11 @@ public class LevelSelect extends AppCompatActivity {
             even = !even;
 
             // Make preview image
-            String previewFilename = "levelPreviews/"+FilenameUtils.removeExtension(levelFilename)+".png";
-            Log.i("previewFilename",previewFilename);
             ImageView previewView = new ImageView(this);
             previewView.setId(View.generateViewId());
             previewView.setAdjustViewBounds(true);
             try{
-                InputStream previewData = getAssets().open(previewFilename);
-                previewView.setImageBitmap(BitmapFactory.decodeStream(previewData));
-
+                previewView.setImageBitmap(GameView.getLevelBitmap(levelItem));
             }
             catch (Exception e){
                 previewView.setImageResource(R.color.colorPrimary);
@@ -106,21 +99,22 @@ public class LevelSelect extends AppCompatActivity {
 
             // Make level title text
             TextView levelNameView = new TextView(this);
-            levelNameView.setText(levelName);
+            levelNameView.setText(levelItem.getLevelName());
             levelNameView.setTextSize(20);
             levelNameView.setId(View.generateViewId());
             levelNameView.setTypeface(ResourcesCompat.getFont(this,R.font.dtm_mono));
 
             // Make level title text
             TextView authorNameView = new TextView(this);
-            authorNameView.setText(authorName);
+            authorNameView.setText(levelItem.getAuthor());
             authorNameView.setTextSize(16);
             authorNameView.setId(View.generateViewId());
             authorNameView.setTypeface(ResourcesCompat.getFont(this,R.font.dtm_mono));
 
             // Make best score text
             TextView bestTextView = new TextView(this);
-            bestTextView.setText(String.format("%s/%s",highscore>=0?highscore:"-",minMoves>=0?minMoves:"-"));
+            bestTextView.setText(String.format("%s/%s",highscore>=0?highscore:"-",
+                    levelItem.getBestPossibleScore()>=0?levelItem.getBestPossibleScore():"-"));
             bestTextView.setTextSize(16);
             bestTextView.setPadding(10,3,10,3);
             bestTextView.setId(View.generateViewId());
@@ -136,8 +130,8 @@ public class LevelSelect extends AppCompatActivity {
             RelativeLayout.LayoutParams previewViewLp = (RelativeLayout.LayoutParams) previewView.getLayoutParams();
             previewViewLp.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
             previewViewLp.addRule(RelativeLayout.CENTER_VERTICAL);
-            previewViewLp.height = screenSize.y/numLevelsOnScreen;
-            previewViewLp.width = screenSize.y/numLevelsOnScreen;
+            previewViewLp.height = max(screenSize.x,screenSize.y)/numLevelsOnScreen;
+            previewViewLp.width = max(screenSize.x,screenSize.y)/numLevelsOnScreen;
             RelativeLayout.LayoutParams levelNameViewLp = (RelativeLayout.LayoutParams) levelNameView.getLayoutParams();
             levelNameViewLp.addRule(RelativeLayout.CENTER_HORIZONTAL);
             levelNameViewLp.addRule(RelativeLayout.ALIGN_PARENT_TOP);
