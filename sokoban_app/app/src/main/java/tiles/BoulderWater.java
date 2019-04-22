@@ -1,38 +1,63 @@
 package tiles;
 
-import android.util.Log;
+import java.util.Random;
 
 import game.Texture;
 
-public class Water implements Tile, Connectable, WaterTile{
+public class BoulderWater implements Tile, Movable, Connectable, WaterTile {
     Texture texture = new Texture("fenceCross");
     boolean leftWall = false, topWall = false, rightWall = false, bottomWall = false;
+    private int boulderType;
 
-    public Water(){}
-
-    public Water(BoulderWater other){
-        leftWall = other.getLeftWall();
-        topWall = other.getTopWall();
-        rightWall = other.getRightWall();
-        bottomWall = other.getBottomWall();
+    public BoulderWater(Boulder boulderTemplate,Water waterTemplate){
+        this.boulderType = boulderTemplate.getBoulderType();
+        leftWall = waterTemplate.getLeftWall();
+        topWall = waterTemplate.getTopWall();
+        rightWall = waterTemplate.getRightWall();
+        bottomWall = waterTemplate.getBottomWall();
+        updateTexture();
     }
 
-    public Water(PlayerWater other){
-        leftWall = other.getLeftWall();
-        topWall = other.getTopWall();
-        rightWall = other.getRightWall();
-        bottomWall = other.getBottomWall();
+    public BoulderWater(BoulderGoal boulderTemplate,Water waterTemplate){
+        Random r = new Random();
+        switch (boulderTemplate.getBoulderType()){
+            case 1:
+                boulderType = r.nextInt(2)+1;break;
+            case 2:
+                boulderType = 3;break;
+            case 3:
+                boulderType = 3;break;
+            default:
+                boulderType = r.nextInt(3)+1;break;
+        }
+        leftWall = waterTemplate.getLeftWall();
+        topWall = waterTemplate.getTopWall();
+        rightWall = waterTemplate.getRightWall();
+        bottomWall = waterTemplate.getBottomWall();
+        updateTexture();
     }
 
-    @Override
-    public boolean isSolid() {
-        return false;
+    public BoulderWater(BoulderWater boulderTemplate,Water waterTemplate){
+        boulderType = boulderTemplate.getBoulderType();
+        leftWall = waterTemplate.getLeftWall();
+        topWall = waterTemplate.getTopWall();
+        rightWall = waterTemplate.getRightWall();
+        bottomWall = waterTemplate.getBottomWall();
+        updateTexture();
     }
 
+    public int getBoulderType(){
+        return boulderType;
+    }
     public boolean getLeftWall() { return leftWall; }
     public boolean getTopWall() { return topWall; }
     public boolean getRightWall() { return rightWall; }
     public boolean getBottomWall() { return bottomWall; }
+
+    @Override
+    public boolean isSolid() {
+        return true;
+    }
 
     @Override
     public Texture getTexture() {
@@ -108,5 +133,21 @@ public class Water implements Tile, Connectable, WaterTile{
             bottomWall = false;
         }
         updateTexture();
+    }
+
+    @Override
+    public Tile moveLeftOver() {
+        return new Water(this);
+    }
+
+    @Override
+    public Tile moveOnto(Tile other) {
+        if (other instanceof Empty){
+            return new Boulder(this);
+        }
+        if (other instanceof Goal){
+            return new BoulderGoal(this);
+        }
+        return new Void();
     }
 }

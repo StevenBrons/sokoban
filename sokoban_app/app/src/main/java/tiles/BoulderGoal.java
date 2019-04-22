@@ -34,6 +34,11 @@ public class BoulderGoal implements Tile,Movable {
         texture = new Texture("stableSheep" + boulderType);
     }
 
+    public BoulderGoal(BoulderWater other){
+        boulderType = other.getBoulderType();
+        texture = new Texture("stableSheep" + boulderType);
+    }
+
     public int getBoulderType(){
         return boulderType;
     }
@@ -62,7 +67,7 @@ public class BoulderGoal implements Tile,Movable {
             return new BoulderGoal(this);
         }
         if (other instanceof Water){
-            return new Empty();
+            return new BoulderWater(this,(Water)other);
         }
         return new Void();
     }

@@ -29,6 +29,9 @@ public class Player implements Tile, Movable {
         if (other instanceof Goal){
             return new PlayerGoal();
         }
+        if (other instanceof Water){
+            return new PlayerWater((Water)other);
+        }
         return new Void();
     }
 }
