@@ -2,6 +2,7 @@ package com.debernardi.sokoban;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.graphics.Typeface;
@@ -68,6 +69,8 @@ public class LevelSelect extends AppCompatActivity {
         // Get highscores shared preferences
         SharedPreferences prefHighscores = this.getSharedPreferences("Highscores", MODE_PRIVATE);
 
+        int previewSize = max(screenSize.x,screenSize.y)/numLevelsOnScreen;
+
         Boolean even = false;
         for (String levelFilename:levelFiles){
             // Figure out properties of the level
@@ -91,7 +94,9 @@ public class LevelSelect extends AppCompatActivity {
             previewView.setId(View.generateViewId());
             previewView.setAdjustViewBounds(true);
             try{
-                previewView.setImageBitmap(GameView.getLevelBitmap(levelItem));
+                Bitmap preview = GameView.getLevelBitmap(levelItem);
+                previewView.setImageBitmap(Bitmap.createScaledBitmap(preview,previewSize,
+                        preview.getHeight()*previewSize/preview.getWidth(),false));
             }
             catch (Exception e){
                 previewView.setImageResource(R.color.colorPrimary);
