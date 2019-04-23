@@ -5,7 +5,7 @@ import android.util.Log;
 import game.Texture;
 
 public class Water implements Tile, Connectable, WaterTile{
-    Texture texture = new Texture("waterCross");
+    Texture texture = new Texture("lake");
     boolean leftWall = false, topWall = false, rightWall = false, bottomWall = false;
 
     public Water(){}
@@ -48,7 +48,7 @@ public class Water implements Tile, Connectable, WaterTile{
         if (rightWall) val += 4;
         if (bottomWall) val += 8;
         switch (val){
-            case 0:texture = new Texture("waterCross");break;
+            case 0:texture = new Texture("lake");break;
             case 1: texture = new Texture("waterSourceLeft");break;
             case 2: texture = new Texture("waterSourceTop");break;
             case 3: texture = new Texture("waterTopLeft");break;

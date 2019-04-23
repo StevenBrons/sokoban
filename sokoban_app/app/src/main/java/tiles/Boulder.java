@@ -36,7 +36,15 @@ public class Boulder implements Tile, Movable {
     }
 
     public Boulder(BoulderWater other){
-        boulderType = other.getBoulderType();
+        Random r = new Random();
+        switch (other.getBoulderType()){
+            case 2:
+                boulderType = 3;break;
+            case 3:
+                boulderType = r.nextInt(2)+1;break;
+            default:
+                boulderType = r.nextInt(3)+1;break;
+        }
         texture = new Texture("sheep" + boulderType);
     }
 

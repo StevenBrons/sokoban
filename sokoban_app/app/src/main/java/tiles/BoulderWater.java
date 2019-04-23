@@ -5,12 +5,27 @@ import java.util.Random;
 import game.Texture;
 
 public class BoulderWater implements Tile, Movable, Connectable, WaterTile {
-    Texture texture = new Texture("fenceCross");
+    Texture texture = new Texture("lakeSheep2");
     boolean leftWall = false, topWall = false, rightWall = false, bottomWall = false;
     private int boulderType;
 
+    public BoulderWater(){
+        Random r = new Random();
+        boulderType = r.nextInt(2)+2;
+        updateTexture();
+    }
+
     public BoulderWater(Boulder boulderTemplate,Water waterTemplate){
-        this.boulderType = boulderTemplate.getBoulderType();
+        Random r = new Random();
+        switch (boulderTemplate.getBoulderType()){
+            case 1:
+            case 2:
+                boulderType = 3;break;
+            case 3:
+                boulderType = 2;break;
+            default:
+                boulderType = r.nextInt(2)+2;break;
+        }
         leftWall = waterTemplate.getLeftWall();
         topWall = waterTemplate.getTopWall();
         rightWall = waterTemplate.getRightWall();
@@ -22,23 +37,13 @@ public class BoulderWater implements Tile, Movable, Connectable, WaterTile {
         Random r = new Random();
         switch (boulderTemplate.getBoulderType()){
             case 1:
-                boulderType = r.nextInt(2)+1;break;
+                boulderType = 3;break;
             case 2:
-                boulderType = 3;break;
             case 3:
-                boulderType = 3;break;
+                boulderType = 2;break;
             default:
-                boulderType = r.nextInt(3)+1;break;
+                boulderType = r.nextInt(2)+2;break;
         }
-        leftWall = waterTemplate.getLeftWall();
-        topWall = waterTemplate.getTopWall();
-        rightWall = waterTemplate.getRightWall();
-        bottomWall = waterTemplate.getBottomWall();
-        updateTexture();
-    }
-
-    public BoulderWater(BoulderWater boulderTemplate,Water waterTemplate){
-        boulderType = boulderTemplate.getBoulderType();
         leftWall = waterTemplate.getLeftWall();
         topWall = waterTemplate.getTopWall();
         rightWall = waterTemplate.getRightWall();
@@ -71,23 +76,23 @@ public class BoulderWater implements Tile, Movable, Connectable, WaterTile {
         if (rightWall) val += 4;
         if (bottomWall) val += 8;
         switch (val){
-            case 0:texture = new Texture("waterCross");break;
-            case 1: texture = new Texture("waterSourceLeft");break;
-            case 2: texture = new Texture("waterSourceTop");break;
-            case 3: texture = new Texture("waterTopLeft");break;
-            case 4: texture = new Texture("waterSourceRight");break;
-            case 5: texture = new Texture("waterHorizontal");break;
-            case 6: texture = new Texture("waterRightTop");break;
-            case 7: texture = new Texture("waterTTop");break;
-            case 8: texture = new Texture("waterSourceBottom");break;
-            case 9: texture = new Texture("waterLeftBottom");break;
-            case 10: texture = new Texture("waterVertical");break;
-            case 11: texture = new Texture("waterTLeft");break;
-            case 12: texture = new Texture("waterBottomRight");break;
-            case 13: texture = new Texture("waterTBottom");break;
-            case 14: texture = new Texture("waterTRight");break;
-            case 15: texture = new Texture("waterCross");break;
-            default: texture = new Texture("waterCross");break;
+            case 0:texture = new Texture("lakeSheep"+boulderType);break;
+            case 1: texture = new Texture("waterSourceLeftSheep"+boulderType);break;
+            case 2: texture = new Texture("waterSourceTopSheep"+boulderType);break;
+            case 3: texture = new Texture("waterTopLeftSheep"+boulderType);break;
+            case 4: texture = new Texture("waterSourceRightSheep"+boulderType);break;
+            case 5: texture = new Texture("waterHorizontalSheep"+boulderType);break;
+            case 6: texture = new Texture("waterRightTopSheep"+boulderType);break;
+            case 7: texture = new Texture("waterTTopSheep"+boulderType);break;
+            case 8: texture = new Texture("waterSourceBottomSheep"+boulderType);break;
+            case 9: texture = new Texture("waterLeftBottomSheep"+boulderType);break;
+            case 10: texture = new Texture("waterVerticalSheep"+boulderType);break;
+            case 11: texture = new Texture("waterTLeftSheep"+boulderType);break;
+            case 12: texture = new Texture("waterBottomRightSheep"+boulderType);break;
+            case 13: texture = new Texture("waterTBottomSheep"+boulderType);break;
+            case 14: texture = new Texture("waterTRightSheep"+boulderType);break;
+            case 15: texture = new Texture("waterCrossSheep"+boulderType);break;
+            default: texture = new Texture("lakeSheep"+boulderType);break;
         }
     }
 
