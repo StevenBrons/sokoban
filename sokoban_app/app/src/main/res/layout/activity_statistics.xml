@@ -5,5 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Statistics">
+    <TextView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimaryDark"
+        android:color="@color/levelSelectBackgroundOdd"
+        android:id="@id/n_steps"
+        android:fontFamily="@font/dtm_mono"
+        android:textSize="40sp"
+        android:gravity="center"
+        />
 
 </android.support.constraint.ConstraintLayout>
