@@ -21,13 +21,14 @@ public class GameHandler {
         history.add(level.copy());
     }
 
-    public void move(Direction d) {
+    public boolean move(Direction d) {
         history.add(level.copy());
         boolean success = level.move(d);
         if (!success) {
             //don't add to history if move was invalid
             history.remove(history.size() - 1);
         }
+        return success;
     }
 
     public void start(GameView view2) {
