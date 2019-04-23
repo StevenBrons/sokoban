@@ -1,6 +1,7 @@
 package com.debernardi.sokoban;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,21 +44,31 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
+    public void move(Direction d){
+        if(handler.move(d)){
+            int n_steps = this.getSharedPreferences("n_steps", MODE_PRIVATE).getInt("n_steps", 0);
+            n_steps++;
+            SharedPreferences.Editor editor = this.getSharedPreferences("n_steps", MODE_PRIVATE).edit();
+            editor.putInt("n_steps", n_steps);
+            editor.commit();
+        }
+    }
+
     public void moveDown(View v){
         //compensate for drawing
-        handler.move(Direction.UP);
+        move(Direction.UP);
     }
 
     public void moveLeft(View v){
-        handler.move(Direction.LEFT);
+        move(Direction.LEFT);
     }
 
     public void moveUp(View v){
         //compensate for drawing
-        handler.move(Direction.DOWN);
+        move(Direction.DOWN);
     }
 
     public void moveRight(View v){
-        handler.move(Direction.RIGHT);
+        move(Direction.RIGHT);
     }
 }
