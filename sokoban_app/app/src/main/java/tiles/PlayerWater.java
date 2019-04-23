@@ -38,14 +38,14 @@ public class PlayerWater extends Player implements Connectable, WaterTile{
         if (bottomWall) val += 8;
         switch (val){
             case 0:texture = new Texture("waterShepherdDogCross");break;
-            case 1: texture = new Texture("waterShepherdDogCross");break;
-            case 2: texture = new Texture("waterShepherdDogCross");break;
+            case 1: texture = new Texture("waterShepherdDogSourceLeft");break;
+            case 2: texture = new Texture("waterShepherdDogSourceTop");break;
             case 3: texture = new Texture("waterShepherdDogTopLeft");break;
-            case 4: texture = new Texture("waterShepherdDogCross");break;
+            case 4: texture = new Texture("waterShepherdDogSourceRight");break;
             case 5: texture = new Texture("waterShepherdDogHorizontal");break;
             case 6: texture = new Texture("waterShepherdDogRightTop");break;
             case 7: texture = new Texture("waterShepherdDogTTop");break;
-            case 8: texture = new Texture("waterShepherdDogCross");break;
+            case 8: texture = new Texture("waterShepherdDogSourceBottom");break;
             case 9: texture = new Texture("waterShepherdDogLeftBottom");break;
             case 10: texture = new Texture("waterShepherdDogVertical");break;
             case 11: texture = new Texture("waterShepherdDogTLeft");break;
