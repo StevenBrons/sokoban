@@ -35,7 +35,15 @@ public class BoulderGoal implements Tile,Movable {
     }
 
     public BoulderGoal(BoulderWater other){
-        boulderType = other.getBoulderType();
+        Random r = new Random();
+        switch (other.getBoulderType()){
+            case 2:
+                boulderType = r.nextInt(2)+2;break;
+            case 3:
+                boulderType = 1;break;
+            default:
+                boulderType = r.nextInt(3)+1;break;
+        }
         texture = new Texture("stableSheep" + boulderType);
     }
 

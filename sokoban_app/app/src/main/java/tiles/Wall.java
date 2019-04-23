@@ -23,7 +23,7 @@ public class Wall implements Tile, Connectable{
         if (rightWall) val += 4;
         if (bottomWall) val += 8;
         switch (val){
-            case 0:texture = new Texture("fenceCross");break;
+            case 0:texture = new Texture("moreSunflowers");break;
             case 1: texture = new Texture("fenceLeft");break;
             case 2: texture = new Texture("fenceTop");break;
             case 3: texture = new Texture("fenceTopLeft");break;

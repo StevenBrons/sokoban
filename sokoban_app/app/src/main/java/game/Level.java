@@ -80,6 +80,8 @@ public class Level {
                 return new Goal();
             case "w":
                 return new Water();
+            case "W":
+                return new BoulderWater();
             default:
                 return new Void();
         }
