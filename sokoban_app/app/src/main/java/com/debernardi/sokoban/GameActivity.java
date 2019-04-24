@@ -11,6 +11,9 @@ import android.view.View;
 
 import android.view.LayoutInflater;
 
+import java.io.IOException;
+import java.util.Random;
+
 import game.Direction;
 import game.GameHandler;
 import game.Texture;
@@ -19,7 +22,7 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
 
     GameView view;
     GameHandler handler;
-    private static MediaPlayer audioIntro,audioMiddle;
+    private static MediaPlayer audioIntro,audioMiddle,sheep1,sheep2,sheep3,sheep4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,10 +82,15 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
     protected void onStart() {
         super.onStart();
         audioIntro = MediaPlayer.create(this,R.raw.soundtrack1_intro);
-        audioMiddle = MediaPlayer.create(this,R.raw.soundtrack1_middle);
-        audioMiddle.setLooping(true);
         audioIntro.start();
         audioIntro.setOnCompletionListener(this);
+        audioMiddle = MediaPlayer.create(this,R.raw.soundtrack1_middle);
+        audioMiddle.setLooping(true);
+        sheep1 = MediaPlayer.create(this,R.raw.sheep1);
+        sheep2 = MediaPlayer.create(this,R.raw.sheep2);
+        sheep3 = MediaPlayer.create(this,R.raw.sheep3);
+        sheep4 = MediaPlayer.create(this,R.raw.sheep4);
+
     }
 
     @Override
@@ -90,6 +98,10 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
         super.onPause();
         audioIntro.pause();
         audioMiddle.pause();
+        sheep1.stop();
+        sheep2.stop();
+        sheep3.stop();
+        sheep4.stop();
     }
 
     @Override
@@ -119,6 +131,16 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
         Intent startWinLose = new Intent(this, WinLose.class);
         startWinLose.putExtras(b);
         startActivity(startWinLose);
+    }
+
+    public static void playAudioSheep(){
+        Random r = new Random();
+        switch(r.nextInt(4)){
+            case 0: sheep1.start();
+            case 1: sheep2.start();
+            case 2: sheep3.start();
+            case 3: sheep4.start();
+        }
     }
 
 }
