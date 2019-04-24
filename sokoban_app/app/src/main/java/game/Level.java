@@ -154,6 +154,10 @@ public class Level {
             return true;
         }
         Tile moveAfter = getTileAt(playerX + (dx * 2),playerY + (dy * 2));
+        if (moveAfter instanceof Goal && (moveTo instanceof Boulder ||
+                moveTo instanceof BoulderWater || moveTo instanceof BoulderGoal)){
+            GameActivity.playAudioSheep();
+        }
         if (moveTo instanceof Movable && !(((Movable) moveTo).moveOnto(moveAfter) instanceof Void)) {
             tiles[playerX][playerY] = player.moveLeftOver();
             playerX += dx;

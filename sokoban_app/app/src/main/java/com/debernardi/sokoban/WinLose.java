@@ -1,6 +1,7 @@
 package com.debernardi.sokoban;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -17,6 +18,7 @@ public class WinLose  extends AppCompatActivity {
 	private int currentScore, bestScore, minimumScore;
 	private boolean newBest;
 	private String levelFileName;
+	private MediaPlayer audioVictory;
 
 	public Button restart, levelSelect;
 	public TextView txtWin, txtCurrentScore, txtBestScore, txtMinimumScore;
@@ -87,5 +89,12 @@ public class WinLose  extends AppCompatActivity {
 		Intent startLevelSelect = new Intent(this, LevelSelect.class);
 		startLevelSelect.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(startLevelSelect);
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		audioVictory = MediaPlayer.create(this,R.raw.solved);
+		audioVictory.start();
 	}
 }
