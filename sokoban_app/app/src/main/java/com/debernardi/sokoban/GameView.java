@@ -62,8 +62,6 @@ public class GameView extends View {
         int topOffset = (canvas.getHeight() / 2) - screenHeight/2;
         Rect dest = new Rect(0,topOffset,canvas.getWidth(),screenHeight+topOffset);
         canvas.drawBitmap(bitmap,src,dest,null);
-
-
     }
 
     public void drawBackground(Canvas canvas) {
@@ -72,7 +70,4 @@ public class GameView extends View {
         canvas.drawRect(0,0,canvas.getWidth(),canvas.getHeight(),p);
     }
 
-    public void moveDown() {
-
-    }
 }
