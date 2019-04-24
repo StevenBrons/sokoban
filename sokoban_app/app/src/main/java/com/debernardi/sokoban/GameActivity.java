@@ -2,22 +2,24 @@ package com.debernardi.sokoban;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
+import android.media.MediaPlayer;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 import android.view.View;
-import java.util.Scanner;
+
 import android.view.LayoutInflater;
 
 import game.Direction;
 import game.GameHandler;
 import game.Texture;
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCompletionListener {
 
     GameView view;
     GameHandler handler;
+    private static MediaPlayer audioIntro,audioMiddle;
 
 
     @Override
@@ -70,5 +72,44 @@ public class GameActivity extends AppCompatActivity {
 
     public void moveRight(View v){
         move(Direction.RIGHT);
+    }
+
+    public void onCompletion(MediaPlayer player){
+        audioMiddle.start();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        audioIntro = MediaPlayer.create(this,R.raw.soundtrack1_intro);
+        audioMiddle = MediaPlayer.create(this,R.raw.soundtrack1_middle);
+        audioMiddle.setLooping(true);
+        audioIntro.start();
+        audioIntro.setOnCompletionListener(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        audioIntro.pause();
+        audioMiddle.pause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (audioIntro.getCurrentPosition() != audioIntro.getDuration()){
+            audioIntro.start();
+        }
+        else{
+            audioMiddle.start();
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        audioMiddle.release();
+        audioIntro.release();
     }
 }
