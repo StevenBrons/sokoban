@@ -6,7 +6,7 @@ import game.Texture;
 
 public class BoulderGoal implements Tile,Movable {
     private int boulderType;
-    Texture texture;
+    private Texture texture;
 
     public BoulderGoal() {
         Random r = new Random();
@@ -14,7 +14,7 @@ public class BoulderGoal implements Tile,Movable {
         texture = new Texture("stableSheep" + boulderType);
     }
 
-    public BoulderGoal(Boulder other){
+    BoulderGoal(Boulder other){
         Random r = new Random();
         switch (other.getBoulderType()){
             case 1:
@@ -29,12 +29,12 @@ public class BoulderGoal implements Tile,Movable {
         texture = new Texture("stableSheep" + boulderType);
     }
 
-    public BoulderGoal(BoulderGoal other){
+    BoulderGoal(BoulderGoal other){
         boulderType = other.boulderType;
         texture = new Texture("stableSheep" + boulderType);
     }
 
-    public BoulderGoal(BoulderWater other){
+    BoulderGoal(BoulderWater other){
         Random r = new Random();
         switch (other.getBoulderType()){
             case 2:
@@ -47,7 +47,7 @@ public class BoulderGoal implements Tile,Movable {
         texture = new Texture("stableSheep" + boulderType);
     }
 
-    public int getBoulderType(){
+    int getBoulderType(){
         return boulderType;
     }
 
