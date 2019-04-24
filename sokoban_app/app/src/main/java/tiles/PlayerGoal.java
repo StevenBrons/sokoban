@@ -3,7 +3,7 @@ package tiles;
 import game.Texture;
 
 public class PlayerGoal extends Player{
-    Texture texture = new Texture("shepherdDogStable");
+    private Texture texture = new Texture("shepherdDogStable");
 
     @Override
     public boolean isSolid() {

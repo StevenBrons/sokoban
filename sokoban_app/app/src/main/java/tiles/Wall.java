@@ -5,9 +5,9 @@ import java.util.Random;
 import game.Texture;
 
 public class Wall implements Tile, Connectable{
-    Texture texture = new Texture("fenceCross");
-    boolean leftWall = false, topWall = false, rightWall = false, bottomWall = false;
-    int Type = new Random().nextInt(5);
+    private Texture texture = new Texture("fenceCross");
+    private boolean leftWall = false, topWall = false, rightWall = false, bottomWall = false;
+    private int Type = new Random().nextInt(5);
 
     @Override
     public boolean isSolid() {
@@ -19,7 +19,7 @@ public class Wall implements Tile, Connectable{
         return texture;
     }
 
-    public void updateTexture(){
+    private void updateTexture(){
         int val = 0;
         if (leftWall) val += 1;
         if (topWall) val += 2;
@@ -59,45 +59,25 @@ public class Wall implements Tile, Connectable{
 
     @Override
     public void connectLeft(Tile other) {
-        if (other instanceof Wall){
-            leftWall = true;
-        }
-        else{
-            leftWall = false;
-        }
+        leftWall = other instanceof Wall;
         updateTexture();
     }
 
     @Override
     public void connectRight(Tile other) {
-        if (other instanceof Wall){
-            rightWall = true;
-        }
-        else{
-            rightWall = false;
-        }
+        rightWall = other instanceof Wall;
         updateTexture();
     }
 
     @Override
     public void connectTop(Tile other) {
-        if (other instanceof Wall){
-            topWall = true;
-        }
-        else{
-            topWall = false;
-        }
+        topWall = other instanceof Wall;
         updateTexture();
     }
 
     @Override
     public void connectBottom(Tile other) {
-        if (other instanceof Wall){
-            bottomWall = true;
-        }
-        else{
-            bottomWall = false;
-        }
+        bottomWall = other instanceof Wall;
         updateTexture();
     }
 }

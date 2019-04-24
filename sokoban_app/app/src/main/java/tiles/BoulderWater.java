@@ -5,8 +5,8 @@ import java.util.Random;
 import game.Texture;
 
 public class BoulderWater implements Tile, Movable, Connectable, WaterTile {
-    Texture texture = new Texture("lakeSheep2");
-    boolean leftWall = false, topWall = false, rightWall = false, bottomWall = false;
+    private Texture texture = new Texture("lakeSheep2");
+    private boolean leftWall = false, topWall = false, rightWall = false, bottomWall = false;
     private int boulderType;
 
     public BoulderWater(){
@@ -15,7 +15,7 @@ public class BoulderWater implements Tile, Movable, Connectable, WaterTile {
         updateTexture();
     }
 
-    public BoulderWater(Boulder boulderTemplate,Water waterTemplate){
+    BoulderWater(Boulder boulderTemplate, Water waterTemplate){
         Random r = new Random();
         switch (boulderTemplate.getBoulderType()){
             case 1:
@@ -33,7 +33,7 @@ public class BoulderWater implements Tile, Movable, Connectable, WaterTile {
         updateTexture();
     }
 
-    public BoulderWater(BoulderGoal boulderTemplate,Water waterTemplate){
+    BoulderWater(BoulderGoal boulderTemplate, Water waterTemplate){
         Random r = new Random();
         switch (boulderTemplate.getBoulderType()){
             case 1:
@@ -51,13 +51,13 @@ public class BoulderWater implements Tile, Movable, Connectable, WaterTile {
         updateTexture();
     }
 
-    public int getBoulderType(){
+    int getBoulderType(){
         return boulderType;
     }
-    public boolean getLeftWall() { return leftWall; }
-    public boolean getTopWall() { return topWall; }
-    public boolean getRightWall() { return rightWall; }
-    public boolean getBottomWall() { return bottomWall; }
+    boolean getLeftWall() { return leftWall; }
+    boolean getTopWall() { return topWall; }
+    boolean getRightWall() { return rightWall; }
+    boolean getBottomWall() { return bottomWall; }
 
     @Override
     public boolean isSolid() {
@@ -69,7 +69,7 @@ public class BoulderWater implements Tile, Movable, Connectable, WaterTile {
         return texture;
     }
 
-    public void updateTexture(){
+    private void updateTexture(){
         int val = 0;
         if (leftWall) val += 1;
         if (topWall) val += 2;
@@ -98,45 +98,25 @@ public class BoulderWater implements Tile, Movable, Connectable, WaterTile {
 
     @Override
     public void connectLeft(Tile other) {
-        if (other instanceof WaterTile){
-            leftWall = true;
-        }
-        else{
-            leftWall = false;
-        }
+        leftWall = other instanceof WaterTile;
         updateTexture();
     }
 
     @Override
     public void connectRight(Tile other) {
-        if (other instanceof WaterTile){
-            rightWall = true;
-        }
-        else{
-            rightWall = false;
-        }
+        rightWall = other instanceof WaterTile;
         updateTexture();
     }
 
     @Override
     public void connectTop(Tile other) {
-        if (other instanceof WaterTile){
-            topWall = true;
-        }
-        else{
-            topWall = false;
-        }
+        topWall = other instanceof WaterTile;
         updateTexture();
     }
 
     @Override
     public void connectBottom(Tile other) {
-        if (other instanceof WaterTile){
-            bottomWall = true;
-        }
-        else{
-            bottomWall = false;
-        }
+        bottomWall = other instanceof WaterTile;
         updateTexture();
     }
 
