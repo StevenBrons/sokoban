@@ -1,22 +1,18 @@
 package com.debernardi.sokoban;
 
- import android.content.Context;
- import android.graphics.Bitmap;
- import android.graphics.Canvas;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
- import android.graphics.Matrix;
- import android.graphics.Paint;
- import android.graphics.Rect;
- import android.text.TextUtils;
- import android.view.View;
-
-import java.util.Random;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.view.View;
 
 import game.GameHandler;
 import game.Level;
- import game.Texture;
+import game.Texture;
 
- import static java.lang.Math.max;
+import static java.lang.Math.max;
 
 public class GameView extends View {
 
