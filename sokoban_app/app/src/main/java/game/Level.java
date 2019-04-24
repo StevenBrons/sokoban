@@ -60,6 +60,7 @@ public class Level {
         this.author = author;
         this.bestPossibleScore = bestPossibleScore;
         this.width = width;
+        this.height = height;
         this.tiles = tiles;
         this.playerY = playerY;
         this.playerX = playerX;
@@ -122,9 +123,9 @@ public class Level {
     public Level copy() {
         Tile[][] tilesCopy = new Tile[width][height];
         for (int x = 0; x < width;x++) {
-            tilesCopy[x] = Arrays.copyOf(tiles[x],tiles.length);
+            tilesCopy[x] = Arrays.copyOf(tiles[x],tiles[x].length);
         }
-        return new Level(levelName,author,playerX,playerY,bestPossibleScore,width,height,tiles);
+        return new Level(levelName,author,playerX,playerY,bestPossibleScore,width,height,tilesCopy);
     }
 
     public boolean move(Direction d) {

@@ -9,9 +9,9 @@
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:layout_marginStart="210dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="70dp"
         android:background="@null"
         android:contentDescription="@null"
         android:onClick="moveDown"
@@ -22,9 +22,8 @@
 
     <ImageButton
         android:id="@+id/imageButton2"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:layout_marginStart="120dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:background="@null"
         android:contentDescription="@null"
         android:onClick="moveLeft"
@@ -35,10 +34,9 @@
 
     <ImageButton
         android:id="@+id/imageButton3"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginBottom="90dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="70dp"
         android:background="@null"
         android:contentDescription="@null"
         android:onClick="moveUp"
@@ -49,15 +47,29 @@
 
     <ImageButton
         android:id="@+id/imageButton4"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:layout_marginStart="210dp"
-        android:layout_marginBottom="90dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginBottom="70dp"
         android:background="@null"
         android:contentDescription="@null"
         android:onClick="moveRight"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:scaleType="fitCenter"
         app:srcCompat="@drawable/arrowright" />
+
+    <ImageButton
+        android:id="@+id/imageButton6"
+        android:layout_width="65dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="50dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:scaleType="fitCenter"
+        android:onClick="undo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/undo" />
 </android.support.constraint.ConstraintLayout>
