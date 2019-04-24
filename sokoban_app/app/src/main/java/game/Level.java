@@ -178,7 +178,7 @@ public class Level {
     public boolean isFinished(){
         for(int i = 0; i < tiles.length; i++)
             for(int j = 0; j < tiles[i].length; j++)
-                if(tiles[i][j] instanceof Goal)
+                if(tiles[i][j] instanceof Goal || tiles[i][j] instanceof PlayerGoal)
                     return false;
         return true;
     }
