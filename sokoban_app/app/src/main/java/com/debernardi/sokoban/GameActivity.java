@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.widget.FrameLayout;
 import android.view.View;
 import android.view.LayoutInflater;
-
+import android.view.GestureDetector;
+import android.view.GestureDetector.OnGestureListener;
+import android.view.MotionEvent;
 import java.io.IOException;
 import java.util.Random;
 
@@ -17,8 +19,9 @@ import game.Direction;
 import game.GameHandler;
 import game.Texture;
 
-public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCompletionListener {
+public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCompletionListener, OnGestureListener {
 
+    private GestureDetector gDetector;
     GameView view;
     GameHandler handler;
     private static MediaPlayer audioIntro,audioMiddle,sheep1,sheep2,sheep3,sheep4;
@@ -40,9 +43,63 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
             View UI = factory.inflate(R.layout.ui, null);
             frame.addView(UI);
             setContentView(frame);
+            gDetector = new GestureDetector(this, this);
         }catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public boolean onFling(MotionEvent ev1, MotionEvent ev2, float X, float Y) {
+        if (ev1.getX()-ev2.getX()< 0 && ev1.getY()-ev2.getY() >= 0) {
+            moveRight(view);
+            return true;
+        }
+
+        if (ev1.getX()-ev2.getX() < 0 && ev1.getY()-ev2.getY() < 0) {
+            moveDown(view);
+            return true;
+        }
+
+        if (ev1.getX()-ev2.getX() >= 0 && ev1.getY()-ev2.getY() >= 0) {
+            moveUp(view);
+            return true;
+        }
+
+        if (ev1.getX()-ev2.getX() >= 0 && ev1.getY()-ev2.getY() < 0) {
+            moveLeft(view);
+            return true;
+        } else {
+            return true;
+        }
+    }
+
+    @Override
+    public void onLongPress(MotionEvent arg0) {
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent arg0, MotionEvent arg1, float arg2, float arg3) {
+        return false;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent arg0) {
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent arg0) {
+        return false;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        return gDetector.onTouchEvent(motionEvent);
+    }
+
+    @Override
+    public boolean onDown(MotionEvent arg0) {
+        return false;
     }
 
     public void move(Direction d){
