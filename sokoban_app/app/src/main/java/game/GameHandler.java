@@ -88,6 +88,7 @@ public class GameHandler extends AppCompatActivity {
         b.putInt("bestScore", highscore);
         b.putInt("minimumScore", level.getBestPossibleScore());
         b.putBoolean("newBest", newBest);
+        b.putString("levelFileName", level.getLevelPath());
 
         context.won(b);
     }

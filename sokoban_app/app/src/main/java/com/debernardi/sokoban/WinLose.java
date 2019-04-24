@@ -25,6 +25,7 @@ public class WinLose  extends AppCompatActivity {
 
 	private int currentScore, bestScore, minimumScore;
 	private boolean newBest;
+	private String levelFileName;
 
 	public Button restart, levelSelect;
 	public TextView txtWin, txtCurrentScore, txtBestScore, txtMinimumScore;
@@ -34,11 +35,11 @@ public class WinLose  extends AppCompatActivity {
 		if(b == null)
 			System.out.println("The bundle could not be created in WinLose.java.");
 
-		//TODO: We also need to pass the level  in some way.
 		currentScore = b.getInt("currentScore");
 		bestScore = b.getInt("bestScore");
 		minimumScore = b.getInt("minimumScore");
 		newBest = b.getBoolean("newBest");
+		levelFileName = b.getString("levelFileName");
 	}
 
 	private void initializeViews(){
@@ -63,7 +64,7 @@ public class WinLose  extends AppCompatActivity {
 	private void setNumbers(){
 		txtCurrentScore.setText(Integer.toString(currentScore));
 		txtBestScore.setText(Integer.toString(bestScore));
-		txtMinimumScore.setText(Integer.toString(minimumScore));
+		txtMinimumScore.setText((minimumScore > 0)?Integer.toString(minimumScore):"-");
 	}
 
 	@Override
@@ -83,9 +84,8 @@ public class WinLose  extends AppCompatActivity {
 	}
 
 	public void onClickRestartLevel(View view) {
-		//TODO: Go to the last played level.
-		System.out.println("YET TO BE IMPLEMENTED!");
-		//Intent restartLevel = new Intent(this, ?);
-		//startActivity(restartLevel);
+		Intent startGame = new Intent(this, GameActivity.class);
+		startGame.putExtra("levelFileName", levelFileName);
+		startActivity(startGame);
 	}
 }
