@@ -2,6 +2,12 @@ package tiles;
 
 import game.Texture;
 
+/**
+ * @author Jelmer Firet
+ * a player tile
+ * acts as an active player
+ * doesn't connect
+ */
 public class Player implements Tile, Movable {
 
     private Texture texture = new Texture("shepherdDogGrass");

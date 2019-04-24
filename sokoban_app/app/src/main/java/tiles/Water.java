@@ -8,6 +8,13 @@ import org.w3c.dom.Text;
 
 import game.Texture;
 
+/**
+ * @author Jelmer Firet
+ * a water tile
+ * sheep can be pushed into water
+ * players can walk over water
+ * connects to neighbouring water tiles (Water, BoulderWater, PlayerWater, Void)
+ */
 public class Water implements Tile, Connectable, WaterTile{
     private Texture texture = new Texture("lake");
     private boolean leftWater = false, topWater = false, rightWater = false, bottomWater = false;
@@ -19,6 +26,10 @@ public class Water implements Tile, Connectable, WaterTile{
 
     public Water(){}
 
+    /**
+     * create new Water based on the connections of a BoulderWater
+     * @param other the BoulderWater to use as a reference for the water connections
+     */
     public Water(BoulderWater other){
         leftWater = other.getLeftWater();
         topWater = other.getTopWater();
@@ -31,6 +42,10 @@ public class Water implements Tile, Connectable, WaterTile{
         updateTexture();
     }
 
+    /**
+     * create new Water based on the connections of a PlayerWater
+     * @param other the PlayerWater to use as a reference for the water connections
+     */
     public Water(PlayerWater other){
         leftWater = other.getLeftWater();
         topWater = other.getTopWater();
@@ -57,6 +72,10 @@ public class Water implements Tile, Connectable, WaterTile{
     boolean getRightWaterFall() { return rightWaterFall; }
     boolean getBottomWaterFall() { return bottomWaterFall; }
 
+    /**
+     * @author Jelmer Firet
+     * @return a Texture for the PlayerWater that takes waterFalls into account
+     */
     @Override
     public Texture getTexture() {
         String name = texture.getName();
@@ -82,6 +101,10 @@ public class Water implements Tile, Connectable, WaterTile{
         return new Texture(name);
     }
 
+    /**
+     * @author Jelmer Firet
+     * changes the primary texture to adapt to water connections
+     */
     private void updateTexture(){
         int val = 0;
         if (leftWater) val += 1;

@@ -8,6 +8,12 @@ import java.util.Random;
 
 import game.Texture;
 
+/**
+ * @author Jelmer Firet
+ * a tile that acts as sheep and as water
+ * the sheep on this tile can only be pushed onto land tiles
+ * connects to neighbouring water tiles (Water, BoulderWater, PlayerWater, Void)
+ */
 public class BoulderWater implements Tile, Movable, Connectable, WaterTile {
     private Texture texture = new Texture("lakeSheep2");
     private boolean leftWater = false, topWater = false, rightWater = false, bottomWater = false;
@@ -30,12 +36,22 @@ public class BoulderWater implements Tile, Movable, Connectable, WaterTile {
     boolean getRightWaterFall() { return rightWaterFall; }
     boolean getBottomWaterFall() { return bottomWaterFall; }
 
+    /**
+     * @author Jelmer Firet
+     * a constructor for a new random BoulderWater
+     */
     public BoulderWater(){
         Random r = new Random();
         boulderType = r.nextInt(2)+2;
         updateTexture();
     }
 
+    /**
+     * @author Jelmer Firet
+     * a constructor for a BoulderWater based on a Boulder and a Water
+     * @param boulderTemplate a Boulder to use as a template for the number of sheep
+     * @param waterTemplate a Water to use as a template for the water connections
+     */
     BoulderWater(Boulder boulderTemplate, Water waterTemplate){
         Random r = new Random();
         switch (boulderTemplate.getBoulderType()){
@@ -58,6 +74,12 @@ public class BoulderWater implements Tile, Movable, Connectable, WaterTile {
         updateTexture();
     }
 
+    /**
+     * @author Jelmer Firet
+     * a constructor for a BoulderWater based on a Boulder and a Water
+     * @param boulderTemplate a BoulderGoal to use as a template for the number of sheep
+     * @param waterTemplate a Water to use as a template for the water connections
+     */
     BoulderWater(BoulderGoal boulderTemplate, Water waterTemplate){
         Random r = new Random();
         switch (boulderTemplate.getBoulderType()){
@@ -85,6 +107,10 @@ public class BoulderWater implements Tile, Movable, Connectable, WaterTile {
         return true;
     }
 
+    /**
+     * @author Jelmer Firet
+     * @return a Texture for the BoulderWater that takes waterFalls into account
+     */
     @Override
     public Texture getTexture() {
         String name = texture.getName();
@@ -110,6 +136,10 @@ public class BoulderWater implements Tile, Movable, Connectable, WaterTile {
         return new Texture(name);
     }
 
+    /**
+     * @author Jelmer Firet
+     * changes the primary texture to adapt to water connections
+     */
     private void updateTexture(){
         int val = 0;
         if (leftWater) val += 1;
