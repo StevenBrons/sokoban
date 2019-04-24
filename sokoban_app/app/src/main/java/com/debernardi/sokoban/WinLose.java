@@ -7,20 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-/* EXAMPLE CALL OF THIS ACTIVITY (used for testing)
-public void onClickWin(View view){
-	Bundle b = new Bundle();
-	b.putInt("currentScore", 16);
-	b.putInt("bestScore", 12);
-	b.putInt("minimumScore", 14);
-	b.putBoolean("newBest", true);
-
-	Intent startWinLose = new Intent(this, WinLose.class);
-	startWinLose.putExtras(b);
-	startActivity(startWinLose);
-}
-*/
-
+/**
+ * @author Bram Pulles
+ * This class shows the win screen when a player has won.
+ * It shows different text messages depending on the scores.
+ */
 public class WinLose  extends AppCompatActivity {
 
 	private int currentScore, bestScore, minimumScore;
@@ -80,19 +71,21 @@ public class WinLose  extends AppCompatActivity {
 
 	public void onClickLevelSelect(View view){
 		Intent startLevelSelect = new Intent(this, LevelSelect.class);
+		startLevelSelect.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(startLevelSelect);
 	}
 
 	public void onClickRestartLevel(View view) {
 		Intent startGame = new Intent(this, GameActivity.class);
+		startGame.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startGame.putExtra("levelFileName", levelFileName);
 		startActivity(startGame);
 	}
 
 	@Override
 	public void onBackPressed(){
-		super.onBackPressed();
-		startActivity(new Intent(this, LevelSelect.class));
-		finish();
+		Intent startLevelSelect = new Intent(this, LevelSelect.class);
+		startLevelSelect.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(startLevelSelect);
 	}
 }
