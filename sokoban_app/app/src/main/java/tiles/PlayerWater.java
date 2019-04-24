@@ -6,6 +6,12 @@ import android.graphics.Rect;
 
 import game.Texture;
 
+/**
+ * @author Jelmer Firet
+ * a tile that acts as a player and as water
+ * acts as an active player that can be moved around
+ * connects to neighbouring water tiles (Water, BoulderWater, PlayerWater, Void)
+ */
 public class PlayerWater extends Player implements Connectable, WaterTile{
     private Texture texture = new Texture("lakeShepherdDog");
     private boolean leftWater, topWater, rightWater, bottomWater;
@@ -24,6 +30,11 @@ public class PlayerWater extends Player implements Connectable, WaterTile{
     boolean getRightWaterFall() { return rightWaterFall; }
     boolean getBottomWaterFall() { return bottomWaterFall; }
 
+    /**
+     * @author Jelmer Firet
+     * constructs a new PlayerWater based on another Water instance
+     * @param other a Water to use as a reference for the water Connections
+     */
     PlayerWater(Water other){
         leftWater = other.getLeftWater();
         topWater = other.getTopWater();
@@ -36,6 +47,10 @@ public class PlayerWater extends Player implements Connectable, WaterTile{
         updateTexture();
     }
 
+    /**
+     * @author Jelmer Firet
+     * @return a Texture for the PlayerWater that takes waterFalls into account
+     */
     @Override
     public Texture getTexture() {
         String name = texture.getName();
@@ -61,6 +76,10 @@ public class PlayerWater extends Player implements Connectable, WaterTile{
         return new Texture(name);
     }
 
+    /**
+     * @author Jelmer Firet
+     * changes the primary texture to adapt to water connections
+     */
     private void updateTexture(){
         int val = 0;
         if (leftWater) val += 1;
