@@ -1,14 +1,12 @@
 package game;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.debernardi.sokoban.GameActivity;
 import com.debernardi.sokoban.GameView;
-import com.debernardi.sokoban.WinLose;
 
 import org.apache.commons.io.FilenameUtils;
 
