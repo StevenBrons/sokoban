@@ -2,12 +2,15 @@ package game;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.debernardi.sokoban.GameActivity;
 import com.debernardi.sokoban.GameView;
 import com.debernardi.sokoban.WinLose;
+
+import org.apache.commons.io.FilenameUtils;
 
 import java.util.ArrayList;
 
@@ -66,11 +69,25 @@ public class GameHandler extends AppCompatActivity {
     }
 
     private void won(){
+        int currentScore = history.size() - 1;
+        boolean newBest = false;
+        SharedPreferences prefHighscores = context.getSharedPreferences("Highscores", MODE_PRIVATE);
+        String key = FilenameUtils.removeExtension(level.getHighscoreString());
+        int highscore = prefHighscores.getInt(key,-1);
+        System.out.println(highscore);
+        SharedPreferences.Editor edit = prefHighscores.edit();
+        if(highscore == -1 || currentScore < highscore){
+            newBest = true;
+            highscore = currentScore;
+            edit.putInt(key,highscore);
+            edit.commit();
+        }
+
         Bundle b = new Bundle();
-        b.putInt("currentScore", history.size());
-        b.putInt("bestScore", 1);
+        b.putInt("currentScore", currentScore);
+        b.putInt("bestScore", highscore);
         b.putInt("minimumScore", level.getBestPossibleScore());
-        b.putBoolean("newBest", true);
+        b.putBoolean("newBest", newBest);
 
         context.won(b);
     }

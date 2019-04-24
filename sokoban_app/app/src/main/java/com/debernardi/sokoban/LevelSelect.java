@@ -113,7 +113,7 @@ public class LevelSelect extends AppCompatActivity {
             // Make best score text
             TextView bestTextView = new TextView(this);
             bestTextView.setText(String.format("%s/%s",highscore>=0?highscore:"-",
-	    levelItem.getBestPossibleScore()>=0?levelItem.getBestPossibleScore():"-"));
+		    levelItem.getBestPossibleScore()>=0?levelItem.getBestPossibleScore():"-"));
             bestTextView.setTextSize(16);
             bestTextView.setPadding(10,3,10,3);
             bestTextView.setId(View.generateViewId());
