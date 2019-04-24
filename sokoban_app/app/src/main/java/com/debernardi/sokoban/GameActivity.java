@@ -19,7 +19,6 @@ public class GameActivity extends AppCompatActivity {
     GameView view;
     GameHandler handler;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
@@ -75,4 +74,5 @@ public class GameActivity extends AppCompatActivity {
         startWinLose.putExtras(b);
         startActivity(startWinLose);
     }
+
 }
