@@ -3,7 +3,7 @@ package tiles;
 import game.Texture;
 
 public class Empty implements Tile{
-    Texture texture = new Texture("grassTile");
+    private Texture texture = new Texture("grassTile");
 
     @Override
     public boolean isSolid() {

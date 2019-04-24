@@ -4,7 +4,7 @@ import game.Texture;
 
 public class Goal implements Tile{
 
-    Texture texture = new Texture("stable");
+    private Texture texture = new Texture("stable");
 
     @Override
     public boolean isSolid() {
