@@ -21,8 +21,11 @@ public class Level {
     private int bestPossibleScore;
     private int playerX = -1;
     private int playerY = -1;
+    private String levelPath;
 
     public Level(Context context, String levelPath) {
+        this.levelPath = levelPath;
+
         Scanner s = null;
         try {
             s = new Scanner(context.getAssets().open(levelPath));
@@ -170,6 +173,22 @@ public class Level {
             ((Connectable)tile).connectRight(getTileAt(x+1,y));
             ((Connectable)tile).connectBottom(getTileAt(x,y+1));
         }
+    }
+
+    public boolean isFinished(){
+        for(int i = 0; i < tiles.length; i++)
+            for(int j = 0; j < tiles[i].length; j++)
+                if(tiles[i][j] instanceof Goal)
+                    return false;
+        return true;
+    }
+
+    public String getLevelPath(){
+        return levelPath;
+    }
+
+    public String getHighscoreString(){
+        return levelPath.substring(7);
     }
 
 }

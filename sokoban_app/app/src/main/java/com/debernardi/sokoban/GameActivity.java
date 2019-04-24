@@ -21,7 +21,6 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
     GameHandler handler;
     private static MediaPlayer audioIntro,audioMiddle;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
@@ -31,9 +30,7 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
             handler = new GameHandler(this,intent.getStringExtra("levelFileName"));
             view = new GameView(this,handler);
 
-
             handler.start(view);
-
 
             FrameLayout frame = new FrameLayout(this);
             frame.addView(view);
@@ -112,4 +109,11 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
         audioMiddle.release();
         audioIntro.release();
     }
+
+    public void won(Bundle b){
+        Intent startWinLose = new Intent(this, WinLose.class);
+        startWinLose.putExtras(b);
+        startActivity(startWinLose);
+    }
+
 }
