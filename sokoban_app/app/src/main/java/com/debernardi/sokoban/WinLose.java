@@ -88,4 +88,11 @@ public class WinLose  extends AppCompatActivity {
 		startGame.putExtra("levelFileName", levelFileName);
 		startActivity(startGame);
 	}
+
+	@Override
+	public void onBackPressed(){
+		super.onBackPressed();
+		startActivity(new Intent(this, LevelSelect.class));
+		finish();
+	}
 }
