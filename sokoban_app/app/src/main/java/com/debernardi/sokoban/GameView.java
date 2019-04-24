@@ -69,7 +69,7 @@ public class GameView extends View {
 
     public void drawBackground(Canvas canvas) {
         Paint p = new Paint();
-        p.setColor(Color.BLUE);
+        p.setColor(Color.argb(255,168,211,255));
         canvas.drawRect(0,0,canvas.getWidth(),canvas.getHeight(),p);
     }
 
