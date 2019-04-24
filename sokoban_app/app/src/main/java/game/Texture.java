@@ -21,6 +21,16 @@ public class Texture {
         Texture.manager = manager;
     }
 
+    public static void addTexture(String name, Bitmap bitmap){
+        if (!hasTexture(name)){
+            textures.put(name,bitmap);
+        }
+    }
+
+    public static boolean hasTexture(String name){
+        return textures.containsKey(name);
+    }
+
     public Texture(String name) {
         this.name = name;
         if (!textures.containsKey(name)) {
@@ -32,6 +42,8 @@ public class Texture {
             }
         }
     }
+
+    public String getName() { return name; }
 
     public Bitmap getBitmap() {
         return textures.get(this.name);
