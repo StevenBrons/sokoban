@@ -55,14 +55,16 @@ public class Level {
         }
     }
 
-    public Level(String levelName, String author, int playerX, int playerY, int bestPossibleScore, int width, int height, Tile[][] tiles) {
+    public Level(String levelName, String author, int playerX, int playerY, int bestPossibleScore, int width, int height, Tile[][] tiles, String levelPath) {
         this.levelName = levelName;
         this.author = author;
         this.bestPossibleScore = bestPossibleScore;
         this.width = width;
+        this.height = height;
         this.tiles = tiles;
         this.playerY = playerY;
         this.playerX = playerX;
+        this.levelPath = levelPath;
     }
 
     private Tile readTile(String tileName) {
@@ -122,9 +124,9 @@ public class Level {
     public Level copy() {
         Tile[][] tilesCopy = new Tile[width][height];
         for (int x = 0; x < width;x++) {
-            tilesCopy[x] = Arrays.copyOf(tiles[x],tiles.length);
+            tilesCopy[x] = Arrays.copyOf(tiles[x],tiles[x].length);
         }
-        return new Level(levelName,author,playerX,playerY,bestPossibleScore,width,height,tiles);
+        return new Level(levelName,author,playerX,playerY,bestPossibleScore,width,height,tilesCopy, levelPath);
     }
 
     public boolean move(Direction d) {

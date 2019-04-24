@@ -30,16 +30,24 @@ public class GameHandler extends AppCompatActivity {
     }
 
     public boolean move(Direction d) {
-        history.add(level.copy());
         boolean success = level.move(d);
-        if (!success) {
-            //don't add to history if move was invalid
-            history.remove(history.size() - 1);
+        if (success) {
+            history.add(level.copy());
         }
         if(level.isFinished()){
             won();
         }
         return success;
+    }
+
+    public void undo(){
+        if (history.size() == 1)
+            return;
+        else{
+            history.remove(history.size() -1);
+            this.level = history.get(history.size() -1).copy();
+        }
+
     }
 
     public void start(GameView view2) {
