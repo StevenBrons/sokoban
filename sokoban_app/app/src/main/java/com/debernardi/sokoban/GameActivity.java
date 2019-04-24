@@ -110,6 +110,11 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
         audioIntro.release();
     }
 
+    /**
+        * @author Bram Pulles
+        * Start the winlose activity.
+        * @param b
+        */
     public void won(Bundle b){
         Intent startWinLose = new Intent(this, WinLose.class);
         startWinLose.putExtras(b);
