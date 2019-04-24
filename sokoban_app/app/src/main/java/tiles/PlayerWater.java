@@ -1,23 +1,17 @@
 package tiles;
 
-import android.graphics.Bitmap;
-
 import game.Texture;
 
 public class PlayerWater extends Player implements Connectable, WaterTile{
-    Texture texture = new Texture("waterShepherdDogCross");
-    boolean leftWall = false, topWall = false, rightWall = false, bottomWall = false;
+    private Texture texture = new Texture("lakeShepherdDog");
+    private boolean leftWall, topWall, rightWall, bottomWall;
 
-    public PlayerWater(){
-        updateTexture();
-    }
+    boolean getLeftWall() { return leftWall; }
+    boolean getTopWall() { return topWall; }
+    boolean getRightWall() { return rightWall; }
+    boolean getBottomWall() { return bottomWall; }
 
-    public boolean getLeftWall() { return leftWall; }
-    public boolean getTopWall() { return topWall; }
-    public boolean getRightWall() { return rightWall; }
-    public boolean getBottomWall() { return bottomWall; }
-
-    public PlayerWater(Water other){
+    PlayerWater(Water other){
         leftWall = other.getLeftWall();
         topWall = other.getTopWall();
         rightWall = other.getRightWall();
@@ -30,7 +24,7 @@ public class PlayerWater extends Player implements Connectable, WaterTile{
         return texture;
     }
 
-    public void updateTexture(){
+    private void updateTexture(){
         int val = 0;
         if (leftWall) val += 1;
         if (topWall) val += 2;
@@ -59,45 +53,25 @@ public class PlayerWater extends Player implements Connectable, WaterTile{
 
     @Override
     public void connectLeft(Tile other) {
-        if (other instanceof WaterTile){
-            leftWall = true;
-        }
-        else{
-            leftWall = false;
-        }
+        leftWall = other instanceof WaterTile;
         updateTexture();
     }
 
     @Override
     public void connectRight(Tile other) {
-        if (other instanceof WaterTile){
-            rightWall = true;
-        }
-        else{
-            rightWall = false;
-        }
+        rightWall = other instanceof WaterTile;
         updateTexture();
     }
 
     @Override
     public void connectTop(Tile other) {
-        if (other instanceof WaterTile){
-            topWall = true;
-        }
-        else{
-            topWall = false;
-        }
+        topWall = other instanceof WaterTile;
         updateTexture();
     }
 
     @Override
     public void connectBottom(Tile other) {
-        if (other instanceof WaterTile){
-            bottomWall = true;
-        }
-        else{
-            bottomWall = false;
-        }
+        bottomWall = other instanceof WaterTile;
         updateTexture();
     }
 

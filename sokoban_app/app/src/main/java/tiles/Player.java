@@ -4,7 +4,7 @@ import game.Texture;
 
 public class Player implements Tile, Movable {
 
-    Texture texture = new Texture("shepherdDogGrass");
+    private Texture texture = new Texture("shepherdDogGrass");
 
     @Override
     public boolean isSolid() {
