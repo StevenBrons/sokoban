@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 import android.view.View;
-
 import android.view.LayoutInflater;
 
 import java.io.IOException;
@@ -72,6 +71,10 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
 
     public void moveRight(View v){
         move(Direction.RIGHT);
+    }
+
+    public void undo(View v){
+        handler.undo();
     }
 
     public void onCompletion(MediaPlayer player){

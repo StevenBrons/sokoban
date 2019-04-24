@@ -12,7 +12,8 @@
         <activity android:name=".Statistics"></activity>
         <activity android:name=".Settings" />
         <activity android:name=".LevelSelect" />
-        <activity android:name=".GameActivity" />
+        <activity android:name=".GameActivity"
+            android:screenOrientation="landscape"/>
         <activity android:name=".WinLose" />
         <activity android:name=".CreditsActivity" />
         <activity android:name=".MainActivity">
