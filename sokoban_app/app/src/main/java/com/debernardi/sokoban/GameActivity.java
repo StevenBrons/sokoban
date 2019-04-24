@@ -29,9 +29,7 @@ public class GameActivity extends AppCompatActivity {
             handler = new GameHandler(this,intent.getStringExtra("levelFileName"));
             view = new GameView(this,handler);
 
-
             handler.start(view);
-
 
             FrameLayout frame = new FrameLayout(this);
             frame.addView(view);
@@ -70,5 +68,11 @@ public class GameActivity extends AppCompatActivity {
 
     public void moveRight(View v){
         move(Direction.RIGHT);
+    }
+
+    public void won(Bundle b){
+        Intent startWinLose = new Intent(this, WinLose.class);
+        startWinLose.putExtras(b);
+        startActivity(startWinLose);
     }
 }
