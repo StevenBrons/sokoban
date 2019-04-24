@@ -1,10 +1,13 @@
 package tiles;
 
+import java.util.Random;
+
 import game.Texture;
 
 public class Wall implements Tile, Connectable{
     Texture texture = new Texture("fenceCross");
     boolean leftWall = false, topWall = false, rightWall = false, bottomWall = false;
+    int Type = new Random().nextInt(5);
 
     @Override
     public boolean isSolid() {
@@ -23,7 +26,18 @@ public class Wall implements Tile, Connectable{
         if (rightWall) val += 4;
         if (bottomWall) val += 8;
         switch (val){
-            case 0:texture = new Texture("moreSunflowers");break;
+            case 0:
+                switch(Type){
+                    case 0:
+                    case 1:
+                        texture = new Texture("moreSunflowers");break;
+                    case 2:
+                    case 3:
+                        texture = new Texture("cherryBlossomTree");break;
+                    case 4:
+                        texture = new Texture("deadTree");break;
+
+                }break;
             case 1: texture = new Texture("fenceLeft");break;
             case 2: texture = new Texture("fenceTop");break;
             case 3: texture = new Texture("fenceTopLeft");break;

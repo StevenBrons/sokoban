@@ -46,10 +46,8 @@ public class GameView extends View {
                 int xAbs = x * (tileWidth / 2) + y * (tileWidth / 2);
                 int yAbs = -x * (tileHeight / 4) + y * (tileHeight / 4)+startheight;
 
-
-                Rect src = new Rect(0,0,texture.getWidth(), texture.getHeight());
                 Rect dest = new Rect(xAbs,yAbs,tileWidth + xAbs, tileHeight + yAbs);
-                canvas.drawBitmap(texture,src,dest,paint);
+                canvas.drawBitmap(texture,null,dest,paint);
             }
         }
         return bitmap;
@@ -57,18 +55,17 @@ public class GameView extends View {
 
     public void drawLevel(Canvas canvas,Level level) {
         Bitmap bitmap = getLevelBitmap(level);
-        Rect src = new Rect(0,0,bitmap.getWidth(), bitmap.getHeight());
         int screenHeight = (canvas.getWidth() * bitmap.getHeight()) / bitmap.getWidth();
         int topOffset = (canvas.getHeight() / 2) - screenHeight/2;
         Rect dest = new Rect(0,topOffset,canvas.getWidth(),screenHeight+topOffset);
-        canvas.drawBitmap(bitmap,src,dest,null);
+        canvas.drawBitmap(bitmap,null,dest,null);
 
 
     }
 
     public void drawBackground(Canvas canvas) {
         Paint p = new Paint();
-        p.setColor(Color.BLUE);
+        p.setColor(Color.argb(255,168,211,255));
         canvas.drawRect(0,0,canvas.getWidth(),canvas.getHeight(),p);
     }
 
