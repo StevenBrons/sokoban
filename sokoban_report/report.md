@@ -7,9 +7,9 @@ As an extra challenge we chose to make 3D graphics. We have clouds (most of the 
 # Tiles 
 We have different tiles, a short description of some of the tiles is given below:
 
-	- Shepherd with dog: This is the player and can be moved around.
-	- Sheep and shed: Every level has some sheep which can be pushed around. The purpose of the game is to push all the sheep in a shed.
-	- Water: Sheep can only be pushed in or out water. (So not from one water tile to another.)
+- Shepherd with dog: This is the player and can be moved around.
+- Sheep and shed: Every level has some sheep which can be pushed around. The purpose of the game is to push all the sheep in a shed.
+- Water: Sheep can only be pushed in or out water. (So not from one water tile to another.)
 
 # Movement
 You can choose to either use buttons for movement or swiping. This can be changed in the settings screen.
