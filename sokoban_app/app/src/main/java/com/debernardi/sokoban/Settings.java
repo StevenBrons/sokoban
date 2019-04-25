@@ -69,6 +69,9 @@ public class Settings extends AppCompatActivity {
         Intent home = new Intent(this, MainActivity.class);
         home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(home);
+        e = getSharedPreferences("backgroundprefs", MODE_PRIVATE).edit();
+        e.clear();
+        e.commit();
     }
 
     public void onClickDonutMode(View view){
@@ -84,6 +87,7 @@ public class Settings extends AppCompatActivity {
                 e.putBoolean("donutsenabled", true);
                 ((TextView)view).setText("DONUT MODE: enabled");
             }
+            e.commit();
         }
 
     }

@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.FrameLayout;
 import android.view.View;
 import android.view.LayoutInflater;
@@ -36,8 +37,7 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
         super.onCreate(savedInstanceState);
         try {
             handler = new GameHandler(this,intent.getStringExtra("levelFileName"));
-            view = new GameView(this,handler);
-
+            view = new GameView(this,handler, getSharedPreferences("backgroundprefs", MODE_PRIVATE).contains("donutsenabled"));
             handler.start(view);
 
             FrameLayout frame = new FrameLayout(this);
