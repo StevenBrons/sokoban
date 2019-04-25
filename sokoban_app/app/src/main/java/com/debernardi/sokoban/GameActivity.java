@@ -96,9 +96,9 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
     /**
      * @author Steven Bronsveld
      * catch move down button click
+     * The direction is reversed because the game is drawn in isometric view
      */
     public void moveDown(View v){
-        //compensate for drawing
         move(Direction.UP);
     }
 
@@ -127,12 +127,20 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
         }
     }
 
+    /**
+     * @author Steven Bronsveld
+     * catch move left button click
+     */
     public void moveLeft(View v){
         move(Direction.LEFT);
     }
 
+    /**
+     * @author Steven Bronsveld
+     * catch move up button click
+     * The direction is reversed because the game is drawn in isometric view
+     */
     public void moveUp(View v){
-        //compensate for drawing
         move(Direction.DOWN);
     }
 

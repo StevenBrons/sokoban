@@ -11,6 +11,12 @@ import java.util.Scanner;
 import tiles.*;
 import tiles.Void;
 
+/**
+ *
+ * Contains the current level state
+ *
+ * @author Steven Bronsveld
+ */
 public class Level {
 
     private Tile[][] tiles;
@@ -23,6 +29,15 @@ public class Level {
     private int playerY = -1;
     private String levelPath;
 
+    /**
+     * The level is initialized from the file, properties of the level are set,
+     * including the playerX and playerY which are calculated.
+     *
+     * @param context a random context, just used for obtaining
+     * @param levelPath the path of the level file starting in the assets folder (so including level/).
+     *                  An example level name is level/00.sok
+     * @author Steven Bronsveld
+     */
     public Level(Context context, String levelPath) {
         this.levelPath = levelPath;
 
@@ -55,6 +70,19 @@ public class Level {
         }
     }
 
+    /**
+     * This constructor creates the level not from a file, but from a bunch of parameters
+     *
+     * @param levelName The title of the level
+     * @param author The creator of the level
+     * @param playerX The current player x position of this level state
+     * @param playerY The current player y position of this level state
+     * @param bestPossibleScore The minimum amount of steps the level can be completed in
+     * @param width The width of the level
+     * @param height The height of the level
+     * @param tiles A 2D array containing the tiles of the current level state
+     * @param levelPath The path of the original level file from which the level was first created
+     */
     public Level(String levelName, String author, int playerX, int playerY, int bestPossibleScore, int width, int height, Tile[][] tiles, String levelPath) {
         this.levelName = levelName;
         this.author = author;
@@ -92,15 +120,30 @@ public class Level {
         }
     }
 
-
+    /**
+     *
+     * @return The width of the level
+     */
     public int getWidth() {
         return width;
     }
 
+
+    /**
+     *
+     * @return The height of the level
+     */
     public int getHeight() {
         return height;
     }
 
+    /**
+     *
+     * @param x The x coordinate to get the tile at
+     * @param y The y coordinate to get the tile at
+     * @return The tile at the given x,y coordinate.
+     * If a coordinate outside of the level bounds is requested, an new void tile is returned
+     */
     public Tile getTileAt(int x, int y) {
         if (x >= 0 && x < getWidth() && y >= 0 && y < getHeight()) {
             return tiles[x][y];
@@ -109,18 +152,33 @@ public class Level {
         }
     }
 
+    /**
+     *
+     * @return The level name
+     */
     public String getLevelName(){
         return levelName;
     }
 
+    /**
+     *
+     * @return The autor of the level
+     */
     public String getAuthor(){
         return author;
     }
 
+    /**
+     * Returns a copy of the level object
+     *
+     */
     public int getBestPossibleScore(){
         return bestPossibleScore;
     }
 
+    /**
+     * @return A copy of the level object
+     */
     public Level copy() {
         Tile[][] tilesCopy = new Tile[width][height];
         for (int x = 0; x < width;x++) {
@@ -129,6 +187,12 @@ public class Level {
         return new Level(levelName,author,playerX,playerY,bestPossibleScore,width,height,tilesCopy, levelPath);
     }
 
+    /**
+     * If possible move the player and if necessary push the boulders
+     *
+     * @param d The direction to move in
+     * @return If the move was valid
+     */
     public boolean move(Direction d) {
         Movable player = (Movable) getTileAt(playerX,playerY);
         int dx = 0;
@@ -189,6 +253,10 @@ public class Level {
         return true;
     }
 
+    /**
+     *
+     * @return The level path
+     */
     public String getLevelPath(){
         return levelPath;
     }
