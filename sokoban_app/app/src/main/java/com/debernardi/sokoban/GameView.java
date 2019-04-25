@@ -24,21 +24,35 @@ public class GameView extends View {
     ArrayList<Cloud> clouds = new ArrayList<>();
     boolean donutMode;
 
+    /**
+     *
+     * @author Steven Bronsveld
+     */
     GameView(Context context, GameHandler handler) {
         super(context);
         this.handler = handler;
         donutMode = Math.random() * 20 < 1;
     }
 
+    /**
+     * Override view draw method. Draws the whole game view except the ui-buttons
+     */
     @Override
     protected void onDraw(Canvas canvas) {
+        updateClouds(canvas);
+
         Level level = handler.getLevel();
         drawBackground(canvas);
-        drawClouds(canvas);
+        drawClouds(canvas,false);
         drawLevel(canvas,level);
-        drawForegroundClouds(canvas);
+        drawClouds(canvas,true);
     }
 
+    /**
+     * Creates a low-scale version of the current level
+     * @param level The level to convert
+     * @return The bitmap on which the level is drawn
+     */
     public static Bitmap getLevelBitmap(Level level) {
         Paint paint = new Paint(Paint.FILTER_BITMAP_FLAG);
         int tileWidth = Texture.WIDTH;
@@ -62,6 +76,12 @@ public class GameView extends View {
         return bitmap;
     }
 
+    /**
+     * Draw the level to the screen using a level bitmap.
+     * The low-scale bitmap is scaled up to the screen size.
+     * @param canvas
+     * @param level
+     */
     public void drawLevel(Canvas canvas,Level level) {
         Bitmap bitmap = getLevelBitmap(level);
         int screenHeight = min((canvas.getWidth() * bitmap.getHeight()) / bitmap.getWidth(),canvas.getHeight());
@@ -72,7 +92,13 @@ public class GameView extends View {
         canvas.drawBitmap(bitmap,null,dest,null);
     }
 
-    public void drawClouds(Canvas canvas) {
+    /**
+     * Update the clouds, that is, move them,
+     * add new clouds and remove clouds that have moved out of the screen.
+     * If the method is called for the first time, a number of start-clouds are added.
+     * @param canvas
+     */
+    public void updateClouds(Canvas canvas) {
         if (clouds.size() == 0) {
             for (int i = 0; i < 15; i++) {
                 clouds.add(new Cloud(canvas.getHeight(),true,donutMode));
@@ -85,22 +111,27 @@ public class GameView extends View {
                 clouds.add(new Cloud(canvas.getHeight(),false, donutMode));
             }
         }
+    }
+
+    /**
+     * Draw the clouds, either only draw the clouds with the
+     * foreground property or the clouds without the foreground property
+     * @param canvas
+     * @param foreground Whether the foreground or non-foreground clouds should be drawn
+     */
+    public void drawClouds(Canvas canvas, boolean foreground) {
         for (Cloud c: clouds) {
             c.move(10);
-            if (!c.foreground) {
+            if (c.foreground == foreground) {
                 c.draw(canvas);
             }
         }
     }
 
-    public void drawForegroundClouds(Canvas canvas) {
-        for (Cloud c: clouds) {
-            if (c.foreground) {
-                c.draw(canvas);
-            }
-        }
-    }
-
+    /**
+     * Draw the blue sky-background
+     * @param canvas
+     */
     public void drawBackground(Canvas canvas) {
         Paint p = new Paint();
         p.setColor(Color.argb(255,168,211,255));

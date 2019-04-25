@@ -12,6 +12,10 @@ import org.apache.commons.io.FilenameUtils;
 
 import java.util.ArrayList;
 
+/**
+ * Handles the game logic
+ * @author Steven Bronsveld
+ */
 public class GameHandler extends AppCompatActivity {
 
     private Thread gameLoop;
@@ -23,12 +27,23 @@ public class GameHandler extends AppCompatActivity {
 
     private ArrayList<Level> history = new ArrayList<>();
 
+    /**
+     * Initializes the game handler
+     * @param context A random context, only used to get assets
+     * @param levelPath The path of the level that should be loaded
+     * @author Steven Bronsveld
+     */
     public GameHandler(Context context, String levelPath) {
         this.context = (GameActivity) context;
         level = new Level(context,levelPath);
         history.add(level.copy());
     }
 
+    /**
+     * Moves the player in the given direction
+     * @param d The direction in which the player is moved
+     * @return If the move was valid
+     */
     public boolean move(Direction d) {
         boolean success = level.move(d);
         if (success) {
@@ -40,6 +55,9 @@ public class GameHandler extends AppCompatActivity {
         return success;
     }
 
+    /**
+     * Undoes the last move, excluding invalid moves.
+     */
     public void undo(){
         if (history.size() == 1)
             return;
@@ -50,6 +68,12 @@ public class GameHandler extends AppCompatActivity {
 
     }
 
+    /**
+     * Starts the gameloop. In the game loop, the level is drawn 10 times a second and
+     * the in-game time is increased.
+     * @param view2
+     * @author Steven Bronsveld
+     */
     public void start(GameView view2) {
         final GameView view = view2;
         this.running = true;
@@ -70,6 +94,10 @@ public class GameHandler extends AppCompatActivity {
         gameLoop.start();
     }
 
+    /**
+     * @return The current level state
+     * @author Steven Bronsveld
+     */
     public Level getLevel() {
         return this.level;
     }
