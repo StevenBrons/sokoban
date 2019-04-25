@@ -181,6 +181,10 @@ public class Level {
         }
     }
 
+    /**
+        * @author Bram Pulles
+        * @return if the level is solved.
+        */
     public boolean isFinished(){
         for(int i = 0; i < tiles.length; i++)
             for(int j = 0; j < tiles[i].length; j++)
@@ -189,10 +193,18 @@ public class Level {
         return true;
     }
 
+    /**
+        * @author Bram Pulles
+        * @return the path to this level file.
+        */
     public String getLevelPath(){
         return levelPath;
     }
 
+    /**
+        * @author Bram Pulles
+        * @return the name of this level file.
+        */
     public String getHighscoreString(){
         return levelPath.substring(7);
     }
