@@ -8,6 +8,9 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.View;
 
+import java.util.ArrayList;
+
+import game.Cloud;
 import game.GameHandler;
 import game.Level;
 import game.Texture;
@@ -18,17 +21,22 @@ import static java.lang.Math.min;
 public class GameView extends View {
 
     GameHandler handler;
+    ArrayList<Cloud> clouds = new ArrayList<>();
+    boolean donutMode;
 
     GameView(Context context, GameHandler handler) {
         super(context);
         this.handler = handler;
+        donutMode = Math.random() * 20 < 1;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         Level level = handler.getLevel();
         drawBackground(canvas);
+        drawClouds(canvas);
         drawLevel(canvas,level);
+        drawForegroundClouds(canvas);
     }
 
     public static Bitmap getLevelBitmap(Level level) {
@@ -62,6 +70,35 @@ public class GameView extends View {
         int leftOffset = (canvas.getWidth() / 2) - screenWidth/2;
         Rect dest = new Rect(leftOffset,topOffset,screenWidth+leftOffset,screenHeight+topOffset);
         canvas.drawBitmap(bitmap,null,dest,null);
+    }
+
+    public void drawClouds(Canvas canvas) {
+        if (clouds.size() == 0) {
+            for (int i = 0; i < 20; i++) {
+                clouds.add(new Cloud(canvas.getHeight(),true,donutMode));
+                clouds.get(i).move(100);
+            }
+        }
+        for (int i = clouds.size() - 1; i >= 0; i--) {
+            if (clouds.get(i).isOutsideBounds(canvas.getWidth())) {
+                clouds.remove(i);
+                clouds.add(new Cloud(canvas.getHeight(),false, donutMode));
+            }
+        }
+        for (Cloud c: clouds) {
+            c.move(10);
+            if (!c.foreground) {
+                c.draw(canvas);
+            }
+        }
+    }
+
+    public void drawForegroundClouds(Canvas canvas) {
+        for (Cloud c: clouds) {
+            if (c.foreground) {
+                c.draw(canvas);
+            }
+        }
     }
 
     public void drawBackground(Canvas canvas) {
