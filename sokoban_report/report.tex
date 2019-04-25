@@ -1,58 +1,78 @@
-# Sokoban
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Sokoban project report}
+\date{April 2019}
+
+\usepackage{natbib}
+\usepackage[a4paper]{geometry}
+
+\begin{document}
+
+\maketitle
+
+\section*{Sokoban project}
 We made a Sokoban application for Android. We implemented this as a single player, local puzzle game.
 
-# Graphics
+\section*{Art and levels}
 As an extra challenge we chose to make (seemingly) 3D graphics. We did this by using isometric pixel art, with overlap between the tiles. By drawing in a certain direction, this creates this nice 3D-effect.
 We have clouds moving on the back-/foreground (at least, they are clouds most of the time...). We made a special format file which contains information about the level. These files are structred like this:
-
-<Name of the level>
-<Name of the level's creator>
-level_width level_height best_score
+\bigbreak\noindent
+Name of the level\\
+Name of the level's creator\\
+level\_width level\_height best\_score\\
 A grid with an ASCII-representation of the level, containing: f, ., w, p, P, s , S, g, W
-
+\bigbreak\noindent
 By making levels this way, it was easy to edit and create, while also being easy to interpret by our code. The code takes the information these files contain and chooses the right sprites for the level, so that for example fences and water tiles are connected the right way. We also have some tiles which are randomly chosen and thus vary per run of the level.
 
-# Tiles 
+\section*{Tiles}
 We have a few different tiles, a short description of some of the tiles is given below:
 
-- Basic grass tile. This tile does not have any special functionality. It is tile upon which the player and sheep can move.
-- Shepherd with dog: This is the player which can be moved around. The player can move across grass and water tiles freely, but is stopped by tiles containing fences, trees and mills.
-- Sheep and shed: Every level has some number of sheep, which can be pushed around, and the same number of sheds (or stables, if you will). The goal of the game is to fill every shed with sheep. Sheep correspond to boulders and sheds to boulder slots from the task description. Just like boulders in the original Sokoban, sheep can only be moved to a for them available space. So no pushing a sheep in a sheep or a sheep in a fence.
-- Water: Sheep can only be pushed in to or out of water, not from one water tile to another. Note that our water tile is slightly different from the water tile described in the task statement.
-- Fences: These correspond to walls and are an immovable obstacle through which neither player nor sheep can move.
+\begin{itemize}
+\item Basic grass tile. This tile does not have any special functionality. It is tile upon which the player and sheep can move.
+\item Shepherd with dog: This is the player which can be moved around. The player can move across grass and water tiles freely, but is stopped by tiles containing fences, trees and mills.
+\item Sheep and shed: Every level has some number of sheep, which can be pushed around, and the same number of sheds (or stables, if you will). The goal of the game is to fill every shed with sheep. Sheep correspond to boulders and sheds to boulder slots from the task description. Just like boulders in the original Sokoban, sheep can only be moved to a for them available space. So no pushing a sheep in a sheep or a sheep in a fence.
+\item Water: Sheep can only be pushed in to or out of water, not from one water tile to another. Note that our water tile is slightly different from the water tile described in the task statement.
+\item Fences: These correspond to walls and are an immovable obstacle through which neither player nor sheep can move.
 We chose for a more rural setting for the game instead of boulders and boulder slots because, while still being functionally equivalent, the game seemed a lot more fun and realistic. This choice gave us more freedom to work with fun sprites and music (all of which are our own creations).
+\end{itemize}
 
-# Movement
+\section*{Movement}
 You can move you character by swiping. Alternatively, buttons can be turned instead of swiping in the settings screen.
 
-# Level selection
+\section*{Level selection}
 In the level selection screen you can choose the level you want to play. Every level shows a small preview. On the right of every level title (and author name) you can first see your best score and then the best score required for the level. Your score is the number of steps your player character has taken to beat the level, so the less steps the better. By making this best score a visible, obvious number, we hope to challenge the player to beat their high score and achieve the best score possible.
 
-# Win screen
+\section*{Win screen}
 When you finish the level a win screen pops up, along with a soundeffect. This shows the amount of steps you have taken to complete the level, your best score and the best score possible. From here you can go to the level selection, the next level or restart the last level.
 
-# Landscape mode
+\section*{In-game: landscape mode}
 The levels are forced in landscape mode, so you can also play bigger levels without having to use a microscope. Levels automatically resize to fit the screen.
 
-# Music
+\section*{Sound and music}
 We recorded sounds and made our own music. The sheep sounds come from real sheep we recorded outside! The music consists of a small intro, a middle play which repeats itself and an outro. There is also sound for when you finish a level.
 
-# Statistics
+\section*{Statistics}
 You can see the total amount of steps you made and as a bonus the total amount of calories your shepherd burned.
 
-# Settings
+\section*{Settings}
 As said previously you can change to either use buttons or swiping. You can also clear your data, mute the music and unlock a special feature when you have taken 1000 steps.
 
-# Android version
+\section*{Android version}
 We chose to make our app available for android version 6.0 and upwards. Our reasoning behind this is that most android users will then be able to use this app, while the few who can't are less likely to value mobile gaming (or their mobile phone dependency in general), as they would have a relatively 'old' phone.
 
-# Easter eggs
+\section*{Easter eggs}
 We have hidden three Easter eggs in the application. It is up to you to find these :)
 
-# Authors
-	- Robert Koprinkov
-	- Thijs van Loenhout
-	- Steven Bronsveld
-	- Jelmer Firet
-	- Thomas Berghuis
-	- Bram Pulles
+\section*{Credits}
+As can also be seen in the credits tab in the application, our team consisted of these six members:
+\begin{itemize}	
+	\item Thomas Berghuis
+	\item Steven Bronsveld
+	\item Jelmer Firet	
+	\item Robert Koprinkov
+	\item Thijs van Loenhout
+	\item Bram Pulles
+\end{itemize}
+	
+\end{document}
