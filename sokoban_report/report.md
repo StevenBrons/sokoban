@@ -5,7 +5,7 @@ We made a Sokoban application for Android. We implemented this as a single playe
 As an extra challenge we chose to make 3D graphics. We have clouds (most of the time...) moving on the back-/foreground. We made a special format file which contains information about the level. The game then takes this information and chooses the right sprites for the level. Such that for example fences and water tiles are connected the right way. We also have some tiles which are randomly chosen and thus vary per run of the level.
 
 # Tiles 
-We havea few different tiles, a short description of some of the tiles is given below:
+We have a few different tiles, a short description of some of the tiles is given below:
 
 - Shepherd with dog: This is the player and can be moved around.
 - Sheep and shed: Every level has some sheep which can be pushed around. The purpose of the game is to push all the sheep in a shed. Sheep correspond to boulders and sheds to boulder slots from the task description.
