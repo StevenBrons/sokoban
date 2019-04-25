@@ -2,8 +2,8 @@ package tiles;
 
 
 /**
- * @author Jelmer Firet
  * interface for tiles that are able to adapt their texture to neighbouring tiles
+ * @author Jelmer Firet
  */
 public interface Connectable extends Tile {
     /**

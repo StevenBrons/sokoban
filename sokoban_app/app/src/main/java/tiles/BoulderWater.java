@@ -9,10 +9,10 @@ import java.util.Random;
 import game.Texture;
 
 /**
- * @author Jelmer Firet
  * a tile that acts as sheep and as water
  * the sheep on this tile can only be pushed onto land tiles
  * connects to neighbouring water tiles (Water, BoulderWater, PlayerWater, Void)
+ * @author Jelmer Firet
  */
 public class BoulderWater implements Tile, Movable, Connectable, WaterTile {
     private Texture texture = new Texture("lakeSheep2");
@@ -37,8 +37,8 @@ public class BoulderWater implements Tile, Movable, Connectable, WaterTile {
     boolean getBottomWaterFall() { return bottomWaterFall; }
 
     /**
-     * @author Jelmer Firet
      * a constructor for a new random BoulderWater
+     * @author Jelmer Firet
      */
     public BoulderWater(){
         Random r = new Random();
@@ -47,10 +47,10 @@ public class BoulderWater implements Tile, Movable, Connectable, WaterTile {
     }
 
     /**
-     * @author Jelmer Firet
      * a constructor for a BoulderWater based on a Boulder and a Water
      * @param boulderTemplate a Boulder to use as a template for the number of sheep
      * @param waterTemplate a Water to use as a template for the water connections
+     * @author Jelmer Firet
      */
     BoulderWater(Boulder boulderTemplate, Water waterTemplate){
         Random r = new Random();
@@ -75,10 +75,10 @@ public class BoulderWater implements Tile, Movable, Connectable, WaterTile {
     }
 
     /**
-     * @author Jelmer Firet
      * a constructor for a BoulderWater based on a Boulder and a Water
      * @param boulderTemplate a BoulderGoal to use as a template for the number of sheep
      * @param waterTemplate a Water to use as a template for the water connections
+     * @author Jelmer Firet
      */
     BoulderWater(BoulderGoal boulderTemplate, Water waterTemplate){
         Random r = new Random();
@@ -108,8 +108,8 @@ public class BoulderWater implements Tile, Movable, Connectable, WaterTile {
     }
 
     /**
-     * @author Jelmer Firet
      * @return a Texture for the BoulderWater that takes waterFalls into account
+     * @author Jelmer Firet
      */
     @Override
     public Texture getTexture() {
@@ -137,8 +137,8 @@ public class BoulderWater implements Tile, Movable, Connectable, WaterTile {
     }
 
     /**
-     * @author Jelmer Firet
      * changes the primary texture to adapt to water connections
+     * @author Jelmer Firet
      */
     private void updateTexture(){
         int val = 0;
