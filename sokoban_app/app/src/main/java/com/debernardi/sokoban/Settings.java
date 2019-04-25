@@ -20,6 +20,25 @@ public class Settings extends AppCompatActivity {
         } else {
             v.setText("CONTROLS: swipe");
         }
+        SharedPreferences donutmode = getSharedPreferences("backgroundprefs", MODE_PRIVATE);
+        boolean donutsunlocked = donutmode.getBoolean("donutsunlocked", false);
+        SharedPreferences.Editor e = donutmode.edit();
+        int n_steps = getSharedPreferences("statprefs", MODE_PRIVATE).getInt("n_steps", 0);
+        if(n_steps==1000)
+            donutsunlocked = true;
+        if(!donutsunlocked){
+            TextView donutmode_view = (TextView) findViewById(R.id.donutMode);
+            donutmode_view.setText("put " + (1000-n_steps) + " more steps!");
+        } else {
+            e.putBoolean("donutsunlocked", true);
+            TextView donutmode_view = (TextView) findViewById(R.id.donutMode);
+            if(donutmode.contains("donutsenabled")) {
+                donutmode_view.setText("DONUT MODE: enabled");
+            } else {
+                donutmode_view.setText("DONUT MODE: disabled");
+            }
+        }
+        e.commit();
     }
 
     public void onClickToggleControls(View v){
@@ -46,6 +65,23 @@ public class Settings extends AppCompatActivity {
         e = getSharedPreferences("statprefs", MODE_PRIVATE).edit();
         e.clear();
         e.commit();
+    }
+
+    public void onClickDonutMode(View view){
+        SharedPreferences donutmode = getSharedPreferences("backgroundprefs", MODE_PRIVATE);
+        boolean donutsunlocked = donutmode.getBoolean("donutsunlocked", false);
+        SharedPreferences.Editor e = donutmode.edit();
+        if(donutsunlocked){
+            //toggle donut mode!
+            if(donutmode.contains("donutsenabled")){
+                e.remove("donutsenabled");
+                ((TextView)view).setText("DONUT MODE: disabled");
+            } else {
+                e.putBoolean("donutsenabled", true);
+                ((TextView)view).setText("DONUT MODE: enabled");
+            }
+        }
+
     }
 
 
