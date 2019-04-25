@@ -5,17 +5,17 @@ import java.util.Random;
 import game.Texture;
 
 /**
- * @author Jelmer Firet
  * a tile that acts as sheep and as a goal
  * doesn't connect
+ * @author Jelmer Firet
  */
 public class BoulderGoal implements Tile,Movable {
     private int boulderType;
     private Texture texture;
 
     /**
-     * @author Jelmer Firet
      * makes a new random BoulderGoal
+     * @author Jelmer Firet
      */
 
     public BoulderGoal() {
@@ -25,8 +25,8 @@ public class BoulderGoal implements Tile,Movable {
     }
 
     /**
+     * @param other a Boulder to use as a reference for the number of sheep in the new BoulderGoal4
      * @author Jelmer Firet
-     * @param other a Boulder to use as a reference for the number of sheep in the new BoulderGoal
      */
 
     BoulderGoal(Boulder other){
@@ -45,8 +45,8 @@ public class BoulderGoal implements Tile,Movable {
     }
 
     /**
-     * @author Jelmer Firet
      * @param other a BoulderGoal to make a clone of
+     * @author Jelmer Firet
      */
 
     BoulderGoal(BoulderGoal other){
@@ -55,9 +55,9 @@ public class BoulderGoal implements Tile,Movable {
     }
 
     /**
-     * @author Jelmer Firet
      * @param other a BoulderWater to use as a reference for the number of
      *              sheep in the new BoulderGoal
+     * @author Jelmer Firet
      */
     BoulderGoal(BoulderWater other){
         Random r = new Random();

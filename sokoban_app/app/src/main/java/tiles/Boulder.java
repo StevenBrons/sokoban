@@ -5,10 +5,10 @@ import java.util.Random;
 import game.Texture;
 
 /**
- * @author Jelmer Firet
  * a sheep tile
  * sheep can be pushed on land tiles that aren't fences and into water
  * doesn't connect
+ * @author Jelmer Firet
  */
 public class Boulder implements Tile, Movable {
 
@@ -16,8 +16,8 @@ public class Boulder implements Tile, Movable {
     private Texture texture;
 
     /**
-     * @author Jelmer Firet
      * makes a new random boulder
+     * @author Jelmer Firet
      */
     public Boulder() {
         Random r = new Random();
@@ -26,8 +26,8 @@ public class Boulder implements Tile, Movable {
     }
 
     /**
-     * @author Jelmer Firet
      * @param other a Boulder to make a copy of
+     * @author Jelmer Firet
      */
     Boulder(Boulder other){
         this.boulderType = other.getBoulderType();
@@ -35,9 +35,9 @@ public class Boulder implements Tile, Movable {
     }
 
     /**
-     * @author Jelmer Firet
      * @param other a BoulderGoal to use as template for the new boulder, preserves
      *              the number of sheep on the tile
+     * @author Jelmer Firet
      */
     Boulder(BoulderGoal other){
         Random r = new Random();
@@ -55,9 +55,9 @@ public class Boulder implements Tile, Movable {
     }
 
     /**
-     * @author Jelmer Firet
      * @param other a BoulderWater to use as a template for the new boulder, preserves
      *              the number of sheep on the tile
+     * @author Jelmer Firet
      */
     Boulder(BoulderWater other){
         Random r = new Random();
