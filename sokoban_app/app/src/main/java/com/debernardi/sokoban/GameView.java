@@ -74,7 +74,7 @@ public class GameView extends View {
 
     public void drawClouds(Canvas canvas) {
         if (clouds.size() == 0) {
-            for (int i = 0; i < 20; i++) {
+            for (int i = 0; i < 15; i++) {
                 clouds.add(new Cloud(canvas.getHeight(),true,donutMode));
                 clouds.get(i).move(100);
             }

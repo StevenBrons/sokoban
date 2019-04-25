@@ -26,6 +26,7 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
     GameHandler handler;
     private static MediaPlayer audioIntro,audioMiddle,sheep1,sheep2,sheep3,sheep4;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
@@ -92,11 +93,25 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
         return false;
     }
 
+    /**
+     * @author Steven Bronsveld
+     * catch move down button click
+     */
+    public void moveDown(View v){
+        //compensate for drawing
+        move(Direction.UP);
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         return gDetector.onTouchEvent(motionEvent);
     }
 
+
+    /**
+     * @author Steven Bronsveld
+     * catch move down button click
+     */
     @Override
     public boolean onDown(MotionEvent arg0) {
         return false;
@@ -110,11 +125,6 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
             editor.putInt("n_steps", n_steps);
             editor.commit();
         }
-    }
-
-    public void moveDown(View v){
-        //compensate for drawing
-        move(Direction.UP);
     }
 
     public void moveLeft(View v){
