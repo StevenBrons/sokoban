@@ -151,7 +151,9 @@ public class WinLose  extends AppCompatActivity {
 	@Override
 	protected void onStart() {
 		super.onStart();
-		audioVictory = MediaPlayer.create(this,R.raw.solved);
-		audioVictory.start();
+		if(!getSharedPreferences("audioprefs", MODE_PRIVATE).contains("muted")) {
+			audioVictory = MediaPlayer.create(this, R.raw.solved);
+			audioVictory.start();
+		}
 	}
 }

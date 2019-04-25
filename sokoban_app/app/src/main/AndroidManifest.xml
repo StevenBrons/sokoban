@@ -12,6 +12,7 @@
         <activity android:name=".Statistics"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"></activity>
         <activity android:name=".Settings"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
             />
         <activity android:name=".LevelSelect" />
         <activity android:name=".GameActivity"
