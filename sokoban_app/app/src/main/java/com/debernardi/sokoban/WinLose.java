@@ -25,6 +25,10 @@ public class WinLose  extends AppCompatActivity {
 	public Button restart, levelSelect;
 	public TextView txtWin, txtCurrentScore, txtBestScore, txtMinimumScore;
 	private String[] levelFiles;
+
+	/**
+	 *
+	 */
 	private void initializeVariables(){
 		Bundle b = getIntent().getExtras();
 		if(b == null)
@@ -88,7 +92,7 @@ public class WinLose  extends AppCompatActivity {
 	public void onClicknextLevel(View view){
 		int index = 0;
 		for (int i = 0; i < levelFiles.length; i++)
-			if (levelFiles[i] == levelFileName)
+			if (("levels/"+levelFiles[i]).equals(levelFileName))
 				index = i;
 		if (index == levelFiles.length-1)
 			index = 0;
@@ -97,6 +101,7 @@ public class WinLose  extends AppCompatActivity {
 		final String levelFilenameCpy = "levels/"+levelFiles[index];
 		Intent startGame = new Intent(WinLose.this, GameActivity.class);
 		startGame.putExtra("levelFileName",levelFilenameCpy);
+		startGame.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(startGame);
 
 	}
