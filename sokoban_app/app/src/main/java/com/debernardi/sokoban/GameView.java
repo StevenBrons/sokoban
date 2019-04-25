@@ -29,7 +29,7 @@ public class GameView extends View {
         this.handler = handler;
         this.donutMode = donutmode;
         if(Math.random()<1.0/20.0){
-            donutmode = true;
+            this.donutMode = true;
         }
     }
 

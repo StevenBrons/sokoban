@@ -68,10 +68,10 @@ public class Settings extends AppCompatActivity {
         e.commit();
         Intent home = new Intent(this, MainActivity.class);
         home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(home);
         e = getSharedPreferences("backgroundprefs", MODE_PRIVATE).edit();
         e.clear();
         e.commit();
+        startActivity(home);
     }
 
     public void onClickDonutMode(View view){
