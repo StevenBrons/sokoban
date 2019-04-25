@@ -95,7 +95,7 @@ public class Settings extends AppCompatActivity {
      * @author Robert Koprinkov
      * @param view
      * */
-    void onClickDonutMode(View view){
+    public void onClickDonutMode(View view){
         SharedPreferences donutmode = getSharedPreferences("backgroundprefs", MODE_PRIVATE);
         boolean donutsunlocked = donutmode.getBoolean("donutsunlocked", false);
         SharedPreferences.Editor e = donutmode.edit();
