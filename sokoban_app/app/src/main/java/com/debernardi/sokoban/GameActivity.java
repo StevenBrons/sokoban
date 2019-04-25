@@ -94,11 +94,11 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
     }
 
     /**
-     * @author Steven Bronsveld
      * catch move down button click
+     * The direction is reversed because the game is drawn in isometric view
+     * @author Steven Bronsveld
      */
     public void moveDown(View v){
-        //compensate for drawing
         move(Direction.UP);
     }
 
@@ -109,8 +109,8 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
 
 
     /**
-     * @author Steven Bronsveld
      * catch move down button click
+     * @author Steven Bronsveld
      */
     @Override
     public boolean onDown(MotionEvent arg0) {
@@ -119,20 +119,28 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
 
     public void move(Direction d){
         if(handler.move(d)){
-            int n_steps = this.getSharedPreferences("n_steps", MODE_PRIVATE).getInt("n_steps", 0);
+            int n_steps = this.getSharedPreferences("statprefs", MODE_PRIVATE).getInt("n_steps", 0);
             n_steps++;
-            SharedPreferences.Editor editor = this.getSharedPreferences("n_steps", MODE_PRIVATE).edit();
+            SharedPreferences.Editor editor = this.getSharedPreferences("statprefs", MODE_PRIVATE).edit();
             editor.putInt("n_steps", n_steps);
             editor.commit();
         }
     }
 
+    /**
+     * catch move left button click
+     * @author Steven Bronsveld
+     */
     public void moveLeft(View v){
         move(Direction.LEFT);
     }
 
+    /**
+     * catch move up button click
+     * The direction is reversed because the game is drawn in isometric view
+     * @author Steven Bronsveld
+     */
     public void moveUp(View v){
-        //compensate for drawing
         move(Direction.DOWN);
     }
 
@@ -149,8 +157,8 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
     }
 
     /**
-     * @author Jelmer Firet
      * handler to load and start music on activity start
+     * @author Jelmer Firet
      */
     @Override
     protected void onStart() {
@@ -168,8 +176,8 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
     }
 
     /**
-     * @author Jelmer Firet
      * handler to pause music when activity is paused
+     * @author Jelmer Firet
      */
     @Override
     protected void onPause() {
@@ -183,8 +191,8 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
     }
 
     /**
-     * @author Jelmer Firet
      * handler to resume music when activity resumes
+     * @author Jelmer Firet
      */
     @Override
     protected void onResume() {
@@ -198,8 +206,8 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
     }
 
     /**
-     * @author Jelmer Firet
      * handler to stop and release music when activity stops
+     * @author Jelmer Firet
      */
     @Override
     protected void onStop() {
@@ -209,10 +217,10 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
     }
 
     /**
-        * @author Bram Pulles
-        * Start the winlose activity.
-        * @param b
-        */
+     * Start the winlose activity.
+     * @param b
+     * @author Bram Pulles
+     */
     public void won(Bundle b){
         Intent startWinLose = new Intent(this, WinLose.class);
         startWinLose.putExtras(b);
@@ -220,8 +228,8 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
     }
 
     /**
-     * @author Jelmer Firet
      * play random blèèrgh sound of a sheep
+     * @author Jelmer Firet
      */
     public static void playAudioSheep(){
         Random r = new Random();

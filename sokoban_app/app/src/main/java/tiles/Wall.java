@@ -5,11 +5,11 @@ import java.util.Random;
 import game.Texture;
 
 /**
- * @author Jelmer Firet
  * a fence tile (but sometimes tree or sunflowers)
  * sheep can't be pushed into the fence
  * players can't walk into the fence
  * connects to neighbouring fence tiles (Wall)
+ * @author Jelmer Firet
  */
 public class Wall implements Tile, Connectable{
     private Texture texture = new Texture("fenceCross");
@@ -27,9 +27,9 @@ public class Wall implements Tile, Connectable{
     }
 
     /**
-     * @author Jelmer Firet
      * changes the primary texture to adapt to wall connections
      * randomizes a nicer texture if the wall has no neighbouring walls
+     * @author Jelmer Firet
      */
     private void updateTexture(){
         int val = 0;

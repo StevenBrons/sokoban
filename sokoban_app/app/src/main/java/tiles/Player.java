@@ -3,10 +3,10 @@ package tiles;
 import game.Texture;
 
 /**
- * @author Jelmer Firet
  * a player tile
  * acts as an active player
  * doesn't connect
+ * @author Jelmer Firet
  */
 public class Player implements Tile, Movable {
 

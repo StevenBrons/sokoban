@@ -9,11 +9,11 @@ import org.w3c.dom.Text;
 import game.Texture;
 
 /**
- * @author Jelmer Firet
  * a water tile
  * sheep can be pushed into water
  * players can walk over water
  * connects to neighbouring water tiles (Water, BoulderWater, PlayerWater, Void)
+ * @author Jelmer Firet
  */
 public class Water implements Tile, Connectable, WaterTile{
     private Texture texture = new Texture("lake");
@@ -73,8 +73,8 @@ public class Water implements Tile, Connectable, WaterTile{
     boolean getBottomWaterFall() { return bottomWaterFall; }
 
     /**
-     * @author Jelmer Firet
      * @return a Texture for the PlayerWater that takes waterFalls into account
+     * @author Jelmer Firet
      */
     @Override
     public Texture getTexture() {
@@ -102,8 +102,8 @@ public class Water implements Tile, Connectable, WaterTile{
     }
 
     /**
-     * @author Jelmer Firet
      * changes the primary texture to adapt to water connections
+     * @author Jelmer Firet
      */
     private void updateTexture(){
         int val = 0;
