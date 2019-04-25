@@ -24,10 +24,13 @@ public class GameView extends View {
     ArrayList<Cloud> clouds = new ArrayList<>();
     boolean donutMode;
 
-    GameView(Context context, GameHandler handler) {
+    GameView(Context context, GameHandler handler, boolean donutmode) {
         super(context);
         this.handler = handler;
-        donutMode = Math.random() * 20 < 1;
+        this.donutMode = donutmode;
+        if(Math.random()<1.0/20.0){
+            donutmode = true;
+        }
     }
 
     @Override
