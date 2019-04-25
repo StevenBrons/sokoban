@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.MotionEvent;
+import android.widget.ImageButton;
+
 import java.io.IOException;
 import java.util.Random;
 
@@ -44,6 +46,7 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
             View UI = factory.inflate(R.layout.ui, null);
             frame.addView(UI);
             setContentView(frame);
+            changeMethod();
             gDetector = new GestureDetector(this, this);
         }catch (Exception e) {
             e.printStackTrace();
@@ -52,27 +55,30 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
 
     @Override
     public boolean onFling(MotionEvent ev1, MotionEvent ev2, float X, float Y) {
-        if (ev1.getX()-ev2.getX()< 0 && ev1.getY()-ev2.getY() >= 0) {
-            moveRight(view);
-            return true;
-        }
+        if(!getSharedPreferences("controlprefs", MODE_PRIVATE).contains("swipe_off")) {
+            if (ev1.getX() - ev2.getX() < 0 && ev1.getY() - ev2.getY() >= 0) {
+                moveRight(view);
+                return true;
+            }
 
-        if (ev1.getX()-ev2.getX() < 0 && ev1.getY()-ev2.getY() < 0) {
-            moveDown(view);
-            return true;
-        }
+            if (ev1.getX() - ev2.getX() < 0 && ev1.getY() - ev2.getY() < 0) {
+                moveDown(view);
+                return true;
+            }
 
-        if (ev1.getX()-ev2.getX() >= 0 && ev1.getY()-ev2.getY() >= 0) {
-            moveUp(view);
-            return true;
-        }
+            if (ev1.getX() - ev2.getX() >= 0 && ev1.getY() - ev2.getY() >= 0) {
+                moveUp(view);
+                return true;
+            }
 
-        if (ev1.getX()-ev2.getX() >= 0 && ev1.getY()-ev2.getY() < 0) {
-            moveLeft(view);
-            return true;
-        } else {
-            return true;
+            if (ev1.getX() - ev2.getX() >= 0 && ev1.getY() - ev2.getY() < 0) {
+                moveLeft(view);
+                return true;
+            } else {
+                return true;
+            }
         }
+        return false;
     }
 
     @Override
@@ -154,6 +160,23 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
 
     public void onCompletion(MediaPlayer player){
         audioMiddle.start();
+    }
+
+    public void changeMethod(){
+        if (getSharedPreferences("controlprefs", MODE_PRIVATE).contains("swipe_off")){
+            return;
+        }
+        else{
+            ImageButton ButtonDown = (ImageButton) findViewById(R.id.ArrowDown);
+            ButtonDown.setVisibility(View.GONE);
+            ImageButton ButtonLeft = (ImageButton) findViewById(R.id.ArrowLeft);
+            ButtonLeft.setVisibility(View.GONE);
+            ImageButton ButtonUp = (ImageButton) findViewById(R.id.ArrowUp);
+            ButtonUp.setVisibility(View.GONE);
+            ImageButton ButtonRight = (ImageButton) findViewById(R.id.ArrowRight);
+            ButtonRight.setVisibility(View.GONE);
+
+        }
     }
 
     /**
