@@ -6,65 +6,66 @@
     android:layout_height="match_parent"
     tools:context=".Settings"
     android:background="@color/colorPrimaryDark">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/levelSelectBackgroundEven">
+        android:layout_height="match_parent"
+        android:background="@color/levelSelectBackgroundEven"
+        android:orientation="vertical">
 
         <TextView
-            android:gravity="center"
             android:id="@+id/toggleInputMethod"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:textSize="50sp"
-            android:fontFamily="@font/dtm_mono"
-            android:textColor="@color/levelSelectBackgroundEven"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:background="@color/colorPrimaryDark"
+            android:fontFamily="@font/dtm_mono"
+            android:gravity="center"
+            android:onClick="onClickToggleControls"
             android:text="INPUT: swipe"
-            android:onClick="onClickToggleControls"/>
+            android:textColor="@color/levelSelectBackgroundEven"
+            android:textSize="50sp" />
 
         <TextView
-            android:gravity="center"
             android:id="@+id/donutMode"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:textSize="50sp"
+            android:layout_height="0dp"
             android:layout_marginTop="3dp"
-            android:fontFamily="@font/dtm_mono"
-            android:textColor="@color/levelSelectBackgroundEven"
+            android:layout_weight="1.5"
             android:background="@color/colorPrimaryDark"
-            android:text="put 1000 more steps to unlock"
-            android:onClick="onClickDonutMode"/>
-        <TextView
+            android:fontFamily="@font/dtm_mono"
             android:gravity="center"
+            android:onClick="onClickDonutMode"
+            android:text="put 1000 more steps to unlock"
+            android:textColor="@color/levelSelectBackgroundEven"
+            android:textSize="50sp" />
+
+        <TextView
             android:id="@+id/audio"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:textSize="50sp"
+            android:layout_height="0dp"
             android:layout_marginTop="3dp"
-            android:fontFamily="@font/dtm_mono"
-            android:textColor="@color/levelSelectBackgroundEven"
+            android:layout_weight="1"
             android:background="@color/colorPrimaryDark"
+            android:fontFamily="@font/dtm_mono"
+            android:gravity="center"
+            android:onClick="onClickMute"
             android:text="AUDIO: unmuted"
-            android:onClick="onClickMute"/>
+            android:textColor="@color/levelSelectBackgroundEven"
+            android:textSize="50dp" />
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_marginTop="3dp"
+            android:layout_weight=".5"
+            android:background="@color/colorAccent"
+            android:fontFamily="@font/dtm_mono"
             android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:textSize="50sp"
-        android:fontFamily="@font/dtm_mono"
-        android:textColor="@color/levelSelectBackgroundEven"
-        android:background="@color/colorAccent"
-        android:text="CLEAR DATA"
-        android:onClick="onClickClearData"/>
-
+            android:onClick="onClickClearData"
+            android:text="CLEAR DATA"
+            android:textColor="@color/levelSelectBackgroundEven"
+            android:textSize="50sp" />
 
 
     </LinearLayout>
