@@ -13,6 +13,12 @@ import org.w3c.dom.Text;
 
 public class Settings extends AppCompatActivity {
 
+    /**
+    * Initializes the settings screen so that the buttons all contain the correct text
+    * @author Robert Korpinkov
+    * @param savedInstanceState
+    * */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +49,11 @@ public class Settings extends AppCompatActivity {
         }
         e.commit();
     }
-
+    /**
+     * Toggles from swipe to buttons as input methods
+     * @author Robert Koprinkov
+     * @param v
+     * */
     public void onClickToggleControls(View v){
         SharedPreferences controlpref = getSharedPreferences("controlprefs", MODE_PRIVATE);
         SharedPreferences.Editor e = controlpref.edit();
@@ -60,6 +70,11 @@ public class Settings extends AppCompatActivity {
         e.commit();
     }
 
+    /**
+     * clears all game progress
+     * @author Robert Koprinkov
+     * @param view
+     */
     public void onClickClearData(View view){
         SharedPreferences scoreprefs = getSharedPreferences("Highscores", MODE_PRIVATE);
         SharedPreferences.Editor e = scoreprefs.edit();
@@ -75,8 +90,12 @@ public class Settings extends AppCompatActivity {
         e.commit();
         startActivity(home);
     }
-
-    public void onClickDonutMode(View view){
+    /**
+     * Enables donutmode if the option has been unlocked.
+     * @author Robert Koprinkov
+     * @param view
+     * */
+    void onClickDonutMode(View view){
         SharedPreferences donutmode = getSharedPreferences("backgroundprefs", MODE_PRIVATE);
         boolean donutsunlocked = donutmode.getBoolean("donutsunlocked", false);
         SharedPreferences.Editor e = donutmode.edit();
@@ -94,6 +113,12 @@ public class Settings extends AppCompatActivity {
 
     }
 
+
+    /**
+     * mutes sounds form the app
+     * @author Robert Koprinkov
+     * @param view
+     */
     public void onClickMute(View view){
         TextView v = (TextView) findViewById(R.id.audio);
         SharedPreferences audioprefs = getSharedPreferences("audioprefs", MODE_PRIVATE);
