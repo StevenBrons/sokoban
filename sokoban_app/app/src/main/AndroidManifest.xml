@@ -9,13 +9,18 @@
         android:roundIcon="@mipmap/sokoban_ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Statistics"></activity>
-        <activity android:name=".Settings" />
+        <activity android:name=".Statistics"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"></activity>
+        <activity android:name=".Settings"
+            />
         <activity android:name=".LevelSelect" />
         <activity android:name=".GameActivity"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".WinLose" />
-        <activity android:name=".CreditsActivity" />
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+        <activity android:name=".WinLose"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+        <activity android:name=".CreditsActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
