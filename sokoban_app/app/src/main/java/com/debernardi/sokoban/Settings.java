@@ -1,7 +1,9 @@
 package com.debernardi.sokoban;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.AudioManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -92,5 +94,17 @@ public class Settings extends AppCompatActivity {
 
     }
 
-
+    public void onClickMute(View view){
+        TextView v = (TextView) findViewById(R.id.audio);
+        SharedPreferences audioprefs = getSharedPreferences("audioprefs", MODE_PRIVATE);
+        SharedPreferences.Editor e = audioprefs.edit();
+        if(audioprefs.contains("muted")){
+            e.remove("muted");
+            v.setText("AUDIO: unmuted");
+        } else {
+            e.putBoolean("muted", true);
+            v.setText("AUDIO: muted");
+        }
+        e.commit();
+    }
 }
