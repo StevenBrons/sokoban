@@ -43,6 +43,14 @@ public class Texture {
         }
     }
 
+    public int getWidth() {
+        return getBitmap().getWidth();
+    }
+
+    public int getHeight() {
+        return getBitmap().getHeight();
+    }
+
     public String getName() { return name; }
 
     public Bitmap getBitmap() {
