@@ -217,17 +217,17 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
     protected void onPause() {
         super.onPause();
         if(audioIntro.isPlaying())
-		audioIntro.pause();
+		    audioIntro.pause();
         if(audioMiddle.isPlaying())
-		audioMiddle.pause();
+		    audioMiddle.pause();
         if(sheep1.isPlaying())
-		sheep1.stop();
+		    sheep1.stop();
         if(sheep2.isPlaying())
-		sheep2.stop();
+		    sheep2.stop();
         if(sheep3.isPlaying())
-		sheep3.stop();
+		    sheep3.stop();
         if(sheep4.isPlaying())
-		sheep4.stop();
+		    sheep4.stop();
     }
 
     /**
