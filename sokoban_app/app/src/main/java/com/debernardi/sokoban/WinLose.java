@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import java.io.IOException;
+
 
 /**
  * @author Bram Pulles
@@ -22,7 +24,7 @@ public class WinLose  extends AppCompatActivity {
 
 	public Button restart, levelSelect;
 	public TextView txtWin, txtCurrentScore, txtBestScore, txtMinimumScore;
-
+	private String[] levelFiles;
 	private void initializeVariables(){
 		Bundle b = getIntent().getExtras();
 		if(b == null)
@@ -69,12 +71,34 @@ public class WinLose  extends AppCompatActivity {
 		initializeViews();
 		setTxtWin();
 		setNumbers();
+		try {
+			levelFiles = getAssets().list("levels");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
+
 
 	public void onClickLevelSelect(View view){
 		Intent startLevelSelect = new Intent(this, LevelSelect.class);
 		startLevelSelect.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(startLevelSelect);
+	}
+
+	public void onClicknextLevel(View view){
+		int index = 0;
+		for (int i = 0; i < levelFiles.length; i++)
+			if (levelFiles[i] == levelFileName)
+				index = i;
+		if (index == levelFiles.length-1)
+			index = 0;
+		else
+			index++;
+		final String levelFilenameCpy = "levels/"+levelFiles[index];
+		Intent startGame = new Intent(WinLose.this, GameActivity.class);
+		startGame.putExtra("levelFileName",levelFilenameCpy);
+		startActivity(startGame);
+
 	}
 
 	public void onClickRestartLevel(View view) {
