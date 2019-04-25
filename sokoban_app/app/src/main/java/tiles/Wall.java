@@ -14,7 +14,7 @@ import game.Texture;
 public class Wall implements Tile, Connectable{
     private Texture texture = new Texture("fenceCross");
     private boolean leftWall = false, topWall = false, rightWall = false, bottomWall = false;
-    private int Type = new Random().nextInt(5);
+    private int Type = new Random().nextInt(6);
 
     @Override
     public boolean isSolid() {
@@ -48,6 +48,8 @@ public class Wall implements Tile, Connectable{
                         texture = new Texture("cherryBlossomTree");break;
                     case 4:
                         texture = new Texture("deadTree");break;
+                    case 5:
+                        texture = new Texture("mill");break;
 
                 }break;
             case 1: texture = new Texture("fenceLeft");break;
