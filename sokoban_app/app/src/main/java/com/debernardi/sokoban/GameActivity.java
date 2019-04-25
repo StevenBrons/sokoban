@@ -28,7 +28,7 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
     GameView view;
     GameHandler handler;
     private static MediaPlayer audioIntro,audioMiddle,sheep1,sheep2,sheep3,sheep4;
-    private boolean muted;
+    private static boolean muted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -273,12 +273,18 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
      * @author Jelmer Firet
      */
     public static void playAudioSheep(){
-        Random r = new Random();
-        switch(r.nextInt(4)){
-            case 0: sheep1.start();
-            case 1: sheep2.start();
-            case 2: sheep3.start();
-            case 3: sheep4.start();
+        if (!muted) {
+            Random r = new Random();
+            switch (r.nextInt(4)) {
+                case 0:
+                    sheep1.start();
+                case 1:
+                    sheep2.start();
+                case 2:
+                    sheep3.start();
+                case 3:
+                    sheep4.start();
+            }
         }
     }
 
