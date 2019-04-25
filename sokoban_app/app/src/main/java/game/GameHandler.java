@@ -74,6 +74,10 @@ public class GameHandler extends AppCompatActivity {
         return this.level;
     }
 
+    /**
+        * This function is called when a level is finished. It passes the neccessary values  to the game activity.
+        * @author Bram Pulles
+        */
     private void won(){
         int currentScore = history.size() - 1;
         boolean newBest = false;

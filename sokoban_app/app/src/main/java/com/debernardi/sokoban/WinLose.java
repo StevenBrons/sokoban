@@ -11,9 +11,9 @@ import java.io.IOException;
 
 
 /**
- * @author Bram Pulles
  * This class shows the win screen when a player has won.
  * It shows different text messages depending on the scores.
+ * @author Bram Pulles
  */
 public class WinLose  extends AppCompatActivity {
 
@@ -27,7 +27,7 @@ public class WinLose  extends AppCompatActivity {
 	private String[] levelFiles;
 
 	/**
-	 *
+	 * @author Bram Pulles
 	 */
 	private void initializeVariables(){
 		Bundle b = getIntent().getExtras();
@@ -41,6 +41,9 @@ public class WinLose  extends AppCompatActivity {
 		levelFileName = b.getString("levelFileName");
 	}
 
+	/**
+	 * @author Bram Pulles
+	 */
 	private void initializeViews(){
 		txtWin = findViewById(R.id.txtWin);
 		txtCurrentScore = findViewById(R.id.currentScore);
@@ -51,6 +54,10 @@ public class WinLose  extends AppCompatActivity {
 		levelSelect = findViewById(R.id.button_levels);
 	}
 
+	/**
+	 * Set the win text according to the different scores.
+	 * @author Bram Pulles
+	 */
 	private void setTxtWin(){
 		if(currentScore == minimumScore)
 			txtWin.setText(R.string.won_perfect);
@@ -60,12 +67,19 @@ public class WinLose  extends AppCompatActivity {
 			txtWin.setText(R.string.won_good);
 	}
 
+	/**
+	 * Set the scores on the screen.
+	 * @author Bram Pulles
+	 */
 	private void setNumbers(){
 		txtCurrentScore.setText(Integer.toString(currentScore));
 		txtBestScore.setText(Integer.toString(bestScore));
 		txtMinimumScore.setText((minimumScore > 0)?Integer.toString(minimumScore):"-");
 	}
 
+	/**
+	 * @author Bram Pulles
+	 */
 	@Override
 	protected  void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -83,12 +97,19 @@ public class WinLose  extends AppCompatActivity {
 	}
 
 
+	/**
+	 * @author Bram Pulles
+	 */
 	public void onClickLevelSelect(View view){
 		Intent startLevelSelect = new Intent(this, LevelSelect.class);
 		startLevelSelect.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(startLevelSelect);
 	}
 
+	/**
+	 * @author Thomas Berghuis
+	 * @param view
+	 */
 	public void onClicknextLevel(View view){
 		int index = 0;
 		for (int i = 0; i < levelFiles.length; i++)
@@ -106,6 +127,10 @@ public class WinLose  extends AppCompatActivity {
 
 	}
 
+	/**
+	 * @author Bram Pulles
+	 * @param view
+	 */
 	public void onClickRestartLevel(View view) {
 		Intent startGame = new Intent(this, GameActivity.class);
 		startGame.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -113,6 +138,9 @@ public class WinLose  extends AppCompatActivity {
 		startActivity(startGame);
 	}
 
+	/**
+	 * @author Bram Pulles
+	 */
 	@Override
 	public void onBackPressed(){
 		Intent startLevelSelect = new Intent(this, LevelSelect.class);
