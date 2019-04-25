@@ -28,13 +28,14 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
     GameView view;
     GameHandler handler;
     private static MediaPlayer audioIntro,audioMiddle,sheep1,sheep2,sheep3,sheep4;
-
+    private boolean muted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
         Texture.init(getAssets());
         super.onCreate(savedInstanceState);
+        muted = getSharedPreferences("audioprefs", MODE_PRIVATE).contains("muted");
         try {
             handler = new GameHandler(this,intent.getStringExtra("levelFileName"));
             view = new GameView(this,handler, getSharedPreferences("backgroundprefs", MODE_PRIVATE).contains("donutsenabled"));
@@ -196,7 +197,8 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
     protected void onStart() {
         super.onStart();
         audioIntro = MediaPlayer.create(this,R.raw.soundtrack1_intro);
-        audioIntro.start();
+        if(!muted)
+            audioIntro.start();
         audioIntro.setOnCompletionListener(this);
         audioMiddle = MediaPlayer.create(this,R.raw.soundtrack1_middle);
         audioMiddle.setLooping(true);
@@ -235,11 +237,12 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
     @Override
     protected void onResume() {
         super.onResume();
-        if (audioIntro.getCurrentPosition() != audioIntro.getDuration()){
+        if (audioIntro.getCurrentPosition() != audioIntro.getDuration() && !muted){
             audioIntro.start();
         }
         else{
-            audioMiddle.start();
+            if(!muted)
+                audioMiddle.start();
         }
     }
 
