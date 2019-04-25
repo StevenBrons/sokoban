@@ -1,5 +1,6 @@
 package com.debernardi.sokoban;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,7 +25,7 @@ public class Settings extends AppCompatActivity {
         boolean donutsunlocked = donutmode.getBoolean("donutsunlocked", false);
         SharedPreferences.Editor e = donutmode.edit();
         int n_steps = getSharedPreferences("statprefs", MODE_PRIVATE).getInt("n_steps", 0);
-        if(n_steps==1000)
+        if(n_steps>=1000)
             donutsunlocked = true;
         if(!donutsunlocked){
             TextView donutmode_view = (TextView) findViewById(R.id.donutMode);
@@ -65,6 +66,9 @@ public class Settings extends AppCompatActivity {
         e = getSharedPreferences("statprefs", MODE_PRIVATE).edit();
         e.clear();
         e.commit();
+        Intent home = new Intent(this, MainActivity.class);
+        home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(home);
     }
 
     public void onClickDonutMode(View view){
