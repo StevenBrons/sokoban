@@ -119,9 +119,9 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
 
     public void move(Direction d){
         if(handler.move(d)){
-            int n_steps = this.getSharedPreferences("n_steps", MODE_PRIVATE).getInt("n_steps", 0);
+            int n_steps = this.getSharedPreferences("statprefs", MODE_PRIVATE).getInt("n_steps", 0);
             n_steps++;
-            SharedPreferences.Editor editor = this.getSharedPreferences("n_steps", MODE_PRIVATE).edit();
+            SharedPreferences.Editor editor = this.getSharedPreferences("statprefs", MODE_PRIVATE).edit();
             editor.putInt("n_steps", n_steps);
             editor.commit();
         }
