@@ -54,6 +54,10 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
     }
 
     @Override
+    /**
+     * calculates direction of swipe and calls the move function in that direction
+     * @author Thomas Berghuis
+     */
     public boolean onFling(MotionEvent ev1, MotionEvent ev2, float X, float Y) {
         if(!getSharedPreferences("controlprefs", MODE_PRIVATE).contains("swipe_off")) {
             if (ev1.getX() - ev2.getX() < 0 && ev1.getY() - ev2.getY() >= 0) {
@@ -161,6 +165,11 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
     public void onCompletion(MediaPlayer player){
         audioMiddle.start();
     }
+
+    /**
+     * makes it so that buttons or swipe are enabled, you can set these preferences in settings
+     * @author Thomas Berghuis
+     */
 
     public void changeMethod(){
         if (getSharedPreferences("controlprefs", MODE_PRIVATE).contains("swipe_off")){

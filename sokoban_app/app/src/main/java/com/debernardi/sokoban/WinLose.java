@@ -107,6 +107,7 @@ public class WinLose  extends AppCompatActivity {
 	}
 
 	/**
+	 * makes you go to the next level on click, if last level is selected you go the first level
 	 * @author Thomas Berghuis
 	 * @param view
 	 */

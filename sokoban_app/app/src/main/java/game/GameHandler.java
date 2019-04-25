@@ -40,6 +40,11 @@ public class GameHandler extends AppCompatActivity {
         return success;
     }
 
+    /**
+     * Undo's previous move
+     * @author Thomas Berghuis
+     */
+
     public void undo(){
         if (history.size() == 1)
             return;
