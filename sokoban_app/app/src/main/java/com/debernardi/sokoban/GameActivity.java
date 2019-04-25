@@ -138,6 +138,10 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
         audioMiddle.start();
     }
 
+    /**
+     * @author Jelmer Firet
+     * handler to load and start music on activity start
+     */
     @Override
     protected void onStart() {
         super.onStart();
@@ -153,6 +157,10 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
 
     }
 
+    /**
+     * @author Jelmer Firet
+     * handler to pause music when activity is paused
+     */
     @Override
     protected void onPause() {
         super.onPause();
@@ -164,6 +172,10 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
         sheep4.stop();
     }
 
+    /**
+     * @author Jelmer Firet
+     * handler to resume music when activity resumes
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -175,6 +187,10 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
         }
     }
 
+    /**
+     * @author Jelmer Firet
+     * handler to stop and release music when activity stops
+     */
     @Override
     protected void onStop() {
         super.onStop();
@@ -193,6 +209,10 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
         startActivity(startWinLose);
     }
 
+    /**
+     * @author Jelmer Firet
+     * play random blèèrgh sound of a sheep
+     */
     public static void playAudioSheep(){
         Random r = new Random();
         switch(r.nextInt(4)){

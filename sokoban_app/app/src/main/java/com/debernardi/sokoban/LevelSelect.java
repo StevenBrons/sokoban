@@ -31,6 +31,7 @@ public class LevelSelect extends AppCompatActivity {
 
     /**
      * Dynamically creates the level menu based on the level files in assets/levels/
+     * For each level it creates preview, title, author and score elements
      * @author Jelmer Firet
      * @param savedInstanceState
      */
