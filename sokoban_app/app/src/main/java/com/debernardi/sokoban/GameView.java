@@ -28,10 +28,13 @@ public class GameView extends View {
      *
      * @author Steven Bronsveld
      */
-    GameView(Context context, GameHandler handler) {
+    GameView(Context context, GameHandler handler, boolean donutmode) {
         super(context);
         this.handler = handler;
-        donutMode = Math.random() * 20 < 1;
+        this.donutMode = donutmode;
+        if(Math.random()<1.0/20.0){
+            this.donutMode = true;
+        }
     }
 
     /**
@@ -102,7 +105,7 @@ public class GameView extends View {
         if (clouds.size() == 0) {
             for (int i = 0; i < 15; i++) {
                 clouds.add(new Cloud(canvas.getHeight(),true,donutMode));
-                clouds.get(i).move(100);
+                clouds.get(i).move();
             }
         }
         for (int i = clouds.size() - 1; i >= 0; i--) {
@@ -121,7 +124,7 @@ public class GameView extends View {
      */
     public void drawClouds(Canvas canvas, boolean foreground) {
         for (Cloud c: clouds) {
-            c.move(10);
+            c.move();
             if (c.foreground == foreground) {
                 c.draw(canvas);
             }

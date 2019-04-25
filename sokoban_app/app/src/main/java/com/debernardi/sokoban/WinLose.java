@@ -107,6 +107,7 @@ public class WinLose  extends AppCompatActivity {
 	}
 
 	/**
+	 * makes you go to the next level on click, if last level is selected you go the first level
 	 * @author Thomas Berghuis
 	 * @param view
 	 */
@@ -151,7 +152,9 @@ public class WinLose  extends AppCompatActivity {
 	@Override
 	protected void onStart() {
 		super.onStart();
-		audioVictory = MediaPlayer.create(this,R.raw.solved);
-		audioVictory.start();
+		if(!getSharedPreferences("audioprefs", MODE_PRIVATE).contains("muted")) {
+			audioVictory = MediaPlayer.create(this, R.raw.solved);
+			audioVictory.start();
+		}
 	}
 }

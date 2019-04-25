@@ -57,6 +57,7 @@ public class GameHandler extends AppCompatActivity {
 
     /**
      * Undoes the last move, excluding invalid moves.
+     * @author Thomas Berghuis
      */
     public void undo(){
         if (history.size() == 1)
