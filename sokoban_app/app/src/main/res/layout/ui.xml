@@ -63,13 +63,27 @@
         android:id="@+id/imageButton6"
         android:layout_width="65dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="28dp"
         android:background="@null"
         android:contentDescription="@null"
-        android:scaleType="fitCenter"
         android:onClick="undo"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/undo" />
+
+    <TextView
+        android:id="@+id/step_counter"
+        android:layout_width="95dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="28dp"
+        android:fontFamily="@font/dtm_mono"
+        android:text="0"
+        android:textAlignment="center"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

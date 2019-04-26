@@ -52,6 +52,7 @@ public class GameHandler extends AppCompatActivity {
         if(level.isFinished()){
             won();
         }
+        context.updateStepCounter(history.size()-1);
         return success;
     }
 
@@ -66,7 +67,7 @@ public class GameHandler extends AppCompatActivity {
             history.remove(history.size() -1);
             this.level = history.get(history.size() -1).copy();
         }
-
+        context.updateStepCounter(history.size()-1);
     }
 
     /**

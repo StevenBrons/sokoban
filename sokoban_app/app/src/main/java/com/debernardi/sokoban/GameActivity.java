@@ -3,10 +3,8 @@ package com.debernardi.sokoban;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.FrameLayout;
 import android.view.View;
 import android.view.LayoutInflater;
@@ -14,8 +12,8 @@ import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.MotionEvent;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
-import java.io.IOException;
 import java.util.Random;
 
 import game.Direction;
@@ -286,6 +284,14 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
                     sheep4.start();
             }
         }
+    }
+
+    /**
+     * @author Bram Pulles
+     */
+    public void updateStepCounter(int steps){
+        TextView stepsUI = findViewById(R.id.step_counter);
+        stepsUI.setText(String.valueOf(steps));
     }
 
 }
