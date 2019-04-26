@@ -28,6 +28,8 @@ public class LevelSelect extends AppCompatActivity {
 
     // numLevelsOnScreen = roughly the number of levels that will fit on a screen before scrolling
     static private int numLevelsOnScreen = 10;
+    LinearLayout layLevels;
+    String[] levelFiles;
 
     /**
      * Dynamically creates the level menu based on the level files in assets/levels/
@@ -40,10 +42,9 @@ public class LevelSelect extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Texture.init(getAssets());
         setContentView(R.layout.activity_level_select);
-        LinearLayout layLevels = findViewById(R.id.layLevels);
+        layLevels = findViewById(R.id.layLevels);
 
         // Fetch filenames of the level files
-        String[] levelFiles;
         try {
             levelFiles = getAssets().list("levels");
             if (levelFiles == null){
@@ -159,4 +160,18 @@ public class LevelSelect extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences prefHighscores = this.getSharedPreferences("Highscores", MODE_PRIVATE);
+        for (int levelId = 0;levelId<layLevels.getChildCount();levelId++){
+            String levelFilename = levelFiles[levelId];
+            RelativeLayout level = (RelativeLayout) layLevels.getChildAt(levelId);
+            TextView bestTextView = (TextView) level.getChildAt(3);
+            String bestText = (String) bestTextView.getText();
+            int highscore = prefHighscores.getInt(FilenameUtils.removeExtension(levelFilename),-1);
+            bestText = (highscore>=0?highscore:"-")+"/"+bestText.split("/")[1];
+            bestTextView.setText(bestText);
+        }
+    }
 }
