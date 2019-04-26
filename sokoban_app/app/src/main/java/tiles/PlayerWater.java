@@ -31,6 +31,14 @@ public class PlayerWater extends Player implements Connectable, WaterTile{
     boolean getBottomWaterFall() { return bottomWaterFall; }
 
     /**
+     * Add unconnected PlayerWater
+     * @author Jelmer Firet
+     */
+    public PlayerWater(){
+        updateTexture();
+    }
+
+    /**
      * constructs a new PlayerWater based on another Water instance
      * @param other a Water to use as a reference for the water Connections
      * @author Jelmer Firet

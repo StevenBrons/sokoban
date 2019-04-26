@@ -1,5 +1,7 @@
 package tiles;
 
+import android.graphics.Bitmap;
+
 import game.Texture;
 
 /**
@@ -19,6 +21,10 @@ public class Void implements Tile {
 
     @Override
     public Texture getTexture() {
-        return texture;
+        if (!Texture.hasTexture("void")){
+            texture.addTexture("void",Bitmap.createBitmap(Texture.WIDTH, Texture.HEIGHT,
+                    Bitmap.Config.ARGB_8888));
+        }
+        return new Texture("void");
     }
 }

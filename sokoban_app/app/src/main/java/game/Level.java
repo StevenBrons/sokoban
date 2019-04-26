@@ -109,12 +109,16 @@ public class Level {
                 return new Player();
             case "P":
                 return new PlayerGoal();
+            case "q":
+                return new PlayerWater();
             case "g":
                 return new Goal();
             case "w":
                 return new Water();
             case "W":
                 return new BoulderWater();
+            case "#":
+                return new Void();
             default:
                 return new Void();
         }
