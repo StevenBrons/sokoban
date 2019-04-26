@@ -23,11 +23,18 @@ public class Settings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        TextView v = (TextView) findViewById(R.id.toggleInputMethod);
+        TextView txtControl = (TextView) findViewById(R.id.toggleInputMethod);
         if(getSharedPreferences("controlprefs", MODE_PRIVATE).contains("swipe_off")){
-            v.setText("CONTROLS: buttons");
+            txtControl.setText("CONTROLS: buttons");
         } else {
-            v.setText("CONTROLS: swipe");
+            txtControl.setText("CONTROLS: swipe");
+        }
+        TextView txtAudio = (TextView) findViewById(R.id.audio);
+        if(getSharedPreferences("audioprefs", MODE_PRIVATE).contains("muted")){
+            txtAudio.setText("Audio: muted");
+        }
+        else{
+            txtAudio.setText("Audio: unmuted");
         }
         SharedPreferences donutmode = getSharedPreferences("backgroundprefs", MODE_PRIVATE);
         boolean donutsunlocked = donutmode.getBoolean("donutsunlocked", false);
