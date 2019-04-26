@@ -78,23 +78,39 @@ public class Water implements Tile, Connectable, WaterTile{
      */
     @Override
     public Texture getTexture() {
+        int numWaterConnection = (topWater?1:0)+(rightWater?1:0)+(bottomWater?1:0)+(leftWater?1:0);
+        int numWaterFalls = (topWaterFall?1:0)+(rightWaterFall?1:0)+
+                (bottomWaterFall?1:0)+(leftWaterFall?1:0);
+        boolean makeTopWaterFall = topWaterFall && numWaterConnection < 2;
+        boolean makeRightWaterFall = rightWaterFall && numWaterConnection < 2;
+        boolean makeBottomWaterFall = bottomWaterFall && numWaterConnection < 2;
+        boolean makeLeftWaterFall = leftWaterFall && numWaterConnection < 2;
+        if (numWaterFalls > 1){
+            makeTopWaterFall &= bottomWater;
+            makeRightWaterFall &= leftWater;
+            makeBottomWaterFall &= topWater;
+            makeLeftWaterFall &= rightWater;
+        }
+        updateTexture(topWater||makeTopWaterFall,rightWater||makeRightWaterFall,
+                bottomWater||makeBottomWaterFall,leftWater||makeLeftWaterFall);
+
         String name = texture.getName();
-        if (topWaterFall) name += "_topWaterFall";
-        if (rightWaterFall) name += "_rightWaterFall";
-        if (bottomWaterFall) name += "_bottomWaterFall";
-        if (leftWaterFall) name += "_leftWaterFall";
+        if (makeTopWaterFall) {name += "_topWaterFall";}
+        if (makeRightWaterFall) name += "_rightWaterFall";
+        if (makeBottomWaterFall) name += "_bottomWaterFall";
+        if (makeLeftWaterFall) name += "_leftWaterFall";
         if (!Texture.hasTexture(name)){
             Bitmap result = Bitmap.createBitmap(Texture.WIDTH,Texture.HEIGHT,Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(result);
             Rect dst = new Rect(0,0,Texture.WIDTH,Texture.HEIGHT);
-            if (topWaterFall)
+            if (makeTopWaterFall)
                 canvas.drawBitmap(textureTopFall.getBitmap(),null,dst,null);
-            if (rightWaterFall)
+            if (makeRightWaterFall)
                 canvas.drawBitmap(textureRightFall.getBitmap(),null,dst,null);
             canvas.drawBitmap(texture.getBitmap(),null,dst,null);
-            if(leftWaterFall)
+            if(makeLeftWaterFall)
                 canvas.drawBitmap(textureLeftFall.getBitmap(),null,dst,null);
-            if (bottomWaterFall)
+            if (makeBottomWaterFall)
                 canvas.drawBitmap(textureBottomFall.getBitmap(),null,dst,null);
             Texture.addTexture(name,result);
         }
@@ -105,12 +121,12 @@ public class Water implements Tile, Connectable, WaterTile{
      * changes the primary texture to adapt to water connections
      * @author Jelmer Firet
      */
-    private void updateTexture(){
+    private void updateTexture(boolean top,boolean right, boolean bottom, boolean left){
         int val = 0;
-        if (leftWater) val += 1;
-        if (topWater) val += 2;
-        if (rightWater) val += 4;
-        if (bottomWater) val += 8;
+        if (left) val += 1;
+        if (top) val += 2;
+        if (right) val += 4;
+        if (bottom) val += 8;
         switch (val){
             case 0:texture = new Texture("lake");break;
             case 1: texture = new Texture("waterSourceLeft");break;
@@ -132,31 +148,38 @@ public class Water implements Tile, Connectable, WaterTile{
         }
     }
 
+    /**
+     * update texture without given water directions
+     */
+    private void updateTexture(){
+        updateTexture(topWater,rightWater,bottomWater,leftWater);
+    }
+
     @Override
     public void connectLeft(Tile other) {
         leftWaterFall = other instanceof Void;
-        leftWater = other instanceof WaterTile || leftWaterFall;
+        leftWater = other instanceof WaterTile;
         updateTexture();
     }
 
     @Override
     public void connectRight(Tile other) {
         rightWaterFall = other instanceof Void;
-        rightWater = other instanceof WaterTile || rightWaterFall;
+        rightWater = other instanceof WaterTile;
         updateTexture();
     }
 
     @Override
     public void connectTop(Tile other) {
         topWaterFall = other instanceof Void;
-        topWater = other instanceof WaterTile || topWaterFall;
+        topWater = other instanceof WaterTile;
         updateTexture();
     }
 
     @Override
     public void connectBottom(Tile other) {
         bottomWaterFall = other instanceof Void;
-        bottomWater = other instanceof WaterTile || bottomWaterFall;
+        bottomWater = other instanceof WaterTile;
         updateTexture();
     }
 }
