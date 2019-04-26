@@ -258,9 +258,7 @@ public class Level {
     }
 
 
-    /**    * @author Bram Pulles
-        * @return the name of this level file.
-
+    /**
     * @author Bram Pulles
     * @return the path to this level file.
     */

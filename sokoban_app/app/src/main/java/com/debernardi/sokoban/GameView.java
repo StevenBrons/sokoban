@@ -15,7 +15,6 @@ import game.GameHandler;
 import game.Level;
 import game.Texture;
 
-import static java.lang.Math.max;
 import static java.lang.Math.min;
 
 public class GameView extends View {
