@@ -1,14 +1,14 @@
 Maze
 Thijs van Loenhout
 11 11 41
-. . . . . . f f f f f
+# # # # # # f f f f f
 f f f f f f f . . . f
 f p . . . . . . . . f
 f . s . f f f . . f f
-f . . f f . . . . f .
-f . f f . . . . . f .
-f . f . . . . f . f .
-f . f . . f . f . f .
-f . f . . w w . . f .
-f . g . . . f . . f .
-f f f f f f f f f f .
+f . . f f . . . . f #
+f . f f . . . . . f #
+f . f . . . . f . f #
+f . f . . f . f . f #
+f . f . . w w . . f #
+f . g . . . f . . f #
+f f f f f f f f f f #

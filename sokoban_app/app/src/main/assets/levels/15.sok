@@ -1,12 +1,12 @@
 Donut
 Thijs van Loenhout
 10 9 42
-. . . . . . f f f f
-f f f f f . f . . f
+# # # # # # f f f f
+f f f f f # f . . f
 f . . . f f f . . f
 f . . s . . p s . f
 f f f . f f f . f f
-. w f . f w f . f .
-. w f . f f f . f .
-. w f g . . . g f .
-. w f f f f f f f .
+# w f . f # f . f #
+# w f . f f f . f #
+# w f g . . . g f #
+# w f f f f f f f #
