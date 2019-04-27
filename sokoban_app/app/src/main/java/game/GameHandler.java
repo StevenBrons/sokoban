@@ -71,6 +71,17 @@ public class GameHandler extends AppCompatActivity {
     }
 
     /**
+     * Set this level to the start.
+     * @author Bram Pulles
+     */
+    public void reset(){
+        this.level = history.get(0);
+        history.clear();
+        history.add(level.copy());
+        context.updateStepCounter(0);
+    }
+
+    /**
      * Starts the gameloop. In the game loop, the level is drawn 10 times a second and
      * the in-game time is increased.
      * @param view2

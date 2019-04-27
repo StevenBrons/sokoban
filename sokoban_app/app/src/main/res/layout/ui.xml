@@ -78,12 +78,25 @@
         android:layout_width="95dp"
         android:layout_height="52dp"
         android:layout_marginTop="28dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/dtm_mono"
-        android:text="0"
+        android:text="@string/step_counter"
         android:textAlignment="center"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:onClick="reset"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/reset" />
 
 </android.support.constraint.ConstraintLayout>

@@ -24,4 +24,5 @@
                                             Robert Koprinkov \n
                                             Bram Pulles \nGraphics:\n
                                 Thijs van Loenhout</string>
+    <string name="step_counter">0</string>
 </resources>

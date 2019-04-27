@@ -161,6 +161,15 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
         handler.undo();
     }
 
+    /**
+     * Reset the current level.
+     * @author Bram Pulles
+     * @param v
+     */
+    public void reset(View v){
+        handler.reset();
+    }
+
     public void onCompletion(MediaPlayer player){
         audioMiddle.start();
     }
@@ -287,6 +296,7 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
     }
 
     /**
+     * Update the step counter which is show in the ui.
      * @author Bram Pulles
      */
     public void updateStepCounter(int steps){
