@@ -15,6 +15,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 
 import org.apache.commons.io.FilenameUtils;
 
@@ -29,7 +32,7 @@ public class LevelSelect extends AppCompatActivity {
     // numLevelsOnScreen = roughly the number of levels that will fit on a screen before scrolling
     static private int numLevelsOnScreen = 10;
     LinearLayout layLevels;
-    String[] levelFiles;
+    ArrayList<String> levelFiles = new ArrayList<>();
 
     /**
      * Dynamically creates the level menu based on the level files in assets/levels/
@@ -46,8 +49,8 @@ public class LevelSelect extends AppCompatActivity {
 
         // Fetch filenames of the level files
         try {
-            levelFiles = getAssets().list("levels");
-            if (levelFiles == null){
+            levelFiles = new ArrayList<>(Arrays.asList(getAssets().list("levels")));
+            if (levelFiles.size() == 0){
                 throw new IOException();
             }
         } catch (IOException e) {
@@ -55,6 +58,16 @@ public class LevelSelect extends AppCompatActivity {
             levelLoadError.setText(getString(R.string.levelLoadError));
             layLevels.addView(levelLoadError);
             return;
+        }
+
+        if (!BuildConfig.DEBUG){
+            Iterator<String> it = levelFiles.iterator();
+            while (it.hasNext()){
+                String filename = it.next();
+                if (filename.contains("9999_test")){
+                    it.remove();
+                }
+            }
         }
 
         // Get screen size
@@ -165,7 +178,7 @@ public class LevelSelect extends AppCompatActivity {
         super.onResume();
         SharedPreferences prefHighscores = this.getSharedPreferences("Highscores", MODE_PRIVATE);
         for (int levelId = 0;levelId<layLevels.getChildCount();levelId++){
-            String levelFilename = levelFiles[levelId];
+            String levelFilename = levelFiles.get(levelId);
             RelativeLayout level = (RelativeLayout) layLevels.getChildAt(levelId);
             TextView bestTextView = (TextView) level.getChildAt(3);
             String bestText = (String) bestTextView.getText();
