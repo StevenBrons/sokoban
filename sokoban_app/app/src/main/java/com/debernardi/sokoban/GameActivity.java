@@ -105,7 +105,6 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
 
     /**
      * catch move down button click
-     * The direction is reversed because the game is drawn in isometric view
      * @author Steven Bronsveld
      */
     public void moveDown(View v){
@@ -147,7 +146,6 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
 
     /**
      * catch move up button click
-     * The direction is reversed because the game is drawn in isometric view
      * @author Steven Bronsveld
      */
     public void moveUp(View v){
