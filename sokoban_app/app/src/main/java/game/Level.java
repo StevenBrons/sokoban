@@ -285,7 +285,17 @@ public class Level {
      * @return Direction[] a set of moves to move player to this tile this tile, empty array if impossible or already there.
      */
     public ArrayList<Direction> getMovesTo(int x,int y){
-        if (x<0 || x>=width || y<0 || y >= height || getTileAt(x,y).isSolid()){
+        if (x<0 || x>=width || y<0 || y >= height){
+            return new ArrayList<>();
+        }
+        ArrayList<Direction> moves = new ArrayList<>();
+        if (x == playerX && y == playerY-1){moves.add(Direction.UP);}
+        if (x == playerX+1 && y == playerY){moves.add(Direction.RIGHT);}
+        if (x == playerX && y == playerY+1){moves.add(Direction.DOWN);}
+        if (x == playerX-1 && y == playerY){moves.add(Direction.LEFT);}
+        if (moves.size() > 0) return moves;
+
+        if (getTileAt(x,y).isSolid()){
             return new ArrayList<>();
         }
         ArrayList<int[]> todo = new ArrayList<>();
@@ -322,7 +332,6 @@ public class Level {
             }
         }
 
-        ArrayList<Direction> moves = new ArrayList<>();
         int[] pos = new int[2];pos[0] = playerX;pos[1]=playerY;
         while ((pos[0] != x || pos[1] != y) && bestDir[pos[1]][pos[0]] != Direction.NONE){
             moves.add(bestDir[pos[1]][pos[0]]);
