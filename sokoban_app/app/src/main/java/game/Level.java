@@ -5,6 +5,7 @@ import android.content.Context;
 import com.debernardi.sokoban.GameActivity;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -56,7 +57,7 @@ public class Level {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 Tile t = readTile(s.next());
-                if (t instanceof Player || t instanceof PlayerGoal) {
+                if (t instanceof Player) {
                     playerX = x;
                     playerY = y;
                 }
@@ -203,10 +204,10 @@ public class Level {
         int dy = 0;
         switch (d) {
             case UP:
-                dy = 1;
+                dy = -1;
                 break;
             case DOWN:
-                dy = -1;
+                dy = 1;
                 break;
             case LEFT:
                 dx = -1;
@@ -276,6 +277,66 @@ public class Level {
     */
     public String getHighscoreString(){
         return levelPath.substring(7);
+    }
+
+    /**
+     * @author Jelmer Firet
+     * @param x,y   The location to move to.
+     * @return Direction[] a set of moves to move player to this tile this tile, empty array if impossible or already there.
+     */
+    public ArrayList<Direction> getMovesTo(int x,int y){
+        if (x<0 || x>=width || y<0 || y >= height || getTileAt(x,y).isSolid()){
+            return new ArrayList<>();
+        }
+        ArrayList<int[]> todo = new ArrayList<>();
+        int[] start = new int[2];
+        start[0] = x; start[1] = y;
+        todo.add(start);
+        Direction[][] bestDir = new Direction[height][width];
+        for (int y2 = 0;y2<height;y2++){
+            for (int x2=0;x2<width;x2++){
+                bestDir[y2][x2] = Direction.NONE;
+            }
+        }
+        for (int idx = 0;idx < todo.size();idx++){
+            int[] pos = todo.get(idx);
+            int[] newPos = new int[2];newPos[0] = pos[0]-1;newPos[1] = pos[1];
+            if (!getTileAt(newPos[0],newPos[1]).isSolid() && bestDir[newPos[1]][newPos[0]] == Direction.NONE){
+                bestDir[newPos[1]][newPos[0]] = Direction.RIGHT;
+                todo.add(newPos);
+            }
+            newPos = new int[2];newPos[0] = pos[0]+1;newPos[1] = pos[1];
+            if (!getTileAt(newPos[0],newPos[1]).isSolid() && bestDir[newPos[1]][newPos[0]] == Direction.NONE){
+                bestDir[newPos[1]][newPos[0]] = Direction.LEFT;
+                todo.add(newPos);
+            }
+            newPos = new int[2];newPos[0] = pos[0];newPos[1] = pos[1]-1;
+            if (!getTileAt(newPos[0],newPos[1]).isSolid() && bestDir[newPos[1]][newPos[0]] == Direction.NONE){
+                bestDir[newPos[1]][newPos[0]] = Direction.DOWN;
+                todo.add(newPos);
+            }
+            newPos = new int[2];newPos[0] = pos[0];newPos[1] = pos[1]+1;
+            if (!getTileAt(newPos[0],newPos[1]).isSolid() && bestDir[newPos[1]][newPos[0]] == Direction.NONE){
+                bestDir[newPos[1]][newPos[0]] = Direction.UP;
+                todo.add(newPos);
+            }
+        }
+
+        ArrayList<Direction> moves = new ArrayList<>();
+        int[] pos = new int[2];pos[0] = playerX;pos[1]=playerY;
+        while ((pos[0] != x || pos[1] != y) && bestDir[pos[1]][pos[0]] != Direction.NONE){
+            moves.add(bestDir[pos[1]][pos[0]]);
+            switch(bestDir[pos[1]][pos[0]]){
+                case UP: pos[1]--;break;
+                case RIGHT: pos[0]++;break;
+                case DOWN: pos[1]++;break;
+                case LEFT: pos[0]--;break;
+            }
+        }
+        if (pos[0] != x || pos[1] != y){
+            return new ArrayList<>();
+        }
+        return moves;
     }
 
 }

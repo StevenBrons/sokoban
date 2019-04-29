@@ -99,6 +99,7 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
 
     @Override
     public boolean onSingleTapUp(MotionEvent arg0) {
+        view.moveToPixels(arg0.getX(),arg0.getY());
         return false;
     }
 
@@ -108,7 +109,7 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
      * @author Steven Bronsveld
      */
     public void moveDown(View v){
-        move(Direction.UP);
+        move(Direction.DOWN);
     }
 
     @Override
@@ -150,7 +151,7 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
      * @author Steven Bronsveld
      */
     public void moveUp(View v){
-        move(Direction.DOWN);
+        move(Direction.UP);
     }
 
     public void moveRight(View v){

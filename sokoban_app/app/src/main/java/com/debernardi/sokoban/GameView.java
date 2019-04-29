@@ -11,6 +11,7 @@ import android.view.View;
 import java.util.ArrayList;
 
 import game.Cloud;
+import game.Direction;
 import game.GameHandler;
 import game.Level;
 import game.Texture;
@@ -21,6 +22,14 @@ public class GameView extends View {
 
     GameHandler handler;
     ArrayList<Cloud> clouds = new ArrayList<>();
+    ArrayList<Direction> movesToLocation = new ArrayList<>();
+    int bitmapWidth;
+    int bitmapHeight;
+    int screenHeight;
+    int screenWidth;
+    int topOffset;
+    int leftOffset;
+    int movesToLocationIdx;
     boolean donutMode;
 
     /**
@@ -42,7 +51,14 @@ public class GameView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         updateClouds(canvas);
-
+        if (movesToLocation.size()>0){
+            handler.move(movesToLocation.get(movesToLocationIdx));
+            movesToLocationIdx++;
+            if (movesToLocationIdx == movesToLocation.size()){
+                movesToLocationIdx = 0;
+                movesToLocation.clear();
+            }
+        }
         Level level = handler.getLevel();
         drawBackground(canvas);
         drawClouds(canvas,false);
@@ -60,8 +76,8 @@ public class GameView extends View {
         int tileWidth = Texture.WIDTH;
         int tileHeight = Texture.HEIGHT;
         int width = (level.getWidth()+level.getHeight())*tileWidth/2;
-        int height = (level.getWidth()+level.getHeight()+3)*tileHeight/4;
-        int startheight = (level.getWidth())*tileHeight/4;
+        int height = (level.getWidth()+level.getHeight()+2)*tileHeight/4;
+        int startHeight = (level.getWidth()-1)*tileHeight/4;
         Bitmap bitmap = Bitmap.createBitmap(width,height,Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         for (int x = level.getWidth()-1; x >= 0; x--) {
@@ -69,7 +85,7 @@ public class GameView extends View {
                 Bitmap texture = level.getTileAt(x,y).getTexture().getBitmap();
 
                 int xAbs = x * (tileWidth / 2) + y * (tileWidth / 2);
-                int yAbs = -x * (tileHeight / 4) + y * (tileHeight / 4)+startheight;
+                int yAbs = -x * (tileHeight / 4) + y * (tileHeight / 4)+startHeight;
 
                 Rect dest = new Rect(xAbs,yAbs,tileWidth + xAbs, tileHeight + yAbs);
                 canvas.drawBitmap(texture,null,dest,paint);
@@ -86,10 +102,12 @@ public class GameView extends View {
      */
     public void drawLevel(Canvas canvas,Level level) {
         Bitmap bitmap = getLevelBitmap(level);
-        int screenHeight = min((canvas.getWidth() * bitmap.getHeight()) / bitmap.getWidth(),canvas.getHeight());
-        int screenWidth = screenHeight*bitmap.getWidth()/bitmap.getHeight();
-        int topOffset = (canvas.getHeight() / 2) - screenHeight/2;
-        int leftOffset = (canvas.getWidth() / 2) - screenWidth/2;
+        bitmapWidth = bitmap.getWidth();
+        bitmapHeight = bitmap.getHeight();
+        screenHeight = min((canvas.getWidth() * bitmap.getHeight()) / bitmap.getWidth(),canvas.getHeight());
+        screenWidth = screenHeight*bitmap.getWidth()/bitmap.getHeight();
+        topOffset = (canvas.getHeight() / 2) - screenHeight/2;
+        leftOffset = (canvas.getWidth() / 2) - screenWidth/2;
         Rect dest = new Rect(leftOffset,topOffset,screenWidth+leftOffset,screenHeight+topOffset);
         canvas.drawBitmap(bitmap,null,dest,null);
     }
@@ -138,6 +156,22 @@ public class GameView extends View {
         Paint p = new Paint();
         p.setColor(Color.argb(255,168,211,255));
         canvas.drawRect(0,0,canvas.getWidth(),canvas.getHeight(),p);
+    }
+
+    public void moveToPixels(float x,float y){
+        x -= leftOffset; y -= topOffset;
+        x /= screenWidth; y /= screenHeight;
+        if (x < 0 || x > 1 || y < 0 || y > 1) return;
+        //20/48 from the top the tile starts
+        x *= bitmapWidth; y *= bitmapHeight;
+        y -= Texture.HEIGHT/4f*(handler.getLevel().getWidth()-1);
+        y -= Texture.HEIGHT*20f/48f;
+        float tileX = x/Texture.WIDTH - 2f*y/Texture.HEIGHT;
+        float tileY = x/Texture.WIDTH + 2f*y/ Texture.HEIGHT;
+        System.out.println(String.format("moving to: (%f;%f)",tileX,tileY));
+        movesToLocation = handler.getLevel().getMovesTo((int)tileX,(int)tileY);
+        System.out.println(movesToLocation.size());
+        movesToLocationIdx = 0;
     }
 
 }
