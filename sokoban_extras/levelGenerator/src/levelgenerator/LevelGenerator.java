@@ -39,24 +39,28 @@ public class LevelGenerator {
             while (!top.getFinished() && top.isGenerated()){
                 top = top.getBestChild();
                 history.add(top);
-//                System.out.println(top.getLevel());
             }
-            while (!top.getFinished()){
-                top.generateChildren();
-                top = top.getRandomChild();
+            Node selectedNode = top;
+            selectedNode.generateChildren();
+            for (int node = 0;node<selectedNode.getNumChildren();node++){
+                top = selectedNode.getChild(node);
                 history.add(top);
-//                System.out.println(top.getLevel());
-            }
-            top.preprocess();
-            double score = top.evaluate();
-            for (int i = 0;i<history.size();i++){
-                history.get(i).addResult(score);
-                history.get(i).removeChildren();
-            }
-            if (score > bestScore){
-                bestScore = score+0.00001d;
-                System.out.println(String.format("%d, %.3f:",round,score));
-                System.out.println(top.getLevel());
+                while (!top.getFinished()){
+                    top.generateChildren();
+                    top = top.getRandomChild();
+                }
+                top.preprocess();
+                double score = top.evaluate();
+                for (int i = 0;i<history.size();i++){
+                    history.get(i).addResult(score);
+                }
+                if (score > bestScore){
+                    bestScore = score+0.0000001d;
+                    System.out.println(String.format("%d, %.3f:",round,score));
+                    System.out.println(top.getLevel());
+                }
+                selectedNode.getChild(node).removeChildren();
+                history.remove(history.size()-1);
             }
         }
         

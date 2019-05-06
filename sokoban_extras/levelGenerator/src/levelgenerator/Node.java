@@ -137,6 +137,14 @@ public class Node {
         }
     }
     
+    public int getNumChildren(){
+        return children.size();
+    }
+    
+    public Node getChild(int idx){
+        return children.get(idx);
+    }
+    
     public Node getRandomChild(){
         Random rand = new Random(lastRandom);
         lastRandom = rand.nextInt(1000000000);
@@ -145,23 +153,27 @@ public class Node {
     }
     
     public Node getBestChild(){
-        double bestUSB = 0.0;
-        Node bestChild = null;
+        ArrayList<Double> weights = new ArrayList<>();
+        double sum = 0.0d;
         for (Node child:children){
-            double USB = child.getResultSum()/numVisit+Math.sqrt(2)
+            double USB = child.getResultSum()/child.getNumVisit()+Math.sqrt(2)
                     *Math.sqrt(Math.log(numVisit)/child.getNumVisit());
-            if (USB > bestUSB){
-                bestUSB = USB;
-                bestChild = child;
+            weights.add(USB);
+            sum += USB;
+        }
+        Random rand = new Random();
+        double randInd = rand.nextDouble()*sum;
+        for (int i = 0;i<children.size();i++){
+            randInd -= weights.get(i);
+            if (randInd < 0.0001){
+                return children.get(i);
             }
         }
-        return bestChild;
+        return null;
     }
     
     public void removeChildren(){
-        if (numVisit == 1){
-            children.clear();
-        }
+        children.clear();
     }
     
     public void addResult(double result){
@@ -243,33 +255,24 @@ public class Node {
                 int goalX = boulderTile.getGoalX();
                 int goalY = boulderTile.getGoalY();
                 TileGoal goalTile = (TileGoal)level.getTileAt(goalX,goalY);
-                int numGoal = 0;
-                int numWall = 0;
                 int numBoulder = 0;
                 for (int x = Math.min(boulderX,goalX);x<=Math.max(boulderX,goalX);x++){
                     for (int y = Math.min(boulderY,goalY);y<=Math.max(boulderY,goalY);y++){
-                        if (level.getTileAt(x,y) instanceof TileGoal){
-                            numGoal++;
-                        }
                         if (level.getTileAt(x,y) instanceof TileBoulder){
                             numBoulder++;
                         }
-                        if (level.getTileAt(x,y) instanceof Wall){
-                            numWall++;
-                        }
                     }
                 }
-                congestionScore += (4.0d*numBoulder+4.0d*numGoal+1.0d*numWall)/
-                  (8.0d*level.getWidth()*level.getHeight());
+                congestionScore += numBoulder;
             }
         }
         if (totalBoulder == 0){
-            congestionScore = 0.00001d;
+            congestionScore = 0.0d;
         }
         else{
-            congestionScore /= totalBoulder;
+            congestionScore /= level.getWidth()*level.getHeight();
         }
         
-        return Math.pow(Math.pow(congestionScore,3.0)*Math.pow(terrainScore,2.0)*waterScore, 1.0/6.0);
+        return congestionScore*terrainScore;
     }
 }
