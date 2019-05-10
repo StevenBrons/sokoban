@@ -42,9 +42,8 @@ public class GameHandler extends AppCompatActivity {
     /**
      * Moves the player in the given direction
      * @param d The direction in which the player is moved
-     * @return If the move was valid
      */
-    public boolean move(Direction d) {
+    public void move(Direction d) {
         boolean success = level.move(d);
         if (success) {
             history.add(level.copy());
@@ -53,7 +52,13 @@ public class GameHandler extends AppCompatActivity {
             won();
         }
         context.updateStepCounter(history.size()-1);
-        return success;
+        if(success){
+            int n_steps = context.getSharedPreferences("statprefs", MODE_PRIVATE).getInt("n_steps", 0);
+            n_steps++;
+            SharedPreferences.Editor editor = context.getSharedPreferences("statprefs", MODE_PRIVATE).edit();
+            editor.putInt("n_steps", n_steps);
+            editor.commit();
+        }
     }
 
     /**
