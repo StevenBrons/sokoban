@@ -1,7 +1,6 @@
 package com.debernardi.sokoban;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -52,30 +51,30 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
         }
     }
 
-    @Override
     /**
      * calculates direction of swipe and calls the move function in that direction
      * @author Thomas Berghuis
      */
+    @Override
     public boolean onFling(MotionEvent ev1, MotionEvent ev2, float X, float Y) {
         if(!getSharedPreferences("controlprefs", MODE_PRIVATE).contains("swipe_off")) {
             if (ev1.getX() - ev2.getX() < 0 && ev1.getY() - ev2.getY() >= 0) {
-                moveRight(view);
+                move(Direction.RIGHT);
                 return true;
             }
 
             if (ev1.getX() - ev2.getX() < 0 && ev1.getY() - ev2.getY() < 0) {
-                moveDown(view);
+                move(Direction.DOWN);
                 return true;
             }
 
             if (ev1.getX() - ev2.getX() >= 0 && ev1.getY() - ev2.getY() >= 0) {
-                moveUp(view);
+                move(Direction.UP);
                 return true;
             }
 
             if (ev1.getX() - ev2.getX() >= 0 && ev1.getY() - ev2.getY() < 0) {
-                moveLeft(view);
+                move(Direction.LEFT);
                 return true;
             } else {
                 return true;
@@ -103,24 +102,11 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
         return false;
     }
 
-    /**
-     * catch move down button click
-     * @author Steven Bronsveld
-     */
-    public void moveDown(View v){
-        move(Direction.DOWN);
-    }
-
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         return gDetector.onTouchEvent(motionEvent);
     }
 
-
-    /**
-     * catch move down button click
-     * @author Steven Bronsveld
-     */
     @Override
     public boolean onDown(MotionEvent arg0) {
         return false;
@@ -129,20 +115,15 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
     public void move(Direction d){
         handler.move(d);
     }
+
+    public void moveDown(View v){
+        move(Direction.DOWN);
     }
 
-    /**
-     * catch move left button click
-     * @author Steven Bronsveld
-     */
     public void moveLeft(View v){
         move(Direction.LEFT);
     }
 
-    /**
-     * catch move up button click
-     * @author Steven Bronsveld
-     */
     public void moveUp(View v){
         move(Direction.UP);
     }
@@ -158,7 +139,7 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
     /**
      * Reset the current level.
      * @author Bram Pulles
-     * @param v
+     * @param v View which called this method
      */
     public void reset(View v){
         handler.reset();
@@ -174,17 +155,14 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
      */
 
     public void changeMethod(){
-        if (getSharedPreferences("controlprefs", MODE_PRIVATE).contains("swipe_off")){
-            return;
-        }
-        else{
-            ImageButton ButtonDown = (ImageButton) findViewById(R.id.ArrowDown);
+        if (!getSharedPreferences("controlprefs", MODE_PRIVATE).contains("swipe_off")){
+            ImageButton ButtonDown = findViewById(R.id.ArrowDown);
             ButtonDown.setVisibility(View.GONE);
-            ImageButton ButtonLeft = (ImageButton) findViewById(R.id.ArrowLeft);
+            ImageButton ButtonLeft = findViewById(R.id.ArrowLeft);
             ButtonLeft.setVisibility(View.GONE);
-            ImageButton ButtonUp = (ImageButton) findViewById(R.id.ArrowUp);
+            ImageButton ButtonUp = findViewById(R.id.ArrowUp);
             ButtonUp.setVisibility(View.GONE);
-            ImageButton ButtonRight = (ImageButton) findViewById(R.id.ArrowRight);
+            ImageButton ButtonRight = findViewById(R.id.ArrowRight);
             ButtonRight.setVisibility(View.GONE);
 
         }
@@ -260,7 +238,7 @@ public class GameActivity extends AppCompatActivity implements MediaPlayer.OnCom
 
     /**
      * Start the winlose activity.
-     * @param b
+     * @param b  Bundle to send to winLoseScreen
      * @author Bram Pulles
      */
     public void won(Bundle b){

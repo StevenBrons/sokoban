@@ -11,7 +11,8 @@ public class Statistics extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
         int n_steps = this.getSharedPreferences("statprefs", MODE_PRIVATE).getInt("n_steps", 0);
-        TextView steps = (TextView) findViewById(R.id.n_steps);
-        steps.setText("You have set " + n_steps + " steps. That means you burned " + String.format("%.2f", ((double)n_steps)*30.0) + " calories! Keep it up!");
+        TextView steps = findViewById(R.id.n_steps);
+        steps.setText(String.format(getResources().getString(R.string.statistics_distance),
+                n_steps,((double)n_steps)*30.0));
     }
 }

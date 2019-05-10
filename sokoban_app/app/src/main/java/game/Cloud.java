@@ -75,7 +75,7 @@ public class Cloud {
 
     /**
      *
-     * @param width
+     * @param width Width of the screen
      * @return True if the cloud has surpassed (by a large margin) the maximal x position, meaning
      * the cloud has moved outside of the screen
      */

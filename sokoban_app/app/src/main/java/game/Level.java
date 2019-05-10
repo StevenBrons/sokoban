@@ -42,32 +42,31 @@ public class Level {
     public Level(Context context, String levelPath) {
         this.levelPath = levelPath;
 
-        Scanner s = null;
         try {
-            s = new Scanner(context.getAssets().open(levelPath));
+            Scanner s = new Scanner(context.getAssets().open(levelPath));
+            levelName = s.nextLine();
+            author = s.nextLine();
+            width = s.nextInt();
+            height = s.nextInt();
+            bestPossibleScore = s.nextInt();
+            tiles = new Tile[width][height];
+            for (int y = 0; y < height; y++) {
+                for (int x = 0; x < width; x++) {
+                    Tile t = readTile(s.next());
+                    if (t instanceof Player) {
+                        playerX = x;
+                        playerY = y;
+                    }
+                    tiles[x][y] = t;
+                }
+            }
+            for (int y = 0;y < height;y++){
+                for (int x = 0; x < width; x++){
+                    updateConnections(x,y);
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        levelName = s.nextLine();
-        author = s.nextLine();
-        width = s.nextInt();
-        height = s.nextInt();
-        bestPossibleScore = s.nextInt();
-        tiles = new Tile[width][height];
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                Tile t = readTile(s.next());
-                if (t instanceof Player) {
-                    playerX = x;
-                    playerY = y;
-                }
-                tiles[x][y] = t;
-            }
-        }
-        for (int y = 0;y < height;y++){
-            for (int x = 0; x < width; x++){
-                updateConnections(x,y);
-            }
         }
     }
 
@@ -84,7 +83,7 @@ public class Level {
      * @param tiles A 2D array containing the tiles of the current level state
      * @param levelPath The path of the original level file from which the level was first created
      */
-    public Level(String levelName, String author, int playerX, int playerY, int bestPossibleScore, int width, int height, Tile[][] tiles, String levelPath) {
+    private Level(String levelName, String author, int playerX, int playerY, int bestPossibleScore, int width, int height, Tile[][] tiles, String levelPath) {
         this.levelName = levelName;
         this.author = author;
         this.bestPossibleScore = bestPossibleScore;
@@ -184,7 +183,7 @@ public class Level {
     /**
      * @return A copy of the level object
      */
-    public Level copy() {
+    Level copy() {
         Tile[][] tilesCopy = new Tile[width][height];
         for (int x = 0; x < width;x++) {
             tilesCopy[x] = Arrays.copyOf(tiles[x],tiles[x].length);
@@ -198,7 +197,7 @@ public class Level {
      * @param d The direction to move in
      * @return If the move was valid
      */
-    public boolean move(Direction d) {
+    boolean move(Direction d) {
         Movable player = (Movable) getTileAt(playerX,playerY);
         int dx = 0;
         int dy = 0;
@@ -240,7 +239,7 @@ public class Level {
         return false;
     }
 
-    public void updateConnections(int x, int y){
+    private void updateConnections(int x, int y){
         Tile tile = getTileAt(x,y);
         if (tile instanceof Connectable){
             ((Connectable)tile).connectLeft(getTileAt(x-1,y));
@@ -254,7 +253,7 @@ public class Level {
         * @author Bram Pulles
         * @return if the level is solved.
         */
-    public boolean isFinished(){
+    boolean isFinished(){
         for(int i = 0; i < tiles.length; i++)
             for(int j = 0; j < tiles[i].length; j++)
                 if(tiles[i][j] instanceof Goal || tiles[i][j] instanceof PlayerGoal)
@@ -267,7 +266,7 @@ public class Level {
     * @author Bram Pulles
     * @return the path to this level file.
     */
-    public String getLevelPath(){
+    String getLevelPath(){
         return levelPath;
     }
 
@@ -275,7 +274,7 @@ public class Level {
     * @author Bram Pulles
     * @return the name of this level file.
     */
-    public String getHighscoreString(){
+    String getHighscoreString(){
         return levelPath.substring(7);
     }
 

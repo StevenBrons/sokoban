@@ -14,7 +14,7 @@ import java.util.HashMap;
  */
 public class Texture {
 
-    static HashMap<String, Bitmap> textures = new HashMap<>();
+    private static HashMap<String, Bitmap> textures = new HashMap<>();
     public static final int WIDTH = 192;
     public static final int HEIGHT = 192;
     private static AssetManager manager;

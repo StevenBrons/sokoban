@@ -1,5 +1,6 @@
 package game;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -89,7 +90,7 @@ public class GameHandler extends AppCompatActivity {
     /**
      * Starts the gameloop. In the game loop, the level is drawn 10 times a second and
      * the in-game time is increased.
-     * @param view2
+     * @param view2 View to update
      * @author Steven Bronsveld
      */
     public void start(GameView view2) {
@@ -124,6 +125,7 @@ public class GameHandler extends AppCompatActivity {
         * This function is called when a level is finished. It passes the neccessary values  to the game activity.
         * @author Bram Pulles
         */
+    @SuppressLint("ApplySharedPref")
     private void won(){
         int currentScore = history.size() - 1;
         boolean newBest = false;

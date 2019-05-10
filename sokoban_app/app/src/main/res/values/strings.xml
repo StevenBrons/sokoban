@@ -25,4 +25,12 @@
                                             Bram Pulles \nGraphics:\n
                                 Thijs van Loenhout</string>
     <string name="step_counter">0</string>
+    <string name="control_button">Controls: buttons</string>
+    <string name="control_swipe">Controls: swipe</string>
+    <string name="audio_muted">Audio: muted</string>
+    <string name="audio_enabled">Audio: enabled</string>
+    <string name="donut_mode_steps_left">put %d more steps!</string>
+    <string name="donut_enabled">Donut mode: enabled</string>
+    <string name="donut_disabled">Donut mode: disabled</string>
+    <string name="statistics_distance">"You have set %d steps. That means you burned %.2f calories! Keep it up!"</string>
 </resources>

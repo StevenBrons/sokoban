@@ -12,7 +12,6 @@ import game.Texture;
  * @author Steven Bronsveld
  */
 public class Void implements Tile {
-    private Texture texture = new Texture("grassTile");
 
     @Override
     public boolean isSolid() {
@@ -22,7 +21,7 @@ public class Void implements Tile {
     @Override
     public Texture getTexture() {
         if (!Texture.hasTexture("void")){
-            texture.addTexture("void",Bitmap.createBitmap(Texture.WIDTH, Texture.HEIGHT,
+            Texture.addTexture("void",Bitmap.createBitmap(Texture.WIDTH, Texture.HEIGHT,
                     Bitmap.Config.ARGB_8888));
         }
         return new Texture("void");

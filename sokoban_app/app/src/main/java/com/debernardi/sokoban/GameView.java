@@ -97,8 +97,8 @@ public class GameView extends View {
     /**
      * Draw the level to the screen using a level bitmap.
      * The low-scale bitmap is scaled up to the screen size.
-     * @param canvas
-     * @param level
+     * @param canvas Canvas to draw on
+     * @param level Level to determine what to draw
      */
     public void drawLevel(Canvas canvas,Level level) {
         Bitmap bitmap = getLevelBitmap(level);
@@ -116,7 +116,7 @@ public class GameView extends View {
      * Update the clouds, that is, move them,
      * add new clouds and remove clouds that have moved out of the screen.
      * If the method is called for the first time, a number of start-clouds are added.
-     * @param canvas
+     * @param canvas The canvas to determine width and height
      */
     public void updateClouds(Canvas canvas) {
         if (clouds.size() == 0) {
@@ -136,7 +136,7 @@ public class GameView extends View {
     /**
      * Draw the clouds, either only draw the clouds with the
      * foreground property or the clouds without the foreground property
-     * @param canvas
+     * @param canvas The canvas to draw clouds on
      * @param foreground Whether the foreground or non-foreground clouds should be drawn
      */
     public void drawClouds(Canvas canvas, boolean foreground) {
@@ -150,7 +150,7 @@ public class GameView extends View {
 
     /**
      * Draw the blue sky-background
-     * @param canvas
+     * @param canvas Canvas to draw onto
      */
     public void drawBackground(Canvas canvas) {
         Paint p = new Paint();
@@ -168,9 +168,7 @@ public class GameView extends View {
         y -= Texture.HEIGHT*20f/48f;
         float tileX = x/Texture.WIDTH - 2f*y/Texture.HEIGHT;
         float tileY = x/Texture.WIDTH + 2f*y/ Texture.HEIGHT;
-        System.out.println(String.format("moving to: (%f;%f)",tileX,tileY));
         movesToLocation = handler.getLevel().getMovesTo((int)tileX,(int)tileY);
-        System.out.println(movesToLocation.size());
         movesToLocationIdx = 0;
     }
 

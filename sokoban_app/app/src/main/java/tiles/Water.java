@@ -4,8 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
-import org.w3c.dom.Text;
-
 import game.Texture;
 
 /**

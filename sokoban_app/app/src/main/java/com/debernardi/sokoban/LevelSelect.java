@@ -38,7 +38,7 @@ public class LevelSelect extends AppCompatActivity {
      * Dynamically creates the level menu based on the level files in assets/levels/
      * For each level it creates preview, title, author and score elements
      * @author Jelmer Firet
-     * @param savedInstanceState
+     * @param savedInstanceState Bundle to pass along to AppCompatActivity
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,12 +80,10 @@ public class LevelSelect extends AppCompatActivity {
 
         int previewSize = max(screenSize.x,screenSize.y)/numLevelsOnScreen;
 
-        Boolean even = false;
+        boolean even = false;
         for (String levelFilename:levelFiles){
             // Figure out properties of the level
-            String levelName, authorName;
             int highscore = prefHighscores.getInt(FilenameUtils.removeExtension(levelFilename),-1);
-            int minMoves;
             Level levelItem = new Level(this,"levels/"+levelFilename);
 
             // Make a container for a level

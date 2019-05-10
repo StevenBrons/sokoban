@@ -34,11 +34,16 @@ public class WinLose  extends AppCompatActivity {
 		if(b == null)
 			System.out.println("The bundle could not be created in WinLose.java.");
 
-		currentScore = b.getInt("currentScore");
-		bestScore = b.getInt("bestScore");
-		minimumScore = b.getInt("minimumScore");
-		newBest = b.getBoolean("newBest");
-		levelFileName = b.getString("levelFileName");
+		try{
+			currentScore = b.getInt("currentScore");
+			bestScore = b.getInt("bestScore");
+			minimumScore = b.getInt("minimumScore");
+			newBest = b.getBoolean("newBest");
+			levelFileName = b.getString("levelFileName");
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+
 	}
 
 	/**
@@ -72,8 +77,8 @@ public class WinLose  extends AppCompatActivity {
 	 * @author Bram Pulles
 	 */
 	private void setNumbers(){
-		txtCurrentScore.setText(Integer.toString(currentScore));
-		txtBestScore.setText(Integer.toString(bestScore));
+		txtCurrentScore.setText(String.format("%d",currentScore));
+		txtBestScore.setText(String.format("%d",bestScore));
 		txtMinimumScore.setText((minimumScore > 0)?Integer.toString(minimumScore):"-");
 	}
 
@@ -109,7 +114,7 @@ public class WinLose  extends AppCompatActivity {
 	/**
 	 * makes you go to the next level on click, if last level is selected you go the first level
 	 * @author Thomas Berghuis
-	 * @param view
+	 * @param view View that called this method
 	 */
 	public void onClicknextLevel(View view){
 		int index = 0;
@@ -130,7 +135,7 @@ public class WinLose  extends AppCompatActivity {
 
 	/**
 	 * @author Bram Pulles
-	 * @param view
+	 * @param view View that called this method
 	 */
 	public void onClickRestartLevel(View view) {
 		Intent startGame = new Intent(this, GameActivity.class);
