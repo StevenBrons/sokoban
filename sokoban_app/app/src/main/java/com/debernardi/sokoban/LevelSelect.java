@@ -101,7 +101,7 @@ public class LevelSelect extends AppCompatActivity {
             previewView.setId(View.generateViewId());
             previewView.setAdjustViewBounds(true);
             try{
-                Bitmap preview = GameView.getLevelBitmap(levelItem);
+                Bitmap preview = GameView.getLevelBitmap(levelItem,false);
                 previewView.setImageBitmap(Bitmap.createScaledBitmap(preview,previewSize,
                         preview.getHeight()*previewSize/preview.getWidth(),false));
             }

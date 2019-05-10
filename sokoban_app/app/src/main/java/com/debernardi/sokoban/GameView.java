@@ -62,7 +62,7 @@ public class GameView extends View {
         Level level = handler.getLevel();
         drawBackground(canvas);
         drawClouds(canvas,false);
-        drawLevel(canvas,level);
+        drawLevel(canvas,level,true);
         drawClouds(canvas,true);
     }
 
@@ -71,7 +71,7 @@ public class GameView extends View {
      * @param level The level to convert
      * @return The bitmap on which the level is drawn
      */
-    public static Bitmap getLevelBitmap(Level level) {
+    public static Bitmap getLevelBitmap(Level level,boolean highlight) {
         Paint paint = new Paint(Paint.FILTER_BITMAP_FLAG);
         int tileWidth = Texture.WIDTH;
         int tileHeight = Texture.HEIGHT;
@@ -83,7 +83,9 @@ public class GameView extends View {
         for (int x = level.getWidth()-1; x >= 0; x--) {
             for (int y = 0; y < level.getHeight(); y++) {
                 Bitmap texture = level.getTileAt(x,y).getTexture().getBitmap();
-
+                if (level.getReachable(x,y) && highlight){
+                    texture = Texture.highlightBitMap(texture);
+                }
                 int xAbs = x * (tileWidth / 2) + y * (tileWidth / 2);
                 int yAbs = -x * (tileHeight / 4) + y * (tileHeight / 4)+startHeight;
 
@@ -100,8 +102,8 @@ public class GameView extends View {
      * @param canvas Canvas to draw on
      * @param level Level to determine what to draw
      */
-    public void drawLevel(Canvas canvas,Level level) {
-        Bitmap bitmap = getLevelBitmap(level);
+    public void drawLevel(Canvas canvas,Level level,boolean highlight) {
+        Bitmap bitmap = getLevelBitmap(level,highlight);
         bitmapWidth = bitmap.getWidth();
         bitmapHeight = bitmap.getHeight();
         screenHeight = min((canvas.getWidth() * bitmap.getHeight()) / bitmap.getWidth(),canvas.getHeight());

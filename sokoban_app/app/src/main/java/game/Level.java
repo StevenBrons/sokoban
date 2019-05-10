@@ -156,6 +156,21 @@ public class Level {
         }
     }
 
+    public boolean getReachable(int x,int y){
+        int dx = x-playerX,dy=y-playerY;
+        if (Math.abs(dx)+Math.abs(dy) > 1){
+            return false;
+        }
+        if (getTileAt(x,y).isSolid()){
+            if (getTileAt(x,y) instanceof Movable &&
+                    !(((Movable) getTileAt(x,y)).moveOnto(getTileAt(x+dx,y+dy)) instanceof Void)){
+                return true;
+            }
+            return false;
+        }
+        return true;
+    }
+
     /**
      *
      * @return The level name

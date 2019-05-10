@@ -3,6 +3,12 @@ package game;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.LightingColorFilter;
+import android.graphics.Matrix;
+import android.graphics.Paint;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -96,5 +102,21 @@ public class Texture {
      */
     public Bitmap getBitmap() {
         return textures.get(this.name);
+    }
+
+    /**
+     * @return a lightened bitmap
+     * @autor Jelmer Firet
+     */
+
+    static public Bitmap highlightBitMap(Bitmap bitmap){
+        Bitmap highlightedBitmap = Bitmap.createBitmap(bitmap.getWidth(),bitmap.getHeight(),
+                Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(highlightedBitmap);
+        Paint p = new Paint(Color.RED);
+        ColorFilter filter = new LightingColorFilter(0xFFCCCCCC,0x00333333);
+        p.setColorFilter(filter);
+        canvas.drawBitmap(bitmap,new Matrix(),p);
+        return highlightedBitmap;
     }
 }
