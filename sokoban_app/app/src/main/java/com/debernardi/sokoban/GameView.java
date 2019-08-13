@@ -110,8 +110,9 @@ public class GameView extends View {
         screenWidth = screenHeight*bitmap.getWidth()/bitmap.getHeight();
         topOffset = (canvas.getHeight() / 2) - screenHeight/2;
         leftOffset = (canvas.getWidth() / 2) - screenWidth/2;
+        Rect src = new Rect(0,0,bitmap.getWidth(),bitmap.getHeight());
         Rect dest = new Rect(leftOffset,topOffset,screenWidth+leftOffset,screenHeight+topOffset);
-        canvas.drawBitmap(bitmap,null,dest,null);
+        canvas.drawBitmap(bitmap,src,dest,new Paint());
     }
 
     /**
