@@ -14,7 +14,7 @@
         <activity android:name=".Statistics"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
             android:screenOrientation="portrait"
-            ></activity>
+            />
         <activity android:name=".Settings"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
             android:screenOrientation="portrait"
@@ -37,7 +37,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="game.GameHandler" />
     </application>
 
 </manifest>
