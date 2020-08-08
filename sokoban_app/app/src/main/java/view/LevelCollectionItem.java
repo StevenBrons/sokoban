@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.debernardi.sokoban.BuildConfig;
 import com.debernardi.sokoban.R;
 
 import java.io.IOException;
@@ -46,6 +47,9 @@ public class LevelCollectionItem implements LevelSelectItem {
 					elements.add(new LevelItem(context, levelData));
 				}
 				else{
+					if (levelData[0].startsWith("9999_test_") && !BuildConfig.DEBUG) {
+						continue;
+					}
 					elements.add(new LevelCollectionItem(context, levelData, rootView));
 				}
 			}
